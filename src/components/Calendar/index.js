@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-awesome-modal';
-
+import Calendar from './components/Calendar';
+import { ViewType } from './components/constant';
 
 class Home extends React.PureComponent {
   constructor(props) {
