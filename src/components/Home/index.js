@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-awesome-modal';
-
+import Calendar from '../Calendar';
 
 class Home extends React.PureComponent {
   constructor(props) {
@@ -28,7 +28,7 @@ class Home extends React.PureComponent {
 <div>
 <input type="button" value="Book Now" onClick={()=>this.openModal()} />
 <Modal visible={this.state.visible} width="1024" height="900" effect="fadeInUp" onClickAway={()=>this.closeModal()}>
-
+<Calendar/>
 </Modal>
   </div>
 
