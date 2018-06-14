@@ -45,7 +45,7 @@ export default class Slot extends React.Component {
                     : (
                         <div>
                             <div>
-                                <span className='rbc-slot__title'>{this.props.startDate.format('HH:mm')}</span>
+                                <span className='rbc-slot__title'>{this.props.startDate.format('HH')}</span>
                                 <div className='rbc-slot__message'>{this.renderBookingLink()}</div>
                             </div>
                         </div>

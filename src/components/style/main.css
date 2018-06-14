@@ -18,10 +18,10 @@ html, body {
   text-align: center;
   pointer-events: none;
   cursor: none;
-  background: #7851a9;
+  background: #333333;
   color: #fff; }
   .rbc-slot--inactive {
-    background: #7851a9; }
+    background: #333333; }
   .rbc-slot:not(--inactive) {
     box-sizing: border-box; }
   .rbc-slot--clickable {
@@ -35,7 +35,7 @@ html, body {
     height: 100%; }
 
 .day__header {
-  background: #7851a9;
+  background: #333333;
   color: #fff;
   border-right: 1px solid rgba(255, 255, 255, 0.3); }
   .day__header > span {
@@ -177,7 +177,7 @@ html, body {
     height: 200px; }
 
 .rbc-body {
-  background: #7851a9;
+  background: #333333;
   color: #fff; }
 
 .rbc-date {

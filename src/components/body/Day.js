@@ -8,12 +8,12 @@ import {getDateTime, getStyle} from '../util';
 import {ViewType} from '../constant';
 
 export default class Day extends React.Component {
-    startDiary = '08:00';
-    endDiary = '20:00';
+    startDiary = '00:00';
+    endDiary = '23:00';
 
     static defaultProps = {
         view: 'landscape',
-        timeSlot: 30,
+        timeSlot: 60,
         noHeader: false
     }
 
