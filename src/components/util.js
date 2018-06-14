@@ -107,3 +107,9 @@ export function getSizeModifier(size) {
 
     return '--big';
 }
+
+
+export function  getTime(hour, minute) {
+    const localDatTime = moment().add(1, 'd').utc().zone(+330);
+    return localDatTime.clone().startOf('day').hour(hour).minute(minute).format('HH:mm');
+}

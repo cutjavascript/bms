@@ -26,7 +26,7 @@ class Calendar extends React.Component {
     static defaultProps = {
         bookings: [],
         timeSlices: [],
-        timeSlot: 30,
+        timeSlot: 60,
         timeExceptions: [],
         displayPast: false,
         view: ViewType.Month,

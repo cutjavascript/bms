@@ -27,7 +27,7 @@ class Home extends React.PureComponent {
     return (
 <div>
 <input type="button" value="Book Now" onClick={()=>this.openModal()} />
-<Modal visible={this.state.visible} width="1024" height="900" effect="fadeInUp" onClickAway={()=>this.closeModal()}>
+<Modal visible={this.state.visible} width="1024" height="900" effect="fadeInUp" overflow-x="scroll" onClickAway={()=>this.closeModal()}>
 <Calendar/>
 </Modal>
   </div>

@@ -7,7 +7,7 @@ import CalendarHeader from '../header/CalendarHeader';
 import CalendarBody from '../body/CalendarBody';
 import {ViewType} from '../constant';
 
-import '../style/main.scss';
+import '../style/main.css';
 
 import {
     getBookingsForDay,
@@ -15,7 +15,8 @@ import {
     getBookingsForMonth,
     getTimesliceForDay,
     getTimesliceForWeek,
-    getTimesliceForMonth
+    getTimesliceForMonth,
+    getTime
 } from '../util';
 
 class Calendar extends React.Component {
@@ -23,10 +24,19 @@ class Calendar extends React.Component {
     onViewChangedBound = this.onViewChanged.bind(this);
     onDayChoosenBound = this.onDayChoosen.bind(this);
 
+  
+  
+    
     static defaultProps = {
         bookings: [],
-        timeSlices: [],
-        timeSlot: 30,
+        timeSlices: [{ day: 'Monday', start:getTime(10, 0), end: getTime(18, 0) },
+        { day: 'Tuesday', start: getTime(9, 30), end: getTime(16, 0) },
+        { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0) },
+        { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30) },
+        { day: 'Friday', start: getTime(8, 30), end: getTime(17, 30) },
+        { day: 'Saturday', start: getTime(10, 30), end: getTime(16, 30) },
+        { day: 'Sunday', start: getTime(8, 30), end: getTime(15, 30) }],//
+        timeSlot: 60,
         timeExceptions: [],
         displayPast: false,
         view: ViewType.Month,
@@ -42,6 +52,12 @@ class Calendar extends React.Component {
 
     constructor(props) {
         super(props);
+
+
+
+// PARIS TIMEZONE
+
+
 
         const bookings = props.bookings.map(booking => {
             booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
@@ -99,7 +115,7 @@ class Calendar extends React.Component {
 
     render() {
         return (
-            <div className='rbc-calendar'>
+            <div className='rbc-calendar' style={{width:"1024px", height:"900px",  overflowX:"scroll"}}>
                 <CalendarHeader pastAvailable={this.props.displayPast}
                     date={this.state.date}
                     view={this.state.view}
