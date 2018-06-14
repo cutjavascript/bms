@@ -18,7 +18,7 @@ import {
     getTimesliceForMonth
 } from './util';
 
-class Calendar extends React.Component {
+class Calendar2 extends React.Component {
     onDateChangedBound = this.onDateChanged.bind(this);
     onViewChangedBound = this.onViewChanged.bind(this);
     onDayChoosenBound = this.onDayChoosen.bind(this);
@@ -136,4 +136,4 @@ class Calendar extends React.Component {
     }
 }
 
-export default sizeMe()(Calendar);
+export default sizeMe()(Calendar2);

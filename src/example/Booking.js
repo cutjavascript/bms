@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Container from 'react-responsive-ux-container';
 
-import {Calendar} from '../index';
+
+
+import Calendar from '../components/Calendar';
+
+
 
 import '../../node_modules/react-responsive-ux-container/dist/react-responsive-container.css';
 import './style.css';
