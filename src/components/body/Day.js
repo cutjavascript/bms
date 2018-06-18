@@ -17,13 +17,14 @@ export default class Day extends React.Component {
         noHeader: false
     }
 
-    createSlot(key, booking, numberOfColumn, numberOfSlot, clickable = true) {
+    createSlot(key, booking, numberOfColumn, numberOfSlot, clickable = true,price=0) {
         const style = getStyle(this.props.view, numberOfColumn, numberOfSlot);
         return <Slot key={key}
             onClick={clickable ? this.props.onClick : undefined}
             canViewBooking={this.props.canViewBooking}
             size={this.props.size}
             style={style}
+            price={price}
             {...booking} />
     }
 
@@ -51,6 +52,8 @@ export default class Day extends React.Component {
     }
 
     isDayOff() {
+
+        console.log('this.props.timeSlice',this.props.timeSlice);
         return this.props.timeSlice &&
             this.props.timeSlice.off &&
             this.props.timeSlice.start === this.startDiary &&
@@ -107,6 +110,13 @@ export default class Day extends React.Component {
                     workStart = getDateTime(this.props.date, this.props.timeSlice.start);
                     workEnd = getDateTime(this.props.date, this.props.timeSlice.end);
                 }
+                if(!this.props.timeSlice.price)
+                {
+
+                   return null;
+                }
+
+                let price=this.props.timeSlice.price;
 
                 while (currentSlot.startDate.isBefore(workStart)) {
                     const numberOfSlot = workStart.isBefore(currentSlot.endDate)
@@ -114,7 +124,7 @@ export default class Day extends React.Component {
                     : 1;
 
                     if (this.props.view !== ViewType.Day) {
-                        slots.push(this.createSlot(slots.length, {}, numberOfColumn, numberOfSlot));
+                        slots.push(this.createSlot(slots.length, {}, numberOfColumn, numberOfSlot,true,price));
                     }
 
                     currentSlot = this.nextSlot(numberOfSlot === 1 ? currentSlot.endDate : workStart);
@@ -123,7 +133,7 @@ export default class Day extends React.Component {
                 while (currentSlot.startDate.isBefore(workEnd)) {
                     if (!this.props.displayPast && currentSlot.startDate.isBefore(moment())) {
                         if(this.props.view !== ViewType.Day) {
-                            slots.push(this.createSlot(slots.length, {}, numberOfColumn, 1));
+                            slots.push(this.createSlot(slots.length, {}, numberOfColumn, 1,price));
                         }
 
                         currentSlot = this.nextSlot(currentSlot.endDate);
@@ -132,7 +142,7 @@ export default class Day extends React.Component {
 
                     // Check if slot match a off period
                     if (this.props.view !== ViewType.Day && this.isOff(currentSlot)) {
-                        slots.push(this.createSlot(slots.length, {}, numberOfColumn, 1));
+                        slots.push(this.createSlot(slots.length, {}, numberOfColumn, 1,price));
                         currentSlot = this.nextSlot(currentSlot.endDate);
                         continue;
                     }
@@ -141,22 +151,22 @@ export default class Day extends React.Component {
                     if (booking) {
                         let numberOfSlot = 1;
                         if (this.props.view === ViewType.Day) {
-                            slots.push(this.createSlot(slots.length, booking, numberOfColumn, 1));
+                            slots.push(this.createSlot(slots.length, booking, numberOfColumn, 1,price));
                             currentSlot = this.nextSlot(booking.endDate);
                         } else {
                             if (booking.startDate.isAfter(currentSlot.startDate)) {
                                 numberOfSlot = booking.startDate.diff(currentSlot.startDate, 'minutes') / this.props.timeSlot;
                                 const freeSlot = this.createBooking(currentSlot.startDate, booking.startDate);
-                                slots.push(this.createSlot(slots.length, freeSlot, numberOfColumn, numberOfSlot));
+                                slots.push(this.createSlot(slots.length, freeSlot, numberOfColumn, numberOfSlot,true,price));
                             }
 
                             numberOfSlot = booking.endDate.diff(booking.startDate, 'minutes') / this.props.timeSlot;
-                            slots.push(this.createSlot(slots.length, booking, numberOfColumn, numberOfSlot));
+                            slots.push(this.createSlot(slots.length, booking, numberOfColumn, numberOfSlot,true,price));
 
                             if (booking.endDate.isBefore(currentSlot.endDate)) {
                                 numberOfSlot = currentSlot.endDate.diff(booking.endDate, 'minutes') / this.props.timeSlot;
                                 const freeSlot = this.createBooking(booking.endDate, currentSlot.endDate);
-                                slots.push(this.createSlot(slots.length, freeSlot, numberOfColumn, numberOfSlot));
+                                slots.push(this.createSlot(slots.length, freeSlot, numberOfColumn, numberOfSlot,true,price));
                                 currentSlot = this.nextSlot(currentSlot.endDate);
                             } else {
                                 currentSlot = this.nextSlot(booking.endDate);
@@ -170,7 +180,7 @@ export default class Day extends React.Component {
                         const endDate = numberOfSlot === 1 ? currentSlot.endDate : workEnd;
                         const freeSlot = this.createBooking(currentSlot.startDate,  endDate);
                         const isClickable = currentSlot.startDate.isSameOrAfter(moment());
-                        slots.push(this.createSlot(slots.length, freeSlot, numberOfColumn, numberOfSlot, isClickable));
+                        slots.push(this.createSlot(slots.length, freeSlot, numberOfColumn, numberOfSlot, isClickable,price));
 
                         currentSlot = this.nextSlot(endDate);
                     }
@@ -182,7 +192,7 @@ export default class Day extends React.Component {
                     : 1;
 
                     if (this.props.view !== ViewType.Day) {
-                        slots.push(this.createSlot(slots.length, {}, numberOfColumn, numberOfSlot));
+                        slots.push(this.createSlot(slots.length, {}, numberOfColumn, numberOfSlot,true,price));
                     }
 
                     currentSlot = this.nextSlot(numberOfSlot === 1 ? currentSlot.endDate : endDiary);
@@ -190,7 +200,7 @@ export default class Day extends React.Component {
 
                 if (currentSlot.startDate.isBefore(endDiary)) {
                     const numberOfSlot = endDiary.diff(currentSlot.startDate, 'minutes') / this.props.timeSlot;
-                    slots.push(this.createSlot(slots.length, {}, numberOfColumn, numberOfSlot));
+                    slots.push(this.createSlot(slots.length, {}, numberOfColumn, numberOfSlot,true,price));
                 }
             }
         }

@@ -64,11 +64,11 @@ export function getTimesliceForMonth(timeSlices, timeExceptions, date) {
 
         const exception = find(timeExceptions, x => current.isBetween(moment(x.startDate), moment(x.endDate), null, '[]'));
         if (exception) {
-            result.push({ date: current.clone(), start: exception.startTime, end: exception.endTime, off: exception.off });
+            result.push({ date: current.clone(), start: exception.startTime, end: exception.endTime, off: exception.off,price: exception.price  });
         } else {
             const timeSlice = find(timeSlices, x => x.day === current.format('dddd'));
             if (timeSlice) {
-                result.push({ date: current.clone(), start: timeSlice.start, end: timeSlice.end });
+                result.push({ date: current.clone(), start: timeSlice.start, end: timeSlice.end,price: timeSlice.price });
             }
         }
     }

@@ -22,9 +22,11 @@ export default class Slot extends React.Component {
     }
 
     renderBookingLink() {
+        console.log('this.props',this.props);
+
         return this.props.isBooked
         ? <span>Booked</span>
-        : <span>Book</span>;
+        : <span>{this.props.price?this.props.price:'Book'}</span>;
     }
 
     renderEmptySlot() {
