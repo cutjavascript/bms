@@ -68,12 +68,6 @@ class Calendar extends React.Component {
     constructor(props) {
         super(props);
 
-
-
-// PARIS TIMEZONE
-
-
-
         const bookings = props.bookings.map(booking => {
             booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
             booking.endDate = moment.isMoment(booking.endDate) ? booking.endDate : moment(booking.endDate)

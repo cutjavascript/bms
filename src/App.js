@@ -12,6 +12,7 @@ import MainApp from './MainApp';
 
 import HomePage from './pages/HomePage';
 import Booking from './example/Booking';
+
 const App = () => (
   <ErrorBoundary showError>
     <Provider store={store}>

@@ -25,11 +25,11 @@ MainApp.propTypes = {
 };
 
 MainApp.childContextTypes = {
-   isLoggedOut: PropTypes.bool.isRequired,
+  isLoggedOut: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-   isLoggedOut: state.isLoggedOut,
+const mapStateToProps = state => ({
+  isLoggedOut: state.isLoggedOut,
 });
 
 const mapDispatchToProps = {};
