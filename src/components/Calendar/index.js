@@ -32,13 +32,13 @@ class Calendar extends React.Component {
     
     static defaultProps = {
         bookings: [],
-        timeSlices: [{ day: 'Monday', start:getTime(10, 0), end: getTime(18, 0) },
-        { day: 'Tuesday', start: getTime(9, 30), end: getTime(16, 0) },
-        { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0) },
-        { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30) },
-        { day: 'Friday', start: getTime(8, 30), end: getTime(17, 30) },
-        { day: 'Saturday', start: getTime(10, 30), end: getTime(16, 30) },
-        { day: 'Sunday', start: getTime(0, 30), end: getTime(23, 30) }],//
+        timeSlices: [{ day: 'Monday', start:getTime(10, 0), end: getTime(18, 0),price:2000 },
+        { day: 'Tuesday', start: getTime(9, 30), end: getTime(16, 0) ,price:3000},
+        { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0),price:4000 },
+        { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30),price:5000 },
+        { day: 'Friday', start: getTime(8, 30), end: getTime(17, 30),price:6000 },
+        { day: 'Saturday', start: getTime(10, 30), end: getTime(16, 30),price:7000 },
+        { day: 'Sunday', start: getTime(0, 30), end: getTime(23, 30),price:8000 }],//
         timeSlot: 60,
         timeExceptions: [ {
             startDate: localDatTime.clone().add(3, 'd').format('L'),
