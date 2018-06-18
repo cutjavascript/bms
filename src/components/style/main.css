@@ -28,7 +28,7 @@ html, body {
     pointer-events: visible;
     cursor: pointer; }
   .rbc-slot--free {
-    color: #47B8D1; }
+    color: #fff; }
   .rbc-slot--booked {
     color: #F57AA3; }
   .rbc-slot--small, .rbc-slot--medium {
@@ -42,7 +42,9 @@ html, body {
     display: block;
     text-align: center; }
   .day__header--important {
-    font-size: 30px; }
+    font-size: 16px; }
+  .day__header .day__bottom {
+    font-size: 14px; }
 
 @media (max-width: 1024px) {
   .day__header {
@@ -158,7 +160,7 @@ html, body {
     text-align: center;
     align-items: center;
     justify-content: center;
-    width: 100px; }
+    width: 90px; }
   .rbc-month--big .day__details {
     display: flex;
     flex-direction: row;

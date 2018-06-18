@@ -16,8 +16,11 @@ import {
     getTimesliceForDay,
     getTimesliceForWeek,
     getTimesliceForMonth,
-    getTime
+    getTime,
+    localDatTime
 } from '../util';
+
+
 
 class Calendar extends React.Component {
     onDateChangedBound = this.onDateChanged.bind(this);
@@ -35,9 +38,21 @@ class Calendar extends React.Component {
         { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30) },
         { day: 'Friday', start: getTime(8, 30), end: getTime(17, 30) },
         { day: 'Saturday', start: getTime(10, 30), end: getTime(16, 30) },
-        { day: 'Sunday', start: getTime(8, 30), end: getTime(15, 30) }],//
+        { day: 'Sunday', start: getTime(0, 30), end: getTime(23, 30) }],//
         timeSlot: 60,
-        timeExceptions: [],
+        timeExceptions: [ {
+            startDate: localDatTime.clone().add(3, 'd').format('L'),
+            endDate: localDatTime.clone().add(5, 'd').format('L'),
+            startTime: getTime(9, 0),
+            endTime: getTime(17, 0)
+        },
+        {
+            startDate: localDatTime.clone().add(6, 'd').format('L'),
+            endDate: localDatTime.clone().add(7, 'd').format('L'),
+            startTime: getTime(11, 0),
+            endTime: getTime(14, 0),
+            off: true
+        }],
         displayPast: false,
         view: ViewType.Month,
         date: moment(),

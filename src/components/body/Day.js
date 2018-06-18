@@ -78,7 +78,7 @@ export default class Day extends React.Component {
                 return (
                     <div className='day__header'>
                         <div className='day__header--important'>{this.props.date.format('DD')}</div>
-                        <div>{this.props.date.format('dddd')}</div>
+                        <div className='day__bottom'>{this.props.date.format('dddd')}</div>
                     </div>
                 )
             }

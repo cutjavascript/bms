@@ -113,3 +113,5 @@ export function  getTime(hour, minute) {
     const localDatTime = moment().add(1, 'd').utc().zone(+330);
     return localDatTime.clone().startOf('day').hour(hour).minute(minute).format('HH:mm');
 }
+
+export const  localDatTime = moment().add(1, 'd').utc().zone(-120);
