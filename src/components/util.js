@@ -158,7 +158,7 @@ export function getTime(hour, minute) {
     .format('HH:mm');
 }
 
-export const localDatTime = moment()
-  .add(1, 'd')
-  .utc()
-  .zone(-120);
+export const localDatTime = moment();
+ // .add(1, 'd')
+ // .utc()
+ // .zone(+360);

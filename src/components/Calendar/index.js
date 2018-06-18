@@ -20,7 +20,7 @@ import {
     localDatTime
 } from '../util';
 
-
+console.log('localDatTime',localDatTime);
 
 class Calendar extends React.Component {
     onDateChangedBound = this.onDateChanged.bind(this);
@@ -31,7 +31,21 @@ class Calendar extends React.Component {
   
     
     static defaultProps = {
-        bookings: [],
+        bookings: [/////need to add what is booked here
+
+            {
+                startDate: localDatTime.clone().add(-2, 'd').seconds(0).milliseconds(0).hours(10).minutes(0),
+                endDate: localDatTime.clone().add(-2, 'd').seconds(0).milliseconds(0).hours(10).minutes(30)
+            },{
+                startDate: localDatTime.clone().add(2, 'd').seconds(0).milliseconds(0).hours(10).minutes(0),
+                endDate: localDatTime.clone().add(2, 'd').seconds(0).milliseconds(0).hours(10).minutes(30)
+            },
+            {
+                startDate: localDatTime.clone().add(1, 'd').seconds(0).milliseconds(0).hours(12).minutes(0),
+                endDate: localDatTime.clone().add(1, 'd').seconds(0).milliseconds(0).hours(13).minutes(30)
+            }
+
+        ],
         timeSlices: [{ day: 'Monday', start:getTime(10, 0), end: getTime(18, 0),price:2000 },
         { day: 'Tuesday', start: getTime(9, 30), end: getTime(16, 0) ,price:3000},
         { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0),price:4000 },
@@ -67,7 +81,7 @@ class Calendar extends React.Component {
 
     constructor(props) {
         super(props);
-
+console.log('===props',this.props)
         const bookings = props.bookings.map(booking => {
             booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
             booking.endDate = moment.isMoment(booking.endDate) ? booking.endDate : moment(booking.endDate)

@@ -30,7 +30,7 @@ HomePage.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  isLoggedOut: state.isLoggedOut,
+  ...state,
 });
 
 const mapDispatchToProps = {
