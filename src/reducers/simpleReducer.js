@@ -1,4 +1,9 @@
 import moment from 'moment';
+// import {
+
+//   localDatTime
+// } from '../util';
+
 
 const initialState = {
                "data":{
@@ -32,8 +37,63 @@ const initialState = {
               }
 };
 
+
+
+
 export default (state = initialState, action) => {
 console.log('===state',state);
+
+/*
+bookings
+            {
+                startDate: localDatTime.clone().add(-2, 'd').seconds(0).milliseconds(0).hours(10).minutes(0),
+                endDate: localDatTime.clone().add(-2, 'd').seconds(0).milliseconds(0).hours(10).minutes(30)
+            },{
+                startDate: localDatTime.clone().add(2, 'd').seconds(0).milliseconds(0).hours(10).minutes(0),
+                endDate: localDatTime.clone().add(2, 'd').seconds(0).milliseconds(0).hours(10).minutes(30)
+            },
+            {
+                startDate: localDatTime.clone().add(1, 'd').seconds(0).milliseconds(0).hours(12).minutes(0),
+                endDate: localDatTime.clone().add(1, 'd').seconds(0).milliseconds(0).hours(13).minutes(30)
+            }
+
+
+
+            [{ day: 'Monday', start:getTime(10, 0), end: getTime(18, 0),price:2000 },
+            { day: 'Tuesday', start: getTime(9, 30), end: getTime(16, 0) ,price:3000},
+            { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0),price:4000 },
+            { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30),price:5000 },
+            { day: 'Friday', start: getTime(8, 30), end: getTime(17, 30),price:6000 },
+            { day: 'Saturday', start: getTime(10, 30), end: getTime(16, 30),price:7000 },
+            { day: 'Sunday', start: getTime(0, 30), end: getTime(23, 30),price:8000 }]
+
+
+
+
+            timeExceptions: [ {
+              startDate: localDatTime.clone().add(3, 'd').format('L'),
+              endDate: localDatTime.clone().add(5, 'd').format('L'),
+              startTime: getTime(9, 0),
+              endTime: getTime(17, 0)
+          },
+          {
+              startDate: localDatTime.clone().add(6, 'd').format('L'),
+              endDate: localDatTime.clone().add(7, 'd').format('L'),
+              startTime: getTime(11, 0),
+              endTime: getTime(14, 0),
+              off: true
+          }],
+*/
+/////people already booked
+let booked=[];
+///// not available
+let notAvailable=[];
+
+// state.data.bookings.map(x=>(
+//booked=localDatTime x.day
+
+// ));
+
 
   switch (action.type) {
     default:

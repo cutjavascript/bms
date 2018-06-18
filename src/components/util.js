@@ -162,3 +162,13 @@ export const localDatTime = moment();
  // .add(1, 'd')
  // .utc()
  // .zone(+360);
+
+
+ export function convertedDateTime(datetime)
+ {
+
+   return (moment(datetime, 'YYYYMMDD').isValid() ? moment(datetime, 'YYYYMMDD') : null);
+
+
+
+ }
