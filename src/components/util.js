@@ -167,7 +167,7 @@ export const localDatTime = moment();
  export function convertedDateTime(datetime)
  {
 
-   return (moment(datetime, 'YYYYMMDD').isValid() ? moment(datetime, 'YYYYMMDD') : null);
+   return (moment(datetime, 'YYYYMMDD').isValid() ? moment(datetime, 'YYYYMMDDhhA').format('L') : null);
 
 
 
