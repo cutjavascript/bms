@@ -5,5 +5,8 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
+import './assets/css/bootstrap.min.css';
+import './assets/css/font-awesome/css/font-awesome.css';
+
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();
