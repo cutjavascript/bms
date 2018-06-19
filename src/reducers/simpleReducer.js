@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { localDatTime, convertedDateTime } from '../components/util';
+import types from '../action_types';
 
 const initialState = {
   data: {
@@ -43,7 +44,28 @@ const initialState = {
     ],
   },
 };
+function bookingData(state)
+{
 
+
+
+const booked = [];
+// /// not available
+const available = [];
+let day = '';
+state.data.bookings.map(x => {
+
+  x.timings.map(y => {
+    day = String(x.day) + String(y.hour);
+    y.booked == 'y' && booked.push({ time: day });
+    y.booked == 'n' && available.push({ time: day, amount: 9000,booking_id:x.booking_id });
+  });
+});
+
+
+return Object.assign({},booked,available);
+
+}
 export default (state = initialState, action) => {
   console.log('===state', state);
 
@@ -88,38 +110,23 @@ bookings
               off: true
           }],
 */
-  // ///people already booked
-  const booked = [];
-  // /// not available
-  const available = [];
-  let day = '';
-  state.data.bookings.map(x => {
-    // booked=convertedDateTime()
-    x.timings.map(y => {
-      day = String(x.day) + String(y.hour);
-      y.booked == 'y' && booked.push({ time: day });
-      y.booked == 'n' && available.push({ time: day, amount: 9000 });
-      console.log(
-        '===day  Line:95, File:e:gitwork\bmssrc\reducerssimpleReducer.js',
-        day,
-      );
-      console.log(
-        '===convertedDateTime(day)  Line:97, File:e:gitwork\bmssrc\reducerssimpleReducer.js',
-        convertedDateTime(day),
-      );
-    });
-  });
 
-  console.log(
-    '===booked  Line:102, File:e:gitwork\bmssrc\reducerssimpleReducer.js',
-    booked,
-  );
-  console.log(
-    '===available  Line:104, File:e:gitwork\bmssrc\reducerssimpleReducer.js',
-    available,
-  );
+
+
+
+
+
   switch (action.type) {
-    default:
-      return state;
+    case types.LOAD_HOME_SUCCESS:{
+
+return;
+      console.log('===  Line:122, File:e:\gitwork\bms\src\reducers\simpleReducer.js',)
+    }
+    default:{
+      const newObj=bookingData(state);
+      console.log('===newObj  Line:121, File:e:\gitwork\bms\src\reducers\simpleReducer.js',newObj)
+      return {...state,...newObj};
+
   }
+}
 };
