@@ -58,12 +58,12 @@ state.data.bookings.map(x => {
   x.timings.map(y => {
     day = String(x.day) + String(y.hour);
     y.booked == 'y' && booked.push({ time: day });
-    y.booked == 'n' && available.push({ time: day, amount: 9000,booking_id:x.booking_id });
+    y.booked == 'n' && available.push({ time: day, amount: y.amount,booking_id:x.booking_id });
   });
 });
 
 
-return Object.assign({},booked,available);
+return Object.assign({},{booked:booked,available:available});
 
 }
 export default (state = initialState, action) => {
@@ -119,7 +119,7 @@ bookings
   switch (action.type) {
     case types.LOAD_HOME_SUCCESS:{
 
-return;
+return state;
       console.log('===  Line:122, File:e:\gitwork\bms\src\reducers\simpleReducer.js',)
     }
     default:{
