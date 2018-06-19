@@ -21,7 +21,7 @@ class HomePage extends React.PureComponent {
   }
 
   render() {
-    return <Home {...this.props} />;
+    return <Home {...this.props.simpleReducer} />;
   }
 }
 

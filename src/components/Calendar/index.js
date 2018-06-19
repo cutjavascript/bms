@@ -55,10 +55,11 @@ class Calendar extends React.Component {
         { day: 'Sunday', start: getTime(0, 30), end: getTime(23, 30),price:8000 }],//
         timeSlot: 60,
         timeExceptions: [ {
-            startDate: localDatTime.clone().add(3, 'd').format('L'),
-            endDate: localDatTime.clone().add(5, 'd').format('L'),
+            startDate: localDatTime.clone().add(4, 'd').format('L'),
+            endDate: localDatTime.clone().add(4, 'd').format('L'),
             startTime: getTime(9, 0),
-            endTime: getTime(17, 0)
+            endTime: getTime(11, 0),
+            off: true
         },
         {
             startDate: localDatTime.clone().add(6, 'd').format('L'),

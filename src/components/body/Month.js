@@ -46,7 +46,7 @@ export default class Month extends React.Component {
 
   renderEmptySlot(time, index) {
     const sizeType = getSizeType(this.props.size);
-  
+
     return times(time, x => (
       <div key={`empty-slot-${index}-${x}`}>
         {sizeType !== 'big' && this.renderSlot()}

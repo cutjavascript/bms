@@ -6,7 +6,7 @@ export default loadHome => dispatch => {
 
   async function getUser() {
     try {
-      const response = await axios.get('/user?ID=12345');
+      const response = await axios.get('http://localhost:8080/studios/getStudioService/1');
       dispatch({
         type: types.LOAD_HOME_SUCCESS,
         payload: { data: { ...response.data, loadHome } },
