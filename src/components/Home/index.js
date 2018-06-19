@@ -34,7 +34,7 @@ class Home extends React.PureComponent {
           overflow-x="scroll"
           onClickAway={() => this.closeModal()}
         >
-          <Calendar />
+          <Calendar {...this.props}/>
         </Modal>
       </div>
     );

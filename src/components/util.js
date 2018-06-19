@@ -79,13 +79,14 @@ export function getTimesliceForWeek(timeSlices, timeExceptions, date) {
   return result;
 }
 
-export function getTimesliceForMonth(timeSlices, timeExceptions, date) {
+export function getTimesliceForMonth(timeSlices, timeExceptions, date,totalSlots=[]) {
   const result = [];
 
   const daysInMonth = date.daysInMonth();
+  let formattedSlotTime='';
   for (let i = 1; i <= daysInMonth; i++) {
     const current = moment(date.set('date', i).format('L'));
-
+/*
     const exception = find(timeExceptions, x =>
       current.isBetween(moment(x.startDate), moment(x.endDate), null, '[]'),
     );
@@ -97,7 +98,10 @@ export function getTimesliceForMonth(timeSlices, timeExceptions, date) {
         off: exception.off,
         price: exception.price,
       });
-    } else {
+    } else {*/
+
+ 
+      
       const timeSlice = find(timeSlices, x => x.day === current.format('dddd'));
       if (timeSlice) {
         result.push({
@@ -106,10 +110,10 @@ export function getTimesliceForMonth(timeSlices, timeExceptions, date) {
           end: timeSlice.end,
           price: timeSlice.price,
         });
-      }
+      // }
     }
   }
-
+  console.log('===result  Line:127, File:e:\gitwork\bms\src\componentsil.js',result)
   return result;
 }
 
@@ -147,9 +151,10 @@ export function getSizeModifier(size) {
 
 export function getTime(hour, minute) {
   const localDatTime = moment()
-    .add(1, 'd')
-    .utc()
-    .zone(+330);
+  //  .add(1, 'd')
+  //  .utc()
+  //  .zone(+330)
+  ;
   return localDatTime
     .clone()
     .startOf('day')
@@ -163,8 +168,16 @@ export const localDatTime = moment();
 // .utc()
 // .zone(+360);
 
-export function convertedDateTime(datetime) {
-  return moment(datetime, 'YYYYMMDD').isValid()
-    ? moment(datetime, 'YYYYMMDDhhA').format('L')
-    : null;
+export function convertedDateTime(datetime) { console.log('===datetime  Line:167, File:e:\gitwork\bms\src\components\.js',datetime);
+  return (moment(datetime, 'YYYYMMDDA').isValid()
+    ? datetime
+    : null);
+}
+
+export function bookedSlot(day)
+{
+return ({
+  startDate:  moment(day,'YYYYMMDDhhA').minutes(0),
+  endDate:  moment(day,'YYYYMMDDhhA').minutes(59)
+});
 }

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { localDatTime, convertedDateTime } from '../components/util';
+import { localDatTime, convertedDateTime,bookedSlot } from '../components/util';
 import types from '../action_types';
 
 const initialState = {
@@ -10,7 +10,7 @@ const initialState = {
       {
         // #if that slot has not been alotted by studio
         booking_id: 11,
-        day: '20180618',
+        day: '20180620',
         timings: [
           { hour: '10am', amount: 8000, booked: 'y' },
           { hour: '11am', amount: 9000, booked: 'y' },
@@ -19,7 +19,7 @@ const initialState = {
       },
       {
         booking_id: 12,
-        day: '20180619',
+        day: '20180621',
         timings: [
           { hour: '9am', amount: 5000, booked: 'n' },
           { hour: '11am', amount: 6000, booked: 'y' },
@@ -47,23 +47,37 @@ const initialState = {
 function bookingData(state)
 {
 
+  console.log('===booked  Line:50, File:e:\gitwork\bms\src\reducers\simpleReducer.js',booked)
 
 
-const booked = [];
-// /// not available
-const available = [];
-let day = '';
+let day='',convertedSlot = '';
+let totalSlots=[],booked=[],available=[];
+
+
 state.data.bookings.map(x => {
 
   x.timings.map(y => {
+
     day = String(x.day) + String(y.hour);
-    y.booked == 'y' && booked.push({ time: day });
+    console.log('===convertedDateTime(day)  Line:62, File:e:\gitwork\bms\src\reducers\simpleReducer.js',convertedDateTime(day))
+    convertedSlot=convertedDateTime(day);
+    console.log('===convertedSlot  Line:64, File:e:\gitwork\bms\src\reducers\simpleReducer.js',convertedSlot)
+    totalSlots.push(convertedSlot);
+    y.booked == 'y' && booked.push(bookedSlot(day));
     y.booked == 'n' && available.push({ time: day, amount: y.amount,booking_id:x.booking_id });
   });
 });
 
 
-return Object.assign({},{booked:booked,available:available});
+console.log('===totalSlots  Line:69, File:e:\gitwork\bms\src\reducers\simpleReducer.js',totalSlots)
+
+
+console.log('===booked  Line:74, File:e:\gitwork\bms\src\reducers\simpleReducer.js',booked)
+
+
+
+
+return Object.assign({},{bookings:booked,available:available,totalSlots:totalSlots});
 
 }
 export default (state = initialState, action) => {
