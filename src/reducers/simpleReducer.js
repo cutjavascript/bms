@@ -1,49 +1,53 @@
 import moment from 'moment';
-// import {
-
-//   localDatTime,convertedDateTime
-// } from '../util';
-
+import { localDatTime, convertedDateTime } from '../components/util';
 
 const initialState = {
-               "data":{
-              "studio_id":123,
-              "studio_name":"Neelam Studios",
-                "bookings":[{//#if that slot has not been alotted by studio
-                    "booking_id":11,
-                    "day":"20180618",
-                    "10am" : {"amount": 8000,"booked":"y"},
-                    "11am" : {"amount": 9000,"booked":"y"},
-                    "9pm" : {"amount": 10000,"booked":"n"},
-                  },{
-                  "booking_id":12,
-                  "day":"20180619",
-                  "9am" : {"amount": 5000,"booked":"n"},
-                  "11am" : {"amount": 6000,"booked":"y"},
-                  "5pm" : {"amount": 10000,"booked":"n"},
-                    }],
+  data: {
+    studio_id: 123,
+    studio_name: 'Neelam Studios',
+    bookings: [
+      {
+        // #if that slot has not been alotted by studio
+        booking_id: 11,
+        day: '20180618',
+        timings: [
+          { hour: '10am', amount: 8000, booked: 'y' },
+          { hour: '11am', amount: 9000, booked: 'y' },
+          { hour: '9pm', amount: 10000, booked: 'n' },
+        ],
+      },
+      {
+        booking_id: 12,
+        day: '20180619',
+        timings: [
+          { hour: '9am', amount: 5000, booked: 'n' },
+          { hour: '11am', amount: 6000, booked: 'y' },
+          { hour: '5pm', amount: 10000, booked: 'n' },
+        ],
+      },
+    ],
 
-                    "services":[{
-                      "service_id":1,
-                      "service_name":"Voice Recording",
-                      "slots_required":2,
-                      "amount":2000
-                    },{
-                      "service_id":2,
-                      "service_name":"Mixing",
-                      "slots_required":0,
-                      "amount":2000
-                    }]
-              }
+    services: [
+      {
+        service_id: 1,
+        service_name: 'Voice Recording',
+        slots_required: 2,
+        amount: 2000,
+      },
+      {
+        service_id: 2,
+        service_name: 'Mixing',
+        slots_required: 0,
+        amount: 2000,
+      },
+    ],
+  },
 };
 
-
-
-
 export default (state = initialState, action) => {
-console.log('===state',state);
+  console.log('===state', state);
 
-/*
+  /*
 bookings
             {
                 startDate: localDatTime.clone().add(-2, 'd').seconds(0).milliseconds(0).hours(10).minutes(0),
@@ -84,17 +88,36 @@ bookings
               off: true
           }],
 */
-/////people already booked
-let booked=[];
-///// not available
-let notAvailable=[];
+  // ///people already booked
+  const booked = [];
+  // /// not available
+  const available = [];
+  let day = '';
+  state.data.bookings.map(x => {
+    // booked=convertedDateTime()
+    x.timings.map(y => {
+      day = String(x.day) + String(y.hour);
+      y.booked == 'y' && booked.push({ time: day });
+      y.booked == 'n' && available.push({ time: day, amount: 9000 });
+      console.log(
+        '===day  Line:95, File:e:gitwork\bmssrc\reducerssimpleReducer.js',
+        day,
+      );
+      console.log(
+        '===convertedDateTime(day)  Line:97, File:e:gitwork\bmssrc\reducerssimpleReducer.js',
+        convertedDateTime(day),
+      );
+    });
+  });
 
-// state.data.bookings.map(x=>(
-//booked=localDatTime x.day
-
-// ));
-
-
+  console.log(
+    '===booked  Line:102, File:e:gitwork\bmssrc\reducerssimpleReducer.js',
+    booked,
+  );
+  console.log(
+    '===available  Line:104, File:e:gitwork\bmssrc\reducerssimpleReducer.js',
+    available,
+  );
   switch (action.type) {
     default:
       return state;
