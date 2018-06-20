@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import bem from 'bem-classname';
 import _ from 'lodash';
-
+import {ThemeContext} from '../../context';
 import {getSizeType} from '../util';
 
 export default class Slot extends React.Component {
@@ -12,8 +12,11 @@ export default class Slot extends React.Component {
         return this.props.onClick && (!this.props.isBooked || this.props.canViewBooking);
     }
 
-    onClick(e) {
+    onClick(e) {console.log('===  Line:15, File:e:\gitwork\bms\src\components\body\Slot.js',)
         e.preventDefault();
+
+
+
 
         if (this.props.onClick) {
             const values = _.omit(this.props, ['className', 'style', 'onClick', 'canViewBooking', 'numberOfSlot']);
@@ -58,7 +61,7 @@ export default class Slot extends React.Component {
             );
         }
 
-        render() {
+        render() { console.log('===this.props  Line:61, File:e:\gitwork\bms\src\components\body\Slot.js',this.props)
             return this.props.startDate
             ? this.renderSlot()
             : this.renderEmptySlot();

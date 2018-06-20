@@ -52,7 +52,7 @@ function bookingData(state)
 
 let day='',convertedSlot = '';
 let totalSlots=[],booked=[],available=[];
-
+let dayIds={};
 
 state.data.bookings.map(x => {
 
@@ -65,6 +65,7 @@ state.data.bookings.map(x => {
     totalSlots.push(convertedSlot);
     y.booked == 'y' && booked.push(bookedSlot(day));
     y.booked == 'n' && available.push({ time: day, amount: y.amount,booking_id:x.booking_id });
+    dayIds[day]=x.booking_id;
   });
 });
 
@@ -77,7 +78,7 @@ console.log('===booked  Line:74, File:e:\gitwork\bms\src\reducers\simpleReducer.
 
 
 
-return Object.assign({},{bookings:booked,available:available,totalSlots:totalSlots});
+return Object.assign({},{bookings:booked,available:available,totalSlots:totalSlots,dayIds:dayIds});
 
 }
 export default (state = initialState, action) => {

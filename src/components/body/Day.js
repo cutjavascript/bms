@@ -19,7 +19,7 @@ export default class Day extends React.Component {
 
     createSlot(key, booking, numberOfColumn, numberOfSlot, clickable = true,price=0) {
         console.log('===booking  Line:21, File:e:\gitwork\bms\src\components\body\Day.js',booking.startDate)
-
+        console.log('===this.props  Line:22, File:e:\gitwork\bms\src\components\body\Day.js',this.props)
         let totalSlots=this.props.totalSlots;
 
         if(totalSlots.length > 0){
