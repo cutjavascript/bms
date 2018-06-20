@@ -27,6 +27,7 @@ export default class Month extends React.Component {
         style={style}
         displayPast={this.props.displayPast}
         size={this.props.size}
+        totalSlots={this.props.totalSlots}
       />
     );
   }

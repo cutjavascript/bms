@@ -126,15 +126,15 @@ class Home extends React.PureComponent {
             </div>
            
             <Modal
-              visible={this.state.visible}
-              width="1024"
-              height="900"
-              effect="fadeInUp"
-              overflow-x="scroll"
-              onClickAway={() => this.closeModal()}
-            >
-              <Calendar />
-            </Modal>
+          visible={this.state.visible}
+          width="1024"
+          height="900"
+          effect="fadeInUp"
+          overflow-x="scroll"
+          onClickAway={() => this.closeModal()}
+        >
+          <Calendar {...this.props}/>
+        </Modal>
         </div>
     );
   }

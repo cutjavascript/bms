@@ -61,6 +61,7 @@ export default class CalendarBody extends React.Component {
         displayPast={this.props.displayPast}
         view={this.props.view}
         size={this.props.size}
+        totalSlots={this.props.totalSlots}
       />
     );
   }

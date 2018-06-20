@@ -31,39 +31,27 @@ class Calendar extends React.Component {
   
     
     static defaultProps = {
-        bookings: [/////need to add what is booked here
-
-            {
-                startDate: localDatTime.clone().add(-2, 'd').seconds(0).milliseconds(0).hours(10).minutes(0),
-                endDate: localDatTime.clone().add(-2, 'd').seconds(0).milliseconds(0).hours(10).minutes(30)
-            },{
-                startDate: localDatTime.clone().add(2, 'd').seconds(0).milliseconds(0).hours(10).minutes(0),
-                endDate: localDatTime.clone().add(2, 'd').seconds(0).milliseconds(0).hours(10).minutes(30)
-            },
-            {
-                startDate: localDatTime.clone().add(1, 'd').seconds(0).milliseconds(0).hours(12).minutes(0),
-                endDate: localDatTime.clone().add(1, 'd').seconds(0).milliseconds(0).hours(13).minutes(30)
-            }
+        bookings: [
 
         ],
-        timeSlices: [{ day: 'Monday', start:getTime(10, 0), end: getTime(18, 0),price:2000 },
-        { day: 'Tuesday', start: getTime(9, 30), end: getTime(16, 0) ,price:3000},
-        { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0),price:4000 },
-        { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30),price:5000 },
-        { day: 'Friday', start: getTime(8, 30), end: getTime(17, 30),price:6000 },
-        { day: 'Saturday', start: getTime(10, 30), end: getTime(16, 30),price:7000 },
-        { day: 'Sunday', start: getTime(0, 30), end: getTime(23, 30),price:8000 }],//
+        timeSlices: [{ day: 'Monday', start:getTime(0, 0), end: getTime(23, 30),price:2000 },
+        { day: 'Tuesday', start:getTime(0, 0), end: getTime(23, 30),price:3000},
+        { day: 'Wednesday',start:getTime(0, 0), end: getTime(23, 30),price:4000 },
+        { day: 'Thursday', start:getTime(0, 0), end: getTime(23, 30),price:5000 },
+        { day: 'Friday', start:getTime(0, 0), end: getTime(23, 30),price:6000 },
+        { day: 'Saturday', start:getTime(0, 0), end: getTime(23, 30),price:7000 },
+        { day: 'Sunday', start:getTime(0, 0), end: getTime(23, 30),price:8000 }],//
         timeSlot: 60,
         timeExceptions: [ {
-            startDate: localDatTime.clone().add(4, 'd').format('L'),
-            endDate: localDatTime.clone().add(4, 'd').format('L'),
+            startDate: localDatTime.clone().add(14, 'd').format('L'),
+            endDate: localDatTime.clone().add(14, 'd').format('L'),
             startTime: getTime(9, 0),
             endTime: getTime(11, 0),
             off: true
         },
         {
-            startDate: localDatTime.clone().add(6, 'd').format('L'),
-            endDate: localDatTime.clone().add(7, 'd').format('L'),
+            startDate: localDatTime.clone().add(16, 'd').format('L'),
+            endDate: localDatTime.clone().add(17, 'd').format('L'),
             startTime: getTime(11, 0),
             endTime: getTime(14, 0),
             off: true
@@ -77,12 +65,13 @@ class Calendar extends React.Component {
                 Week: 'Week',
                 Month: 'Month'
             }
-        }
+        },
+        totalSlots:[]
     };
 
     constructor(props) {
         super(props);
-console.log('===props',this.props)
+       console.log('=== this.props  Line:85, File:e:\gitwork\bms\src\components\Calendar\index.js', this.props)
         const bookings = props.bookings.map(booking => {
             booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
             booking.endDate = moment.isMoment(booking.endDate) ? booking.endDate : moment(booking.endDate)
@@ -96,7 +85,8 @@ console.log('===props',this.props)
             bookings: bookings,
             timeSlices: props.timeSlices,
             timeExceptions: props.timeExceptions,
-            booking: {}
+            booking: {},
+            totalSlots:props.totalSlots
         }
     }
 
@@ -114,6 +104,9 @@ console.log('===props',this.props)
 
         if (!isEqual(this.state.timeSlices, nextProps.timeSlices)) {
             this.setState({ timeSlices: nextProps.timeSlices });
+        }
+        if (!isEqual(this.state.totalSlots, nextProps.totalSlots)) {
+            this.setState({ totalSlots: nextProps.totalSlots });
         }
 
         if (!isEqual(this.state.timeExceptions, nextProps.timeExceptions)) {
@@ -158,7 +151,8 @@ console.log('===props',this.props)
                     displayDayView={this.props.displayDayView}
                     dayClicked={this.onDayChoosenBound}
                     slotClicked={this.props.onSlotChoosen}
-                    size={this.props.size} />
+                    size={this.props.size}
+                    totalSlots={this.state.totalSlots} />
             </div>
         );
     }

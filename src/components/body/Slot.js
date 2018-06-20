@@ -21,6 +21,7 @@ export default class Slot extends React.Component {
         }
     }
 
+    
     renderBookingLink() {
         console.log('this.props',this.props);
 

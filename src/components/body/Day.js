@@ -18,6 +18,18 @@ export default class Day extends React.Component {
     }
 
     createSlot(key, booking, numberOfColumn, numberOfSlot, clickable = true,price=0) {
+        console.log('===booking  Line:21, File:e:\gitwork\bms\src\components\body\Day.js',booking.startDate)
+
+        let totalSlots=this.props.totalSlots;
+
+        if(totalSlots.length > 0){
+        let formattedSlotTime= moment(booking.startDate).format('YYYYMMDDhhA');
+        console.log('===formattedSlotTime  Line:105, File:e:\gitwork\bms\src\components\il.js',formattedSlotTime,totalSlots)
+        
+        if(totalSlots.includes(formattedSlotTime.toLowerCase())){
+        console.log('===  Line:30, File:e:\gitwork\bms\src\components\body\Day.js',)
+
+
         const style = getStyle(this.props.view, numberOfColumn, numberOfSlot);
         return <Slot key={key}
             onClick={clickable ? this.props.onClick : undefined}
@@ -26,6 +38,17 @@ export default class Day extends React.Component {
             style={style}
             price={price}
             {...booking} />
+
+        }
+  
+
+        }
+
+
+
+
+
+
     }
 
     createBooking(start, end) {
@@ -60,7 +83,7 @@ export default class Day extends React.Component {
             this.props.timeSlice.end === this.endDiary;
     }
 
-    isOff(slot) {
+    isOff(slot) {console.log('===this.props.timeSlice  Line:63, File:e:\gitwork\bms\src\components\body\Day.js',this.props.timeSlice)
         if (this.props.timeSlice && this.props.timeSlice.off) {
             const startOff = getDateTime(this.props.date, this.props.timeSlice.start);
             const endOff = getDateTime(this.props.date, this.props.timeSlice.end);
