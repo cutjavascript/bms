@@ -28,9 +28,9 @@ const App = () => (
     </Provider>
   </ErrorBoundary> */}
   <Router>
-  <div className="App container" style={{backgroundColor: "#f8f8f8","min-width": 1400,padding: 0}}>
+  <div className="App container" style={{backgroundColor: "#f8f8f8",minWidth: 1400,padding: 0}}>
       <div className="component component-Shape" style={{height: 80, padding: 0}} > 
-        <div style={{ width: "100%", height: "100%",overflow: "hidden", boxSizing: "border-box","border-bottom": "1px solid #ddd" }} > 
+        <div style={{ width: "100%", height: "100%",overflow: "hidden", boxSizing: "border-box",borderBottom: "1px solid #ddd" }} > 
           <div style={{ left: 0, top: 0, width: "100%",height: "100%",boxSizing: "border-box", borderRadius: 0}} >
             <div className="row" style={{marginTop: 28}}>
               <div className="col-sm-2">
