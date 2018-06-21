@@ -7,10 +7,10 @@ export default loadHome => dispatch => {
   async function getUser() {
     try {
       const response = await axios.get('http://localhost:8080/studios/getStudioService/1', {
-        "headers": {
-          "content-type": "application/json",
-          "cache-control": "no-cache"
-        }
+        headers: {
+          'content-type': 'application/json',
+          'cache-control': 'no-cache',
+        },
       });
       dispatch({
         type: types.LOAD_HOME_SUCCESS,

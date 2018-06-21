@@ -1,8 +1,9 @@
 import moment from 'moment';
-import { localDatTime, convertedDateTime,bookedSlot } from '../components/util';
+import { localDatTime, convertedDateTime, bookedSlot } from '../components/util';
 import types from '../action_types';
 
 const initialState = {
+  isLoading: false,
   data: {
     studio_id: 123,
     studio_name: 'Neelam Studios',
@@ -10,7 +11,7 @@ const initialState = {
       {
         // #if that slot has not been alotted by studio
         booking_id: 11,
-        day: '20180620',
+        day: '20180623',
         timings: [
           { hour: '10am', amount: 8000, booked: 'y' },
           { hour: '11am', amount: 9000, booked: 'y' },
@@ -19,7 +20,7 @@ const initialState = {
       },
       {
         booking_id: 12,
-        day: '20180621',
+        day: '20180624',
         timings: [
           { hour: '9am', amount: 5000, booked: 'n' },
           { hour: '11am', amount: 6000, booked: 'y' },
@@ -44,104 +45,61 @@ const initialState = {
     ],
   },
 };
-function bookingData(state)
-{
+function bookingData(state) {
 
-  console.log('===booked  Line:50, File:e:\gitwork\bms\src\reducers\simpleReducer.js',booked)
+  let day = '',
+    convertedSlot = '';
+  let totalSlots = [],
+    booked = [],
+    available = [];
+  const dayIds = {};
 
+  state.data.bookings.map(x => {
+    x.timings.map(y => {
+      day = String(x.day) + String(y.hour);
 
-let day='',convertedSlot = '';
-let totalSlots=[],booked=[],available=[];
-let dayIds={};
-
-state.data.bookings.map(x => {
-
-  x.timings.map(y => {
-
-    day = String(x.day) + String(y.hour);
-    console.log('===convertedDateTime(day)  Line:62, File:e:\gitwork\bms\src\reducers\simpleReducer.js',convertedDateTime(day))
-    convertedSlot=convertedDateTime(day);
-    console.log('===convertedSlot  Line:64, File:e:\gitwork\bms\src\reducers\simpleReducer.js',convertedSlot)
-    totalSlots.push(convertedSlot);
-    y.booked == 'y' && booked.push(bookedSlot(day));
-    y.booked == 'n' && available.push({ time: day, amount: y.amount,booking_id:x.booking_id });
-    dayIds[day]=x.booking_id;
+      convertedSlot = convertedDateTime(day);
+      totalSlots.push(convertedSlot);
+      y.booked == 'y' && booked.push(bookedSlot(day));
+      y.booked == 'n' &&
+        available.push({
+          time: day,
+          amount: y.amount,
+          booking_id: x.booking_id,
+        });
+      dayIds[day] = x.booking_id;
+    });
   });
-});
-
-
-console.log('===totalSlots  Line:69, File:e:\gitwork\bms\src\reducers\simpleReducer.js',totalSlots)
-
-
-console.log('===booked  Line:74, File:e:\gitwork\bms\src\reducers\simpleReducer.js',booked)
 
 
 
-
-return Object.assign({},{bookings:booked,available:available,totalSlots:totalSlots,dayIds:dayIds});
-
+  return Object.assign(
+    {},
+    {
+      bookings: booked,
+      available,
+      totalSlots,
+      dayIds,
+    },
+  );
 }
 export default (state = initialState, action) => {
-  console.log('===state', state);
-
-  /*
-bookings
-            {
-                startDate: localDatTime.clone().add(-2, 'd').seconds(0).milliseconds(0).hours(10).minutes(0),
-                endDate: localDatTime.clone().add(-2, 'd').seconds(0).milliseconds(0).hours(10).minutes(30)
-            },{
-                startDate: localDatTime.clone().add(2, 'd').seconds(0).milliseconds(0).hours(10).minutes(0),
-                endDate: localDatTime.clone().add(2, 'd').seconds(0).milliseconds(0).hours(10).minutes(30)
-            },
-            {
-                startDate: localDatTime.clone().add(1, 'd').seconds(0).milliseconds(0).hours(12).minutes(0),
-                endDate: localDatTime.clone().add(1, 'd').seconds(0).milliseconds(0).hours(13).minutes(30)
-            }
-
-
-
-            [{ day: 'Monday', start:getTime(10, 0), end: getTime(18, 0),price:2000 },
-            { day: 'Tuesday', start: getTime(9, 30), end: getTime(16, 0) ,price:3000},
-            { day: 'Wednesday', start: getTime(9, 30), end: getTime(17, 0),price:4000 },
-            { day: 'Thursday', start: getTime(10, 30), end: getTime(16, 30),price:5000 },
-            { day: 'Friday', start: getTime(8, 30), end: getTime(17, 30),price:6000 },
-            { day: 'Saturday', start: getTime(10, 30), end: getTime(16, 30),price:7000 },
-            { day: 'Sunday', start: getTime(0, 30), end: getTime(23, 30),price:8000 }]
-
-
-
-
-            timeExceptions: [ {
-              startDate: localDatTime.clone().add(3, 'd').format('L'),
-              endDate: localDatTime.clone().add(5, 'd').format('L'),
-              startTime: getTime(9, 0),
-              endTime: getTime(17, 0)
-          },
-          {
-              startDate: localDatTime.clone().add(6, 'd').format('L'),
-              endDate: localDatTime.clone().add(7, 'd').format('L'),
-              startTime: getTime(11, 0),
-              endTime: getTime(14, 0),
-              off: true
-          }],
-*/
-
-
-
-
-
 
   switch (action.type) {
-    case types.LOAD_HOME_SUCCESS:{
-
-return state;
-      console.log('===  Line:122, File:e:\gitwork\bms\src\reducers\simpleReducer.js',)
+    case types.LOAD_HOME_REQUEST: {
+      return { ...state, isLoading: true };
     }
-    default:{
-      const newObj=bookingData(state);
-      console.log('===newObj  Line:121, File:e:\gitwork\bms\src\reducers\simpleReducer.js',newObj)
-      return {...state,...newObj};
 
+    case types.LOAD_HOME_SUCCESS: {
+      const newObj = bookingData(state);
+      return { ...state, ...newObj, isLoading: false };
+    }
+
+    case types.LOAD_HOME_FAIL: {
+      return state;
+    }
+    default: {
+      return state;
+    }
   }
-}
 };

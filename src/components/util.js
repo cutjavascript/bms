@@ -27,9 +27,7 @@ export function getBookingsForMonth(bookings, date) {
 
 export function getTimesliceForDay(timeSlices, timeExceptions, date) {
   const current = moment(date.format('L'));
-  const exception = find(timeExceptions, x =>
-    current.isBetween(moment(x.startDate), moment(x.endDate), null, '[]'),
-  );
+  const exception = find(timeExceptions, x => current.isBetween(moment(x.startDate), moment(x.endDate), null, '[]'));
   if (exception) {
     return {
       date: current.clone(),
@@ -39,9 +37,7 @@ export function getTimesliceForDay(timeSlices, timeExceptions, date) {
     };
   }
   const timeSlice = find(timeSlices, x => x.day === date.format('dddd'));
-  return timeSlice
-    ? { date: current.clone(), start: timeSlice.start, end: timeSlice.end }
-    : undefined;
+  return timeSlice ? { date: current.clone(), start: timeSlice.start, end: timeSlice.end } : undefined;
 }
 
 export function getTimesliceForWeek(timeSlices, timeExceptions, date) {
@@ -52,9 +48,7 @@ export function getTimesliceForWeek(timeSlices, timeExceptions, date) {
 
   let current = startOfWeek.clone();
   while (current <= endOfWeek) {
-    const exception = find(timeExceptions, x =>
-      current.isBetween(moment(x.startDate), moment(x.endDate), null, '[]'),
-    );
+    const exception = find(timeExceptions, x => current.isBetween(moment(x.startDate), moment(x.endDate), null, '[]'));
     if (exception) {
       result.push({
         date: current.clone(),
@@ -79,14 +73,14 @@ export function getTimesliceForWeek(timeSlices, timeExceptions, date) {
   return result;
 }
 
-export function getTimesliceForMonth(timeSlices, timeExceptions, date,totalSlots=[]) {
+export function getTimesliceForMonth(timeSlices, timeExceptions, date, totalSlots = []) {
   const result = [];
 
   const daysInMonth = date.daysInMonth();
-  let formattedSlotTime='';
+  const formattedSlotTime = '';
   for (let i = 1; i <= daysInMonth; i++) {
     const current = moment(date.set('date', i).format('L'));
-/*
+    /*
     const exception = find(timeExceptions, x =>
       current.isBetween(moment(x.startDate), moment(x.endDate), null, '[]'),
     );
@@ -98,22 +92,20 @@ export function getTimesliceForMonth(timeSlices, timeExceptions, date,totalSlots
         off: exception.off,
         price: exception.price,
       });
-    } else {*/
+    } else { */
 
- 
-      
-      const timeSlice = find(timeSlices, x => x.day === current.format('dddd'));
-      if (timeSlice) {
-        result.push({
-          date: current.clone(),
-          start: timeSlice.start,
-          end: timeSlice.end,
-          price: timeSlice.price,
-        });
+    const timeSlice = find(timeSlices, x => x.day === current.format('dddd'));
+    if (timeSlice) {
+      result.push({
+        date: current.clone(),
+        start: timeSlice.start,
+        end: timeSlice.end,
+        price: timeSlice.price,
+      });
       // }
     }
   }
-  console.log('===result  Line:127, File:e:\gitwork\bms\src\componentsil.js',result)
+  console.log('===result  Line:127, File:e:gitwork\bmssrccomponentsil.js', result);
   return result;
 }
 
@@ -150,11 +142,10 @@ export function getSizeModifier(size) {
 }
 
 export function getTime(hour, minute) {
-  const localDatTime = moment()
+  const localDatTime = moment();
   //  .add(1, 'd')
   //  .utc()
   //  .zone(+330)
-  ;
   return localDatTime
     .clone()
     .startOf('day')
@@ -168,16 +159,14 @@ export const localDatTime = moment();
 // .utc()
 // .zone(+360);
 
-export function convertedDateTime(datetime) { console.log('===datetime  Line:167, File:e:\gitwork\bms\src\components\.js',datetime);
-  return (moment(datetime, 'YYYYMMDDA').isValid()
-    ? datetime
-    : null);
+export function convertedDateTime(datetime) {
+  console.log('===datetime  Line:167, File:e:gitwork\bmssrccomponents.js', datetime);
+  return moment(datetime, 'YYYYMMDDA').isValid() ? datetime : null;
 }
 
-export function bookedSlot(day)
-{
-return ({
-  startDate:  moment(day,'YYYYMMDDhhA').minutes(0),
-  endDate:  moment(day,'YYYYMMDDhhA').minutes(59)
-});
+export function bookedSlot(day) {
+  return {
+    startDate: moment(day, 'YYYYMMDDhhA').minutes(0),
+    endDate: moment(day, 'YYYYMMDDhhA').minutes(59),
+  };
 }

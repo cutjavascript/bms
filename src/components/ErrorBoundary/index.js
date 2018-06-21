@@ -21,8 +21,7 @@ class ErrorBoundary extends React.Component {
     const { hasError } = this.state;
     return hasError ? (
       <div style={{ padding: 30, textAlign: 'center' }}>
-        Sorry, something went wrong. Please try again later, while we fix this
-        issue.
+        Sorry, something went wrong. Please try again later, while we fix this issue.
       </div>
     ) : (
       <div style={{ height: '100%' }}>{this.props.children}</div>

@@ -16,12 +16,8 @@ export default class Week extends React.Component {
 
       do {
         const date = startOfWeek.clone();
-        const timeSlice = find(this.props.timeSlices, x =>
-          x.date.isSame(date, 'days'),
-        );
-        const bookings = filter(this.props.bookings, x =>
-          x.startDate.isSame(date, 'days'),
-        );
+        const timeSlice = find(this.props.timeSlices, x => x.date.isSame(date, 'days'));
+        const bookings = filter(this.props.bookings, x => x.startDate.isSame(date, 'days'));
 
         if (this.props.displayPast || date.isSameOrAfter(moment(), 'day')) {
           days.push(

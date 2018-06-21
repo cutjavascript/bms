@@ -9,12 +9,8 @@ import { getBookingsForDay, getSizeType } from '../util';
 
 export default class Month extends React.Component {
   renderDay(date, style) {
-    const timeSlice = find(this.props.timeSlices, x =>
-      x.date.isSame(date, 'days'),
-    );
-    const bookings = filter(this.props.bookings, x =>
-      x.startDate.isSame(date, 'days'),
-    );
+    const timeSlice = find(this.props.timeSlices, x => x.date.isSame(date, 'days'));
+    const bookings = filter(this.props.bookings, x => x.startDate.isSame(date, 'days'));
 
     return (
       <Day
@@ -48,11 +44,7 @@ export default class Month extends React.Component {
   renderEmptySlot(time, index) {
     const sizeType = getSizeType(this.props.size);
 
-    return times(time, x => (
-      <div key={`empty-slot-${index}-${x}`}>
-        {sizeType !== 'big' && this.renderSlot()}
-      </div>
-    ));
+    return times(time, x => <div key={`empty-slot-${index}-${x}`}>{sizeType !== 'big' && this.renderSlot()}</div>);
   }
 
   render() {
@@ -70,19 +62,11 @@ export default class Month extends React.Component {
         const date = this.props.date.set('date', i).clone();
 
         if (date.date() === 1 && date.day() !== 1) {
-          days = days.concat(
-            this.renderEmptySlot((date.day() > 1 ? date.day() : 7) - 1, i),
-          );
+          days = days.concat(this.renderEmptySlot((date.day() > 1 ? date.day() : 7) - 1, i));
         }
 
         if (this.props.displayPast || date.isSameOrAfter(moment(), 'day')) {
-          days.push(
-            <div key={date}>
-              {sizeType !== 'big'
-                ? this.renderSlot(date)
-                : this.renderDay(date)}
-            </div>,
-          );
+          days.push(<div key={date}>{sizeType !== 'big' ? this.renderSlot(date) : this.renderDay(date)}</div>);
         } else {
           days.push(this.renderEmptySlot(1, i));
         }
