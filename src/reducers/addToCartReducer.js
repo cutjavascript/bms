@@ -8,15 +8,13 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log('===action.payload  Line:16, File:e:gitwork\bmssrc\reducersaddToCart.js', action.payload);
+  console.log('===action  Line:11, File:e:\gitwork\bms\src\reducers\addToCartReducer.js',action)
   switch (action.type) {
     case types.ADD_TO_CART_REQUEST: {
       return { ...state, isLoading: true };
     }
     case types.ADD_TO_CART_SUCCESS: {
-      if (!action.payload.data) {
-        return state;
-      }
+
       return {
         ...state,
         isLoading: false,

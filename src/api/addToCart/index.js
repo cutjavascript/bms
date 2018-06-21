@@ -28,7 +28,8 @@ export default ({ bookingId, bookingTime, cartId = 0 }) => (dispatch, getState) 
     .then(response => {
 
       const status = String(((response.data || {}).data || {}).status || '').toLowerCase();
-      if (status) {
+      console.log('===status  Line:31, File:e:\gitwork\bms\src\api\addToCart\index.js',status)
+      if (status==='success') {
         dispatch({
           type: types.ADD_TO_CART_SUCCESS,
           payload: { ...((response.data || {}).data || {}) },

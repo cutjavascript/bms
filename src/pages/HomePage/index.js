@@ -16,6 +16,7 @@ class HomePage extends React.PureComponent {
   }
 
   componentDidMount() {
+    console.log('===this.props  Line:19, File:e:\gitwork\bms\src\pages\HomePage\index.js',this.props)
     this.loadHomePage();
   }
 
@@ -37,7 +38,7 @@ class HomePage extends React.PureComponent {
     });
   }
   render() {
-
+    console.log('===this.props  Line:40, File:e:\gitwork\bms\src\pages\HomePage\index.js',this.props)
     const dayIds = this.props.simpleReducer && this.props.simpleReducer.dayIds;
 
     return (
@@ -56,7 +57,7 @@ HomePage.propTypes = {
 const mapStateToProps = state => ({
   ...state,
 });
-
+console.log('===mapStateToProps  Line:59, File:e:\gitwork\bms\src\pages\HomePage\index.js',mapStateToProps)
 const mapDispatchToProps = {
   loadHome,
   addToCart,
