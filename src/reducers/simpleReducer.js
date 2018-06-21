@@ -10,21 +10,21 @@ const initialState = {
     bookings: [
       {
         // #if that slot has not been alotted by studio
-        booking_id: 11,
-        day: '20180623',
+        booking_id: 1,
+        day: '20180625',
         timings: [
-          { hour: '10am', amount: 8000, booked: 'y' },
-          { hour: '11am', amount: 9000, booked: 'y' },
-          { hour: '9pm', amount: 10000, booked: 'n' },
+          { hour: '10am', amount: 8000, booked: true },
+          { hour: '11am', amount: 9000, booked: true },
+          { hour: '9pm', amount: 10000, booked: false },
         ],
       },
       {
-        booking_id: 12,
-        day: '20180624',
+        booking_id: 1,
+        day: '20180626',
         timings: [
-          { hour: '9am', amount: 5000, booked: 'n' },
+          { hour: '9am', amount: 5000, booked: false },
           { hour: '11am', amount: 6000, booked: 'y' },
-          { hour: '5pm', amount: 10000, booked: 'n' },
+          { hour: '5pm', amount: 10000, booked: false },
         ],
       },
     ],
@@ -46,7 +46,7 @@ const initialState = {
   },
 };
 function bookingData(state) {
-
+  console.log('===state  Line:49, File:e:\gitwork\bms\src\reducers\simpleReducer.js',state)
   let day = '',
     convertedSlot = '';
   let totalSlots = [],
@@ -56,12 +56,13 @@ function bookingData(state) {
 
   state.data.bookings.map(x => {
     x.timings.map(y => {
-      day = String(x.day) + String(y.hour);
-
+      
+      day = String(moment(x.day,'YYYYMMDD'+'000000').format("YYYYMMDD")) + String(y.hour);
+      console.log("===moment(x.day,'YYYYMMDD'+'000000').format('YYYYMMDD')  Line:61, File:e:\gitwork\bms\src\reducers\simpleReducer.js",moment(x.day,'YYYYMMDD'+'000000').format("YYYYMMDD"))
       convertedSlot = convertedDateTime(day);
       totalSlots.push(convertedSlot);
-      y.booked == 'y' && booked.push(bookedSlot(day));
-      y.booked == 'n' &&
+      y.booked  && booked.push(bookedSlot(day));
+      !y.booked  &&
         available.push({
           time: day,
           amount: y.amount,
@@ -84,14 +85,17 @@ function bookingData(state) {
   );
 }
 export default (state = initialState, action) => {
-
+  console.log('===action  Line:87, File:e:\gitwork\bms\src\reducers\simpleReducer.js',action)
   switch (action.type) {
     case types.LOAD_HOME_REQUEST: {
       return { ...state, isLoading: true };
     }
 
     case types.LOAD_HOME_SUCCESS: {
-      const newObj = bookingData(state);
+      const newObj = bookingData(
+        // action.payload.data
+        state
+      );
       return { ...state, ...newObj, isLoading: false };
     }
 
