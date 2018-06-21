@@ -17,7 +17,8 @@ import {
     getTimesliceForWeek,
     getTimesliceForMonth,
     getTime,
-    localDatTime
+    localDatTime,
+     convertedDateTime, bookedSlot
 } from '../util';
 
 console.log('localDatTime',localDatTime);
@@ -91,6 +92,8 @@ class Calendar extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
+
+        console.log('===nextProps  Line:95, File:e:\gitwork\bms\src\components\Calendar\index.js',nextProps)
         if (!isEqual(this.state.bookings, nextProps.bookings)) {
             const bookings = nextProps.bookings.map(booking => {
                 booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
@@ -112,6 +115,59 @@ class Calendar extends React.Component {
         if (!isEqual(this.state.timeExceptions, nextProps.timeExceptions)) {
             this.setState({ timeExceptions: nextProps.timeExceptions });
         }
+
+        /////if slot booked then change values of bookings in state(Would have to be done similar to show loading)
+const cartId=(nextProps.addToCartResult || {}).cart_id || 0;
+if(cartId!=0)
+{////if cart id not equal to 0 then check if bookings were selected and if so add them to existing booking set
+const getBooking=((nextProps.addToCartResult || {}).postData || {}).bookings || [];
+const bookingDay=((nextProps.addToCartResult || {}).postData || {}).bookingDay || 0;
+
+if(getBooking.length >0)
+{
+    let removeFromBookings=[],addToBookings=false,day='',bookingTime='',convertedSlot={};
+    getBooking.map(x=>{
+        removeFromBookings = x.availed && x.slot_id;
+        addToBookings = x.availed;
+        bookingTime=x.booking_time;
+    })
+
+
+
+
+
+
+    addToBookings && (
+this.setState((prevState,props)=>{console.log('===prevState  Line:141, File:e:\gitwork\bms\src\components\Calendar\index.js',prevState)
+  const prevBookings = prevState.bookings;
+  day = String(moment(bookingDay,'YYYYMMDD'+'000000').format("YYYYMMDD")) + String(bookingTime);
+  console.log('===prevBookings  Line:144, File:e:\gitwork\bms\src\components\Calendar\index.js',prevBookings)
+  convertedSlot = bookedSlot(day);
+  convertedSlot.isBooked = true
+  prevBookings.push(convertedSlot);
+
+  console.log('===prevBookings  Line:148, File:e:\gitwork\bms\src\components\Calendar\index.js',prevBookings)
+  return prevBookings;
+})
+    )
+
+
+//     {slot_id: 1, booking_time: "11am", availed: true}
+// availed
+// :
+// true
+// booking_time
+// :
+// "11am"
+// slot_id
+// :
+// 1
+
+ }
+
+}
+
+        
     }
 
     getBookings() {

@@ -26,15 +26,17 @@ class HomePage extends React.PureComponent {
 
   onSlotChoosen(params) {
 
-    const slotLower = String(params.startDate.format('YYYYMMDDhhA')).toLowerCase();
+    const bookingDay = String(params.startDate.format('YYYYMMDDhhA')).toLowerCase();
 
-    const bookingId = this.props.simpleReducer.dayIds[slotLower];
+    const bookingId = this.props.simpleReducer.dayIds[bookingDay];
     const bookingTime = String(params.startDate.format('hA')).toLowerCase();
 
 
     this.props.addToCart({
       bookingId,
       bookingTime,
+      cartId:0,///// TODO: Need to add cartId
+      bookingDay
     });
   }
   render() {
@@ -43,7 +45,7 @@ class HomePage extends React.PureComponent {
 
     return (
       <ThemeContext.Provider value={dayIds}>
-        <Home {...this.props.simpleReducer} onSlotChoosen={this.onSlotChoosen} />
+        <Home {...this.props.simpleReducer} onSlotChoosen={this.onSlotChoosen} addToCartResult={this.props.addToCartReducer} />
       </ThemeContext.Provider>
     );
   }
