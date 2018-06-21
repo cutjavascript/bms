@@ -14,10 +14,6 @@ export default class Slot extends React.Component {
 
     onClick(e) {console.log('===  Line:15, File:e:\gitwork\bms\src\components\body\Slot.js',)
         e.preventDefault();
-
-
-
-
         if (this.props.onClick) {
             const values = _.omit(this.props, ['className', 'style', 'onClick', 'canViewBooking', 'numberOfSlot']);
             this.props.onClick(values);
