@@ -1,34 +1,33 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-import PropTypes from '../../PropTypes';
-import Home from '../../components/Home';
-import loadHome from '../../api/loadHome';
-import addToCart from '../../api/addToCart';
-import { Context } from '../../context';
+import PropTypes from "../../PropTypes";
+import Home from "../../components/Home";
+import loadCalendar from "../../api/loadCalendar";
+import addToCart from "../../api/addToCart";
+import { Context } from "../../context";
 
 class HomePage extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.loadHomePage = this.loadHomePage.bind(this);
+    this.loadCalendarPage = this.loadCalendarPage.bind(this);
     this.onSlotChoosen = this.onSlotChoosen.bind(this);
   }
 
   componentDidMount() {
-    console.log('===this.props  Line:19, File:e:gitwork\bmssrcpagesHomePageindex.js', this.props);
-    this.loadHomePage();
+    console.log("===this.props  Line:19, File:e:gitwork\bmssrcpagesHomePageindex.js", this.props);
   }
 
-  loadHomePage() {
-    this.props.loadHome();
+  loadCalendarPage() {
+    this.props.loadCalendar();
   }
 
   onSlotChoosen(params) {
-    const bookingDay = String(params.startDate.format('YYYYMMDDhA')).toLowerCase();
+    const bookingDay = String(params.startDate.format("YYYYMMDDhA")).toLowerCase();
 
     const bookingId = this.props.simpleReducer.dayIds[bookingDay];
-    const bookingTime = String(params.startDate.format('hA')).toLowerCase();
+    const bookingTime = String(params.startDate.format("hA")).toLowerCase();
 
     this.props.addToCart({
       bookingId,
@@ -38,7 +37,7 @@ class HomePage extends React.PureComponent {
     });
   }
   render() {
-    console.log('===this.props  Line:40, File:e:gitwork\bmssrcpagesHomePageindex.js', this.props);
+    console.log("===this.props  Line:40, File:e:gitwork\bmssrcpagesHomePageindex.js", this.props);
     const available = this.props.simpleReducer && this.props.simpleReducer.available;
 
     return (
@@ -47,6 +46,7 @@ class HomePage extends React.PureComponent {
           {...this.props.simpleReducer}
           onSlotChoosen={this.onSlotChoosen}
           addToCartResult={this.props.addToCartReducer}
+          loadCalendar={this.loadCalendarPage}
         />
       </Context.Provider>
     );
@@ -54,16 +54,16 @@ class HomePage extends React.PureComponent {
 }
 
 HomePage.propTypes = {
-  loadHome: PropTypes.func.isRequired,
+  loadCalendar: PropTypes.func.isRequired,
   addToCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   ...state,
 });
-console.log('===mapStateToProps  Line:59, File:e:gitwork\bmssrcpagesHomePageindex.js', mapStateToProps);
+console.log("===mapStateToProps  Line:59, File:e:gitwork\bmssrcpagesHomePageindex.js", mapStateToProps);
 const mapDispatchToProps = {
-  loadHome,
+  loadCalendar,
   addToCart,
 };
 

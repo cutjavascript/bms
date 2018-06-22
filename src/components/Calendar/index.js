@@ -221,6 +221,8 @@ class Calendar extends React.Component {
   }
 
   render() {
+    const isLoading = this.props.isLoading || false;
+
     return (
       <div className="rbc-calendar" style={{ width: "1024px", height: "900px", overflowX: "scroll" }}>
         <CalendarHeader
@@ -246,6 +248,7 @@ class Calendar extends React.Component {
           slotClicked={this.props.onSlotChoosen}
           size={this.props.size}
           totalSlots={this.state.totalSlots}
+          isLoading={isLoading}
         />
       </div>
     );

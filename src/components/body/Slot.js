@@ -2,11 +2,16 @@ import React from "react";
 import moment from "moment";
 import bem from "bem-classname";
 import _ from "lodash";
+import { PulseLoader } from "react-spinners";
 import { Context } from "../../context";
 import { getSizeType } from "../util";
 
 export default class Slot extends React.Component {
-  onClickBound = this.onClick.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = { isLoading: false };
+    this.onClickBound = this.onClick.bind(this);
+  }
 
   isClickable() {
     return this.props.onClick && (!this.props.isBooked || this.props.canViewBooking);
@@ -17,6 +22,7 @@ export default class Slot extends React.Component {
     e.preventDefault();
     if (this.props.onClick) {
       const values = _.omit(this.props, ["className", "style", "onClick", "canViewBooking", "numberOfSlot"]);
+      this.setState({ isLoading: true });
       this.props.onClick(values);
     }
   }
@@ -48,7 +54,8 @@ export default class Slot extends React.Component {
         style={this.props.style}
         onClick={this.onClickBound}
       >
-        {this.props.children ? (
+        {this.state.isLoading && <PulseLoader color={"#123abc"} loading={true} />}
+        {!this.state.isLoading && this.props.children ? (
           this.props.children
         ) : (
           <div>

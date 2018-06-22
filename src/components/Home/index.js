@@ -1,15 +1,18 @@
-import React from 'react';
-import Modal from 'react-awesome-modal';
-import Calendar from '../Calendar';
-import banner from '../../assets/images/banner.jpg';
+import React from "react";
+import Modal from "react-awesome-modal";
+import Calendar from "../Calendar";
+import banner from "../../assets/images/banner.jpg";
 
-class Home extends React.PureComponent {
+class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = { visible: false };
   }
 
   openModal() {
+    this.props.loadCalendar();
+
+    // this.props.loadCalendar();
     this.setState({
       visible: true,
     });
@@ -27,15 +30,15 @@ class Home extends React.PureComponent {
           style={{
             left: 0,
             top: 82,
-            width: '100%',
+            width: "100%",
             height: 409,
             padding: 0,
             opacity: 1,
             zIndex: 11,
-            borderBottom: '1px solid #ddd',
+            borderBottom: "1px solid #ddd",
           }}
         >
-          <img src={banner} style={{ left: 0, top: 0, width: '100%', height: 409 }} />
+          <img src={banner} style={{ left: 0, top: 0, width: "100%", height: 409 }} />
         </div>
         <div className="container">
           <div className="" style={{ height: 20 }} />
@@ -43,11 +46,11 @@ class Home extends React.PureComponent {
             <div
               className="col-sm-12"
               style={{
-                backgroundColor: 'rgb(255,255,255)',
-                border: '1px solid rgb(102, 204, 255)',
+                backgroundColor: "rgb(255,255,255)",
+                border: "1px solid rgb(102, 204, 255)",
               }}
             >
-              <h3 className="studio-title" style={{ margin: '25px 0 25px 0', fontWeight: 700 }}>
+              <h3 className="studio-title" style={{ margin: "25px 0 25px 0", fontWeight: 700 }}>
                 Neelam Studios
               </h3>
               <div className="booknow-block">
@@ -72,10 +75,10 @@ class Home extends React.PureComponent {
                 to HD cameras to Audio equipment to Lights to rigs.
               </p>
               <div className="service-block">
-                <h4 className="studio-title" style={{ margin: '25px 0 25px 0', fontWeight: 700 }}>
+                <h4 className="studio-title" style={{ margin: "25px 0 25px 0", fontWeight: 700 }}>
                   Services offered
                 </h4>
-                <div className="container service-container" style={{ width: '75%' }}>
+                <div className="container service-container" style={{ width: "75%" }}>
                   <div className="row">
                     <div className="col">
                       <div className="">
