@@ -16,7 +16,7 @@ class HomePage extends React.PureComponent {
   }
 
   componentDidMount() {
-    console.log('===this.props  Line:19, File:e:\gitwork\bms\src\pages\HomePage\index.js',this.props)
+    console.log('===this.props  Line:19, File:e:gitwork\bmssrcpagesHomePageindex.js', this.props);
     this.loadHomePage();
   }
 
@@ -25,27 +25,29 @@ class HomePage extends React.PureComponent {
   }
 
   onSlotChoosen(params) {
-
     const bookingDay = String(params.startDate.format('YYYYMMDDhhA')).toLowerCase();
 
     const bookingId = this.props.simpleReducer.dayIds[bookingDay];
     const bookingTime = String(params.startDate.format('hA')).toLowerCase();
 
-
     this.props.addToCart({
       bookingId,
       bookingTime,
-      cartId:0,///// TODO: Need to add cartId
-      bookingDay
+      cartId: 0, // /// TODO: Need to add cartId
+      bookingDay,
     });
   }
   render() {
-    console.log('===this.props  Line:40, File:e:\gitwork\bms\src\pages\HomePage\index.js',this.props)
+    console.log('===this.props  Line:40, File:e:gitwork\bmssrcpagesHomePageindex.js', this.props);
     const dayIds = this.props.simpleReducer && this.props.simpleReducer.dayIds;
 
     return (
       <ThemeContext.Provider value={dayIds}>
-        <Home {...this.props.simpleReducer} onSlotChoosen={this.onSlotChoosen} addToCartResult={this.props.addToCartReducer} />
+        <Home
+          {...this.props.simpleReducer}
+          onSlotChoosen={this.onSlotChoosen}
+          addToCartResult={this.props.addToCartReducer}
+        />
       </ThemeContext.Provider>
     );
   }
@@ -59,7 +61,7 @@ HomePage.propTypes = {
 const mapStateToProps = state => ({
   ...state,
 });
-console.log('===mapStateToProps  Line:59, File:e:\gitwork\bms\src\pages\HomePage\index.js',mapStateToProps)
+console.log('===mapStateToProps  Line:59, File:e:gitwork\bmssrcpagesHomePageindex.js', mapStateToProps);
 const mapDispatchToProps = {
   loadHome,
   addToCart,
