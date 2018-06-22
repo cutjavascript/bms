@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import bem from "bem-classname";
 import _ from "lodash";
-import { ThemeContext } from "../../context";
+import { Context } from "../../context";
 import { getSizeType } from "../util";
 
 export default class Slot extends React.Component {
@@ -33,6 +33,8 @@ export default class Slot extends React.Component {
   }
 
   renderSlot() {
+    console.log("===  Line:35, File:e:gitwork\bmssrccomponents\bodySlot.js");
+
     const sizeTypeModifier = bem("rbc-slot--" + getSizeType(this.props.size));
     const isBookedModifier = bem("rbc-slot", [this.props.isBooked ? "booked" : "free"]);
     const isClickableModifier = bem("rbc-slot", [this.isClickable() ? "clickable" : ""]);
@@ -48,7 +50,15 @@ export default class Slot extends React.Component {
           <div>
             <div>
               <span className="rbc-slot__title">{this.props.startDate.format("HH")}</span>
-              <div className="rbc-slot__message">{this.renderBookingLink()}</div>
+              <div className="rbc-slot__message">
+                {" "}
+                <Context.Consumer>
+                  {values => {
+                    //   var user = _.find(users, { lastName: "Doe", gender: "male" });
+                    console.log("===  Line:38, File:e:gitwork\bmssrccomponents\bodySlot.js", values);
+                  }}
+                </Context.Consumer>;{this.renderBookingLink()}
+              </div>
             </div>
           </div>
         )}
