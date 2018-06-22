@@ -56,10 +56,10 @@ function bookingData(state) {
 
   state.data.bookings.map(x => {
     x.timings.map(y => {
-      day = String(moment(x.date, "YYYYMMDD" + "000000").format("YYYYMMDD")) + String(y.hour);
+      day = String(moment(x.day, "YYYYMMDD").format("YYYYMMDD")) + String(y.hour);
       console.log(
         "===moment(x.day,'YYYYMMDD'+'000000').format('YYYYMMDD')  Line:61, File:e:gitwork\bmssrc\reducerssimpleReducer.js",
-        moment(x.date, "YYYYMMDD" + "000000").format("YYYYMMDD"),
+        moment(x.day, "YYYYMMDD" + "000000").format("YYYYMMDD"),
       );
       convertedSlot = convertedDateTime(day);
       totalSlots.push(convertedSlot);
@@ -68,9 +68,9 @@ function bookingData(state) {
         available.push({
           time: day,
           amount: y.amount,
-          booking_id: x.slotId,
+          booking_id: x.slot_id,
         });
-      dayIds[day] = x.slotId;
+      dayIds[day] = x.slot_id;
     });
   });
 

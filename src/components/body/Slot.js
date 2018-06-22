@@ -21,10 +21,10 @@ export default class Slot extends React.Component {
     }
   }
 
-  renderBookingLink() {
+  renderBookingLink(slotData = {}) {
     console.log("this.props", this.props);
 
-    return this.props.isBooked ? <span>Booked</span> : <span>{this.props.price ? this.props.price : "Book"}</span>;
+    return this.props.isBooked ? <span>Booked</span> : <span>{slotData.amount ? slotData.amount : "Book"}</span>;
   }
 
   renderEmptySlot() {
@@ -54,10 +54,18 @@ export default class Slot extends React.Component {
                 {" "}
                 <Context.Consumer>
                   {values => {
-                    //   var user = _.find(users, { lastName: "Doe", gender: "male" });
+                    const formatteDate =
+                      this.props.startDate && String(moment(this.props.startDate).format("YYYYMMDDhA")).toLowerCase();
+                    console.log("===formatteDate  Line:59, File:e:gitwork\bmssrccomponents\bodySlot.js", formatteDate);
+                    var slotData = _.find(values, { time: formatteDate });
+                    console.log("===slotData  Line:61, File:e:gitwork\bmssrccomponents\bodySlot.js", slotData);
+
                     console.log("===  Line:38, File:e:gitwork\bmssrccomponents\bodySlot.js", values);
+                    {
+                      this.renderBookingLink(slotData);
+                    }
                   }}
-                </Context.Consumer>;{this.renderBookingLink()}
+                </Context.Consumer>
               </div>
             </div>
           </div>

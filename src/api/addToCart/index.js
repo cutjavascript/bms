@@ -31,7 +31,7 @@ export default ({ bookingId, bookingTime, cartId = 0, bookingDay }) => (dispatch
   dispatch({ type: types.ADD_TO_CART_REQUEST, payload: { postData } });
   axios
     .post("http://localhost:8080/bookings/setCarts", {
-      postData,
+      ...postData,
     })
     .then(response => {
       const status = String(((response.data || {}).data || {}).status || "").toLowerCase();
