@@ -24,7 +24,11 @@ export default class Slot extends React.Component {
   renderBookingLink(slotData = {}) {
     console.log("this.props", this.props);
     console.log("===slotData  Line:26, File:e:gitwork\bmssrccomponents\bodySlot.js", slotData);
-    return this.props.isBooked ? <span>Booked</span> : <span>{slotData.amount ? slotData.amount : "Book"}</span>;
+    return this.props.isBooked ? (
+      <span>Booked</span>
+    ) : (
+      <span>&#8377;{slotData.amount ? Number(slotData.amount).toLocaleString() : "Book"}</span>
+    );
   }
 
   renderEmptySlot() {
