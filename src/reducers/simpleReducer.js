@@ -1,12 +1,12 @@
-import moment from "moment";
-import { localDatTime, convertedDateTime, bookedSlot } from "../components/util";
-import types from "../action_types";
+import moment from 'moment';
+import { localDatTime, convertedDateTime, bookedSlot } from '../components/util';
+import types from '../action_types';
 
 const initialState = {
   isLoading: false,
   data: {
     studio_id: 123,
-    studio_name: "Neelam Studios",
+    studio_name: 'Neelam Studios',
     bookings: [
       // {
       //   // #if that slot has not been alotted by studio
@@ -32,13 +32,13 @@ const initialState = {
     services: [
       {
         service_id: 1,
-        service_name: "Voice Recording",
+        service_name: 'Voice Recording',
         slots_required: 2,
         amount: 2000,
       },
       {
         service_id: 2,
-        service_name: "Mixing",
+        service_name: 'Mixing',
         slots_required: 0,
         amount: 2000,
       },
@@ -46,9 +46,9 @@ const initialState = {
   },
 };
 function bookingData(state) {
-  console.log("===state  Line:49, File:e:gitwork\bmssrc\reducerssimpleReducer.js", state);
-  let day = "",
-    convertedSlot = "";
+  console.log('===state  Line:49, File:e:gitwork\bmssrc\reducerssimpleReducer.js', state);
+  let day = '',
+    convertedSlot = '';
   let totalSlots = [],
     booked = [],
     available = [];
@@ -56,10 +56,10 @@ function bookingData(state) {
 
   state.data.bookings.map(x => {
     x.timings.map(y => {
-      day = String(moment(x.day, "YYYYMMDD").format("YYYYMMDD")) + String(y.hour);
+      day = String(moment(x.day, 'YYYYMMDD').format('YYYYMMDD')) + String(y.hour);
       console.log(
         "===moment(x.day,'YYYYMMDD'+'000000').format('YYYYMMDD')  Line:61, File:e:gitwork\bmssrc\reducerssimpleReducer.js",
-        moment(x.day, "YYYYMMDD" + "000000").format("YYYYMMDD"),
+        moment(x.day, 'YYYYMMDD' + '000000').format('YYYYMMDD'),
       );
       convertedSlot = convertedDateTime(day);
       totalSlots.push(convertedSlot);
@@ -74,8 +74,8 @@ function bookingData(state) {
     });
   });
 
-  console.log("===booked  Line:77, File:e:gitwork\bmssrc\reducerssimpleReducer.js", booked);
-  console.log("===totalSlots  Line:78, File:e:gitwork\bmssrc\reducerssimpleReducer.js", totalSlots);
+  console.log('===booked  Line:77, File:e:gitwork\bmssrc\reducerssimpleReducer.js', booked);
+  console.log('===totalSlots  Line:78, File:e:gitwork\bmssrc\reducerssimpleReducer.js', totalSlots);
   return Object.assign(
     {},
     {
@@ -87,7 +87,7 @@ function bookingData(state) {
   );
 }
 export default (state = initialState, action) => {
-  console.log("===action  Line:87, File:e:gitwork\bmssrc\reducerssimpleReducer.js", action);
+  console.log('===action  Line:87, File:e:gitwork\bmssrc\reducerssimpleReducer.js', action);
   switch (action.type) {
     case types.LOAD_HOME_REQUEST: {
       return { ...state, isLoading: true };

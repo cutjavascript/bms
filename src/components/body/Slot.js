@@ -23,7 +23,7 @@ export default class Slot extends React.Component {
 
   renderBookingLink(slotData = {}) {
     console.log("this.props", this.props);
-
+    console.log("===slotData  Line:26, File:e:gitwork\bmssrccomponents\bodySlot.js", slotData);
     return this.props.isBooked ? <span>Booked</span> : <span>{slotData.amount ? slotData.amount : "Book"}</span>;
   }
 
@@ -61,9 +61,8 @@ export default class Slot extends React.Component {
                     console.log("===slotData  Line:61, File:e:gitwork\bmssrccomponents\bodySlot.js", slotData);
 
                     console.log("===  Line:38, File:e:gitwork\bmssrccomponents\bodySlot.js", values);
-                    {
-                      this.renderBookingLink(slotData);
-                    }
+
+                    return this.renderBookingLink(slotData);
                   }}
                 </Context.Consumer>
               </div>
