@@ -35,4 +35,8 @@
     &--medium {
         height: 100%;
     }
+
+    &:hover {
+        color: $slot-hover-color;
+    }
 }
