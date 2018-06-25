@@ -4,6 +4,7 @@
         color: $day-header-color;
         border-right: 1px solid $main-border-color;
 
+
         > span {
             display: block;
             text-align: center;
@@ -50,11 +51,11 @@
         }
 
         &__details {
-            height: 100px;
+            // height: 100px;
 
             .rbc-slot {
                 &:not(.slot--inactive) {
-                    height: 100px;
+                    // height: 100px;
                 }
 
                 &__title {

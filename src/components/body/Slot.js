@@ -39,7 +39,20 @@ export default class Slot extends React.Component {
 
   renderEmptySlot() {
     const className = bem("rbc-slot", ["inactive"]);
-    return <div className={className} style={this.props.style} />;
+    // return <div className={className} style={this.props.style} />;
+    if (this.props.startDate && this.props.startDate.format("HH")) {
+      return (
+        <div className={className} style={this.props.style}>
+          <div>
+            <div>
+              <span className="rbc-slot__title">{this.props.startDate.format("HH")}</span>
+              <div className="rbc-slot__message"> </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return null;
   }
 
   renderSlot() {
