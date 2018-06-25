@@ -55,6 +55,7 @@
     &--small,
     &--medium {
         height: 100px;
+        top:10px;
 
         .rbc-date {
             &__date {
@@ -66,12 +67,13 @@
     }
 
     &--big {
-        height: 150px;
+        height: 130px;
         display: inline-block;
+        top:20px;
 
         .rbc-date {
             &__date {
-                line-height: 150px;
+                line-height: 129px;
                 font-size: 30px;
                 margin: 0px 20px;
                 width: 500px;

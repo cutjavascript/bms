@@ -1,0 +1,42 @@
+
+
+.rbc-body-loading {
+    background:#fff;
+    color: $body-color;
+    height: 100%;
+    width: 100%;
+    >div{
+        color: red;
+        top: 25%;
+        left: 47%;
+        float:left;
+        position: relative;
+    }
+    > div:nth-child(2){
+        top: 30%;
+    width: 100%;
+    text-align: center;
+    left: 0px;
+    font-size: 30px;
+
+    }
+    >div > div{
+        background-color: red;
+            }
+    >div > div:first-child,>div > div:nth-child(2){
+background-color: transparent;
+        border-top: 25px solid red !important;
+    border-left: 25px solid red !important;
+    border-bottom: 25px solid red !important;
+    }
+    >div > div:nth-child(3),>div > div:nth-child(4),>div > div:nth-child(5),>div > div:nth-child(6){
+        font-size: 14px;
+        color: red;
+        background-color: transparent;
+        top:21px
+    }
+
+
+   
+
+}

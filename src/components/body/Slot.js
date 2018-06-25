@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import bem from "bem-classname";
 import _ from "lodash";
-import { PulseLoader } from "react-spinners";
+import { PulseLoader } from "react-spinners_new";
 import { Context } from "../../context";
 import { getSizeType } from "../util";
 
@@ -54,7 +54,7 @@ export default class Slot extends React.Component {
         style={this.props.style}
         onClick={this.onClickBound}
       >
-        {this.state.isLoading && <PulseLoader color={"#123abc"} loading={true} />}
+        {this.state.isLoading && <PulseLoader color={"#56b4e9"} loading={true} />}
         {!this.state.isLoading && this.props.children ? (
           this.props.children
         ) : (
