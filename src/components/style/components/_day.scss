@@ -13,9 +13,10 @@
             font-size: 16px;
         }
 
-       .day__bottom {
-            font-size: 14px;
-        }
+       
+    }
+    &__bottom {
+        font-size: 12px;
     }
 }
 
@@ -27,11 +28,11 @@
         }
         
         &__details {
-            height: 100px;
+            height: 80px;
 
             .rbc-slot {
                 &:not(.slot--inactive) {
-                    height: 100px;
+                    height: 80px;
                 }
 
                 &__title {
