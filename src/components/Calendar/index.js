@@ -159,12 +159,15 @@ class Calendar extends React.Component {
 
     /////if slot booked then change values of bookings in state(Would have to be done similar to show loading)
     const cartId = (nextProps.addToCartResult || {}).cart_id || 0;
+    console.log("===cartId  Line:162, File:e:gitwork\bmssrccomponentsCalendarindex.js", cartId);
     if (cartId != 0) {
       ////if cart id not equal to 0 then check if bookings were selected and if so add them to existing booking set
       const getBooking = ((nextProps.addToCartResult || {}).postData || {}).bookings || [];
       const bookingDay = ((nextProps.addToCartResult || {}).postData || {}).bookingDay || 0;
-
+      console.log("===  Line:167, File:e:gitwork\bmssrccomponentsCalendarindex.js");
+      console.log("===getBooking  Line:168, File:e:gitwork\bmssrccomponentsCalendarindex.js", getBooking);
       if (getBooking.length > 0) {
+        console.log("===  Line:168, File:e:gitwork\bmssrccomponentsCalendarindex.js");
         let removeFromBookings = [],
           addToBookings = false,
           day = "",
@@ -175,6 +178,8 @@ class Calendar extends React.Component {
           addToBookings = x.availed;
           bookingTime = x.booking_time;
         });
+
+        console.log("===addToBookings  Line:182, File:e:gitwork\bmssrccomponentsCalendarindex.js", addToBookings);
 
         addToBookings &&
           this.setState((prevState, props) => {
@@ -223,6 +228,10 @@ class Calendar extends React.Component {
   render() {
     const isLoading = this.props.isLoading || false;
 
+    console.log(
+      "===this.state.bookings  Line:230, File:e:gitwork\bmssrccomponentsCalendarindex.js",
+      this.state.bookings,
+    );
     return (
       <div className="rbc-calendar" style={{ width: "1024px", height: "900px", overflowX: "scroll" }}>
         <CalendarHeader
@@ -249,6 +258,7 @@ class Calendar extends React.Component {
           size={this.props.size}
           totalSlots={this.state.totalSlots}
           isLoading={isLoading}
+          addToCartResult={this.props.addToCartResult}
         />
       </div>
     );

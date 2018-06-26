@@ -32,7 +32,7 @@ class HomePage extends React.PureComponent {
     this.props.addToCart({
       bookingId,
       bookingTime,
-      cartId: 0, // /// TODO: Need to add cartId
+      cartId: (this.props.addToCartReducer || {}).cart_id || 0, // /// TODO: Need to add cartId
       bookingDay,
     });
   }

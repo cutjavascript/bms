@@ -17,6 +17,13 @@ export default class Slot extends React.Component {
     return this.props.onClick && (!this.props.isBooked || this.props.canViewBooking);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!_.isEqual(this.state.isLoading, nextProps.addToCartResult.isLoading)) {
+      if (!nextProps.addToCartResult.isLoading) {
+        this.setState({ isLoading: false });
+      }
+    }
+  }
   onClick(e) {
     console.log("===  Line:15, File:e:gitwork\bmssrccomponents\bodySlot.js");
     e.preventDefault();
