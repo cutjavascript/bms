@@ -19,6 +19,7 @@ export default class Day extends React.Component {
 
   createSlot(key, booking, numberOfColumn, numberOfSlot, clickable = true, price = 0) {
     console.log("===booking  Line:21, File:e:gitwork\bmssrccomponents\bodyDay.js", booking.startDate);
+    console.log("===booking  Line:21, File:e:gitwork\bmssrccomponents\bodyDay.js", booking);
     console.log("===this.props  Line:22, File:e:gitwork\bmssrccomponents\bodyDay.js", this.props);
 
     // if (totalSlots.length > 0) {
@@ -68,6 +69,7 @@ export default class Day extends React.Component {
     const booking = find(this.props.bookings, x =>
       x.startDate.local().isBetween(currentSlot.startDate.local(), currentSlot.endDate.local(), null, "[)"),
     );
+
     return booking
       ? Object.assign({}, booking, {
           startDate: booking.startDate.local(),
@@ -135,9 +137,9 @@ export default class Day extends React.Component {
           workStart = getDateTime(this.props.date, this.props.timeSlice.start);
           workEnd = getDateTime(this.props.date, this.props.timeSlice.end);
         }
-        if (!this.props.timeSlice.price) {
-          return null;
-        }
+        // if (!this.props.timeSlice.price) {
+        //   return null;
+        // }
 
         let price = this.props.timeSlice.price;
 
@@ -185,11 +187,15 @@ export default class Day extends React.Component {
 
               numberOfSlot = booking.endDate.diff(booking.startDate, "minutes") / this.props.timeSlot;
               slots.push(this.createSlot(slots.length, booking, numberOfColumn, numberOfSlot, true, price));
-
+              console.log("===booking.endDate  Line:190, File:e:gitwork\bmssrccomponents\bodyDay.js", booking.endDate);
+              console.log(
+                "===currentSlot.endDate  Line:191, File:e:gitwork\bmssrccomponents\bodyDay.js",
+                currentSlot.endDate,
+              );
               if (booking.endDate.isBefore(currentSlot.endDate)) {
                 numberOfSlot = currentSlot.endDate.diff(booking.endDate, "minutes") / this.props.timeSlot;
                 const freeSlot = this.createBooking(booking.endDate, currentSlot.endDate);
-                slots.push(this.createSlot(slots.length, freeSlot, numberOfColumn, numberOfSlot, true, price));
+                //zchngs commented as creating empty slot even when booked slots.push(this.createSlot(slots.length, freeSlot, numberOfColumn, numberOfSlot, true, price));
                 currentSlot = this.nextSlot(currentSlot.endDate);
               } else {
                 currentSlot = this.nextSlot(booking.endDate);

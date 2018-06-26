@@ -1,17 +1,20 @@
-import React from 'react';
-import moment from 'moment';
-import { find, times, forEach, filter } from 'lodash';
+import React from "react";
+import moment from "moment";
+import { find, times, forEach, filter } from "lodash";
 
-import Day from './Day';
-import Slot from './Slot';
-import { ViewType } from '../constant';
-import { getBookingsForDay, getSizeType } from '../util';
+import Day from "./Day";
+import Slot from "./Slot";
+import { ViewType } from "../constant";
+import { getBookingsForDay, getSizeType } from "../util";
 
 export default class Month extends React.Component {
   renderDay(date, style) {
-    const timeSlice = find(this.props.timeSlices, x => x.date.isSame(date, 'days'));
-    const bookings = filter(this.props.bookings, x => x.startDate.isSame(date, 'days'));
-
+    const timeSlice = find(this.props.timeSlices, x => x.date.isSame(date, "days"));
+    const bookings = filter(this.props.bookings, x => x.startDate.isSame(date, "days"));
+    console.log("===bookings  Line:14, File:e:gitwork\bmssrccomponents\bodyMonth.js", bookings);
+    console.log("===date  Line:15, File:e:gitwork\bmssrccomponents\bodyMonth.js", date);
+    console.log("===this.props.timeSlot  Line:16, File:e:gitwork\bmssrccomponents\bodyMonth.js", this.props.timeSlot);
+    console.log("===this.props  Line:17, File:e:gitwork\bmssrccomponents\bodyMonth.js", this.props);
     return (
       <Day
         onClick={this.props.onDayClick}
@@ -36,7 +39,7 @@ export default class Month extends React.Component {
         onClick={this.props.onSlotClick}
         size={this.props.size}
       >
-        <div>{date && date.format('DD')}</div>
+        <div>{date && date.format("DD")}</div>
       </Slot>
     );
   }
@@ -44,14 +47,14 @@ export default class Month extends React.Component {
   renderEmptySlot(time, index) {
     const sizeType = getSizeType(this.props.size);
 
-    return times(time, x => <div key={`empty-slot-${index}-${x}`}>{sizeType !== 'big' && this.renderSlot()}</div>);
+    return times(time, x => <div key={`empty-slot-${index}-${x}`}>{sizeType !== "big" && this.renderSlot()}</div>);
   }
 
   render() {
     const sizeType = getSizeType(this.props.size);
 
     if (this.props.view === ViewType.Day) {
-      return this.renderDay(this.props.date, { width: '100%' });
+      return this.renderDay(this.props.date, { width: "100%" });
     }
     let days = [];
 
@@ -59,14 +62,15 @@ export default class Month extends React.Component {
       const daysInMonth = this.props.date.daysInMonth();
 
       for (let i = 1; i <= daysInMonth; i++) {
-        const date = this.props.date.set('date', i).clone();
+        const date = this.props.date.set("date", i).clone();
 
         if (date.date() === 1 && date.day() !== 1) {
           days = days.concat(this.renderEmptySlot((date.day() > 1 ? date.day() : 7) - 1, i));
         }
 
-        if (this.props.displayPast || date.isSameOrAfter(moment(), 'day')) {
-          days.push(<div key={date}>{sizeType !== 'big' ? this.renderSlot(date) : this.renderDay(date)}</div>);
+        if (this.props.displayPast || date.isSameOrAfter(moment(), "day")) {
+          console.log("===date  Line:68, File:e:gitwork\bmssrccomponents\bodyMonth.js", date);
+          days.push(<div key={date}>{sizeType !== "big" ? this.renderSlot(date) : this.renderDay(date)}</div>);
         } else {
           days.push(this.renderEmptySlot(1, i));
         }
@@ -80,12 +84,12 @@ export default class Month extends React.Component {
     return (
       <div className={`rbc-month rbc-month--${sizeType}`}>
         <div className="rbc-month__header">
-          {sizeType !== 'big' &&
+          {sizeType !== "big" &&
             times(7, x => (x + 1) % 7).map(x => (
               <div key={`rbc-month__header__item--${x}`}>
                 {moment()
                   .day(x)
-                  .format('dd')}
+                  .format("dd")}
               </div>
             ))}
         </div>

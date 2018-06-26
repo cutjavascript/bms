@@ -39,20 +39,11 @@ export default class Slot extends React.Component {
 
   renderEmptySlot() {
     const className = bem("rbc-slot", ["inactive"]);
-    // return <div className={className} style={this.props.style} />;
-    if (this.props.startDate && this.props.startDate.format("HH")) {
-      return (
-        <div className={className} style={this.props.style}>
-          <div>
-            <div>
-              <span className="rbc-slot__title">{this.props.startDate.format("HH")}</span>
-              <div className="rbc-slot__message"> </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-    return null;
+    return (
+      <div className={className} style={this.props.style}>
+        X
+      </div>
+    );
   }
 
   renderSlot() {
@@ -66,9 +57,11 @@ export default class Slot extends React.Component {
         onClick={this.onClickBound}
       >
         {this.state.isLoading && <PulseLoader color={"#56b4e9"} loading={true} />}
-        {!this.state.isLoading && this.props.children ? (
-          this.props.children
-        ) : (
+        {!this.state.isLoading && (
+          // this.props.children
+          // ? (
+          // this.props.children
+          // ) :
           <div>
             <div>
               <span className="rbc-slot__title">{this.props.startDate.format("HH")}</span>
@@ -103,6 +96,5 @@ export default class Slot extends React.Component {
       }
     }
     return this.renderEmptySlot();
-    return this.props.startDate ? this.renderSlot() : this.renderEmptySlot();
   }
 }

@@ -71,7 +71,7 @@ export default class CalendarBody extends React.Component {
     return this.props.isLoading ? (
       <div className="rbc-body-loading">
         {" "}
-        <PacmanLoader color={"#123abc"} loading={true}>
+        <PacmanLoader color={"#d55e00"} loading={true}>
           <span>&#9836;</span>
         </PacmanLoader>
         <div> Loading Slots...</div>

@@ -15,15 +15,16 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-right: 1px solid #f2f2f2;
-  border-bottom: 1px solid #f2f2f2;
+  border-right: #f2f2f2;
+  border-bottom: #f2f2f2;
   text-align: center;
   pointer-events: none;
   cursor: none;
   background: #fff;
   color: #fff; }
   .rbc-slot--inactive {
-    background: #fff; }
+    background: #fff;
+    color: #e6e6e6; }
   .rbc-slot:not(--inactive) {
     box-sizing: border-box; }
   .rbc-slot--clickable {
