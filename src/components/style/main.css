@@ -54,7 +54,7 @@ html, body {
 
 @media (max-width: 1024px) {
   .day__header {
-    height: 100px; }
+    height: 129px; }
   .day__details {
     height: 80px; }
     .day__details .rbc-slot:not(.slot--inactive) {
@@ -64,7 +64,7 @@ html, body {
 
 @media (min-width: 1024px) {
   .day__header {
-    height: 100px; }
+    height: 129px; }
   .day__details .rbc-slot__title {
     font-size: 25px; } }
 
@@ -155,7 +155,7 @@ html, body {
 .rbc-month--big .day {
   display: flex;
   align-content: flex-start;
-  height: 101px;
+  height: 130px;
   border-bottom: 1px solid black; }
   .rbc-month--big .day__header {
     display: flex;
@@ -175,7 +175,7 @@ html, body {
       text-align: center;
       display: block;
       border: 1px solid #f2f2f2;
-      height: 50px; }
+      height: 64px; }
       .rbc-month--big .day__details .rbc-slot__title, .rbc-month--big .day__details .rbc-slot__message {
         font-size: 13px; }
 
