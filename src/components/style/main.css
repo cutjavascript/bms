@@ -23,7 +23,7 @@ html, body {
   background: #fff;
   color: #fff; }
   .rbc-slot--inactive {
-    background: #fff;
+    background: #ddd;
     color: #e6e6e6; }
   .rbc-slot:not(--inactive) {
     box-sizing: border-box; }
@@ -47,7 +47,8 @@ html, body {
     display: block;
     text-align: center; }
   .day__header--important {
-    font-size: 16px; }
+    font-size: 28px;
+    font-weight: 600; }
 
 .day__bottom {
   font-size: 12px; }
@@ -64,7 +65,7 @@ html, body {
 
 @media (min-width: 1024px) {
   .day__header {
-    height: 129px; }
+    height: auto; }
   .day__details .rbc-slot__title {
     font-size: 25px; } }
 
@@ -155,8 +156,8 @@ html, body {
 .rbc-month--big .day {
   display: flex;
   align-content: flex-start;
-  height: 130px;
-  border-bottom: 1px solid black; }
+  height: auto;
+  border-bottom: 1px solid #f2f2f2; }
   .rbc-month--big .day__header {
     display: flex;
     flex-direction: column;
@@ -175,9 +176,31 @@ html, body {
       text-align: center;
       display: block;
       border: 1px solid #f2f2f2;
-      height: 64px; }
-      .rbc-month--big .day__details .rbc-slot__title, .rbc-month--big .day__details .rbc-slot__message {
-        font-size: 13px; }
+      min-height: 71px; }
+      .rbc-month--big .day__details .rbc-slot__title {
+        font-size: 26px;
+        font-weight: 400; }
+      .rbc-month--big .day__details .rbc-slot__message {
+        font-size: 10px; }
+    .rbc-month--big .day__details .rbc-slot.rbc-slot--free .rbc-slot__message {
+      font-size: 10px;
+      background: #dedede;
+      display: inline-block;
+      padding: 1px 10px;
+      margin-bottom: 7px;
+      overflow: hidden;
+      border-radius: 5px;
+      color: #000000; }
+    .rbc-month--big .day__details .rbc-slot.rbc-slot--booked .rbc-slot__message {
+      font-size: 10px;
+      font-size: 10px;
+      background: #d55e00;
+      display: inline-block;
+      padding: 1px 10px;
+      margin-bottom: 7px;
+      overflow: hidden;
+      border-radius: 5px;
+      color: #ffffff; }
 
 .rbc-header {
   text-align: center;
