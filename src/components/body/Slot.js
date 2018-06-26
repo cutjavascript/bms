@@ -56,7 +56,7 @@ export default class Slot extends React.Component {
         style={this.props.style}
         onClick={this.onClickBound}
       >
-        {this.state.isLoading && <PulseLoader color={"#56b4e9"} loading={true} />}
+        {this.state.isLoading && <PulseLoader size={9} color={"#56b4e9"} loading={true} />}
         {!this.state.isLoading && (
           // this.props.children
           // ? (
