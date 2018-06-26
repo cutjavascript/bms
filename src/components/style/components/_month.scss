@@ -52,7 +52,8 @@
         .day {
             display: flex;
             align-content: flex-start;
-            height: 80px;
+            height: 101px;
+            border-bottom: 1px solid black;
 
             &__header {
                 display: flex;
@@ -68,10 +69,15 @@
                 flex-direction: row;
                 width: 100%;
                 padding: 0px 5px;
+                flex-wrap: wrap;
+                
 
                 .rbc-slot {
                     justify-content: flex-start;
-
+                    text-align: center;
+                    display: block;
+                    border: 1px solid #f2f2f2;
+                    height: 50px;
                     &__title,&__message {
                         font-size: 13px;
                     }
