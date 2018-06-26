@@ -112,7 +112,7 @@ export function getTimesliceForMonth(timeSlices, timeExceptions, date, totalSlot
 export function getStyle(view, numberOfColumn, numberOfSlot) {
   if (view === "landscape") {
     return {
-      width: `75px`, //`calc(calc(100% / ${numberOfColumn}) * ${numberOfSlot})`,
+      width: `76.5px`, //`calc(calc(100% / ${numberOfColumn}) * ${numberOfSlot})`,
     };
   }
 
