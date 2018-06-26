@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-awesome-modal";
 import Calendar from "../Calendar";
-import banner from "../../assets/images/banner.jpg";
+import banner from "../../assets/images/banner1.jpg";
 
 class Home extends React.Component {
   constructor(props) {
