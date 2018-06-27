@@ -270,6 +270,11 @@ class Calendar extends React.Component {
 
     return (
       <div className="rbc-calendar" style={{ width: "1024px", height: "900px", overflowX: "scroll" }}>
+        <div className="cart-header">
+          <span className="cart-header__prev"></span>
+          <div className="cart-header__header">Slots Booking</div>
+          <span className="cart-header__next"></span>
+        </div>
         <CalendarHeader
           pastAvailable={this.props.displayPast}
           date={this.state.date}
