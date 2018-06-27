@@ -46,24 +46,20 @@ export default class Slot extends React.Component {
 
   renderEmptySlot() {
     const className = bem("rbc-slot", ["inactive"]);
-    return (
-      <div className={className} style={this.props.style}>
-        X
-      </div>
-    );
+    return <div className={className} style={this.props.style} />;
   }
 
   renderSlot() {
-    const sizeTypeModifier = bem("rbc-slot--" + getSizeType(this.props.size));
+    const sizeTypeModifier = bem(`rbc-slot--${getSizeType(this.props.size)}`);
     const isBookedModifier = bem("rbc-slot", [this.props.isBooked ? "booked" : "free"]);
     const isClickableModifier = bem("rbc-slot", [this.isClickable() ? "clickable" : ""]);
     return (
       <div
-        className={isBookedModifier + " " + isClickableModifier + " " + sizeTypeModifier}
+        className={`${isBookedModifier} ${isClickableModifier} ${sizeTypeModifier}`}
         style={this.props.style}
         onClick={this.onClickBound}
       >
-        {this.state.isLoading && <PulseLoader size={9} color={"#56b4e9"} loading={true} />}
+        {this.state.isLoading && <PulseLoader size={9} color="#56b4e9" loading />}
         {!this.state.isLoading && (
           // this.props.children
           // ? (
@@ -79,7 +75,7 @@ export default class Slot extends React.Component {
                     const formatteDate =
                       this.props.startDate && String(moment(this.props.startDate).format("YYYYMMDDhA")).toLowerCase();
 
-                    var slotData = _.find(values, { time: formatteDate });
+                    const slotData = _.find(values, { time: formatteDate });
 
                     return this.renderBookingLink(slotData);
                   }}
@@ -93,10 +89,10 @@ export default class Slot extends React.Component {
   }
 
   render() {
-    let totalSlots = this.props.totalSlots;
+    const totalSlots = this.props.totalSlots;
 
     if (this.props.startDate && this.props.startDate.format("HH") && totalSlots && totalSlots.length > 0) {
-      let formattedSlotTime = moment(this.props.startDate).format("YYYYMMDDhA");
+      const formattedSlotTime = moment(this.props.startDate).format("YYYYMMDDhA");
 
       if (totalSlots.includes(formattedSlotTime.toLowerCase())) {
         return this.renderSlot();
