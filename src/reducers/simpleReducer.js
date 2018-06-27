@@ -46,7 +46,6 @@ const initialState = {
   },
 };
 function bookingData(state) {
-  console.log('===state  Line:49, File:e:gitwork\bmssrc\reducerssimpleReducer.js', state);
   let day = '',
     convertedSlot = '';
   let totalSlots = [],
@@ -57,10 +56,7 @@ function bookingData(state) {
   state.data.bookings.map(x => {
     x.timings.map(y => {
       day = String(moment(x.day, 'YYYYMMDD').format('YYYYMMDD')) + String(y.hour);
-      console.log(
-        "===moment(x.day,'YYYYMMDD'+'000000').format('YYYYMMDD')  Line:61, File:e:gitwork\bmssrc\reducerssimpleReducer.js",
-        moment(x.day, 'YYYYMMDD' + '000000').format('YYYYMMDD'),
-      );
+
       convertedSlot = convertedDateTime(day);
       totalSlots.push(convertedSlot);
       y.booked && booked.push(bookedSlot(day));
@@ -74,8 +70,6 @@ function bookingData(state) {
     });
   });
 
-  console.log('===booked  Line:77, File:e:gitwork\bmssrc\reducerssimpleReducer.js', booked);
-  console.log('===totalSlots  Line:78, File:e:gitwork\bmssrc\reducerssimpleReducer.js', totalSlots);
   return Object.assign(
     {},
     {
@@ -87,7 +81,6 @@ function bookingData(state) {
   );
 }
 export default (state = initialState, action) => {
-  console.log('===action  Line:87, File:e:gitwork\bmssrc\reducerssimpleReducer.js', action);
   switch (action.type) {
     case types.LOAD_HOME_REQUEST: {
       return { ...state, isLoading: true };

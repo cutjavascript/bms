@@ -18,10 +18,6 @@ export default class Day extends React.Component {
   };
 
   createSlot(key, booking, numberOfColumn, numberOfSlot, clickable = true, price = 0) {
-    console.log("===booking  Line:21, File:e:gitwork\bmssrccomponents\bodyDay.js", booking.startDate);
-    console.log("===booking  Line:21, File:e:gitwork\bmssrccomponents\bodyDay.js", booking);
-    console.log("===this.props  Line:22, File:e:gitwork\bmssrccomponents\bodyDay.js", this.props);
-
     // if (totalSlots.length > 0) {
     //   let formattedSlotTime = moment(booking.startDate).format("YYYYMMDDhhA");
     //   console.log(
@@ -90,7 +86,6 @@ export default class Day extends React.Component {
   }
 
   isOff(slot) {
-    console.log("===this.props.timeSlice  Line:63, File:e:gitwork\bmssrccomponents\bodyDay.js", this.props.timeSlice);
     if (this.props.timeSlice && this.props.timeSlice.off) {
       const startOff = getDateTime(this.props.date, this.props.timeSlice.start);
       const endOff = getDateTime(this.props.date, this.props.timeSlice.end);
@@ -188,11 +183,7 @@ export default class Day extends React.Component {
 
               numberOfSlot = booking.endDate.diff(booking.startDate, "minutes") / this.props.timeSlot;
               slots.push(this.createSlot(slots.length, booking, numberOfColumn, numberOfSlot, true, price));
-              console.log("===booking.endDate  Line:190, File:e:gitwork\bmssrccomponents\bodyDay.js", booking.endDate);
-              console.log(
-                "===currentSlot.endDate  Line:191, File:e:gitwork\bmssrccomponents\bodyDay.js",
-                currentSlot.endDate,
-              );
+
               if (booking.endDate.isBefore(currentSlot.endDate)) {
                 numberOfSlot = currentSlot.endDate.diff(booking.endDate, "minutes") / this.props.timeSlot;
                 const freeSlot = this.createBooking(booking.endDate, currentSlot.endDate);

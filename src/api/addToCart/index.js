@@ -2,11 +2,6 @@ import axios from 'axios';
 import types from '../../action_types';
 
 export default ({ bookingId, bookingTime, cartId = 0, bookingDay }) => (dispatch, getState) => {
-  console.log('===bookingId  Line:6, File:e:gitwork\bmssrcapiaddToCartindex.js', bookingId);
-  console.log('===bookingTime  Line:7, File:e:gitwork\bmssrcapiaddToCartindex.js', bookingTime);
-  console.log('===cartId  Line:8, File:e:gitwork\bmssrcapiaddToCartindex.js', cartId);
-  console.log('===bookingDay  Line:9, File:e:gitwork\bmssrcapiaddToCartindex.js', bookingDay);
-
   const bookings = [],
     services = [];
   bookingId && bookingTime
@@ -35,7 +30,6 @@ export default ({ bookingId, bookingTime, cartId = 0, bookingDay }) => (dispatch
     })
     .then(response => {
       const status = String(((response.data || {}).data || {}).status || '').toLowerCase();
-      console.log('===status  Line:31, File:e:gitwork\bmssrcapiaddToCartindex.js', status);
       if (status) {
         dispatch({
           type: types.ADD_TO_CART_SUCCESS,

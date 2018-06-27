@@ -1,13 +1,13 @@
-import { createStore, applyMiddleware } from "redux";
-import { persistStore, persistReducer } from "redux-persist";
-import { composeWithDevTools } from "redux-devtools-extension";
-import storage from "redux-persist/lib/storage"; // defaults to localStorage for web and AsyncStorage for react-native
-import thunk from "redux-thunk";
-import hardSet from "redux-persist/lib/stateReconciler/hardSet";
-import reducers from "./reducers";
+import { createStore, applyMiddleware } from 'redux';
+import { persistStore, persistReducer } from 'redux-persist';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web and AsyncStorage for react-native
+import thunk from 'redux-thunk';
+import hardSet from 'redux-persist/lib/stateReconciler/hardSet';
+import reducers from './reducers';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   storage,
   stateReconciler: hardSet,
 };

@@ -72,7 +72,6 @@ export default class CalendarBody extends React.Component {
   }
 
   render() {
-    console.log('===  Line:69, File:e:gitwork\bmssrccomponents\bodyCalendarBody.js');
     return this.props.isLoading ? (
       <div className="rbc-body-loading">
         {' '}

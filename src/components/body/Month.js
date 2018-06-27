@@ -11,10 +11,7 @@ export default class Month extends React.Component {
   renderDay(date, style) {
     const timeSlice = find(this.props.timeSlices, x => x.date.isSame(date, 'days'));
     const bookings = filter(this.props.bookings, x => x.startDate.isSame(date, 'days'));
-    console.log('===bookings  Line:14, File:e:gitwork\bmssrccomponents\bodyMonth.js', bookings);
-    console.log('===date  Line:15, File:e:gitwork\bmssrccomponents\bodyMonth.js', date);
-    console.log('===this.props.timeSlot  Line:16, File:e:gitwork\bmssrccomponents\bodyMonth.js', this.props.timeSlot);
-    console.log('===this.props  Line:17, File:e:gitwork\bmssrccomponents\bodyMonth.js', this.props);
+
     return (
       <Day
         onClick={this.props.onDayClick}
@@ -70,7 +67,6 @@ export default class Month extends React.Component {
         }
 
         if (this.props.displayPast || date.isSameOrAfter(moment(), 'day')) {
-          console.log('===date  Line:68, File:e:gitwork\bmssrccomponents\bodyMonth.js', date);
           days.push(<div key={date}>{sizeType !== 'big' ? this.renderSlot(date) : this.renderDay(date)}</div>);
         } else {
           days.push(this.renderEmptySlot(1, i));

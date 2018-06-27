@@ -105,7 +105,7 @@ export function getTimesliceForMonth(timeSlices, timeExceptions, date, totalSlot
       // }
     }
   }
-  console.log('===result  Line:127, File:e:gitwork\bmssrccomponentsil.js', result);
+
   return result;
 }
 
@@ -160,7 +160,6 @@ export const localDatTime = moment();
 // .zone(+360);
 
 export function convertedDateTime(datetime) {
-  console.log('===datetime  Line:167, File:e:gitwork\bmssrccomponents.js', datetime);
   return moment(datetime, 'YYYYMMDDA').isValid() ? datetime : null;
 }
 

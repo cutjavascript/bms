@@ -15,9 +15,7 @@ class HomePage extends React.PureComponent {
     this.onSlotChoosen = this.onSlotChoosen.bind(this);
   }
 
-  componentDidMount() {
-    console.log('===this.props  Line:19, File:e:gitwork\bmssrcpagesHomePageindex.js', this.props);
-  }
+  componentDidMount() {}
 
   loadCalendarPage() {
     this.props.loadCalendar();
@@ -37,7 +35,6 @@ class HomePage extends React.PureComponent {
     });
   }
   render() {
-    console.log('===this.props  Line:40, File:e:gitwork\bmssrcpagesHomePageindex.js', this.props);
     const available = this.props.simpleReducer && this.props.simpleReducer.available;
 
     return (
@@ -61,7 +58,6 @@ HomePage.propTypes = {
 const mapStateToProps = state => ({
   ...state,
 });
-console.log('===mapStateToProps  Line:59, File:e:gitwork\bmssrcpagesHomePageindex.js', mapStateToProps);
 const mapDispatchToProps = {
   loadCalendar,
   addToCart,

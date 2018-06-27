@@ -114,14 +114,12 @@ class Calendar extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("=== this.props  Line:85, File:e:gitwork\bmssrccomponentsCalendarindex.js", this.props);
     const bookings = props.bookings.map(booking => {
       booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
       booking.endDate = moment.isMoment(booking.endDate) ? booking.endDate : moment(booking.endDate);
       booking.isBooked = true;
       return booking;
     });
-    console.log("===props.timeSlices  Line:124, File:e:gitwork\bmssrccomponentsCalendarindex.js", props.timeSlices);
     this.state = {
       date: moment(props.date),
       view: props.view,
@@ -134,7 +132,6 @@ class Calendar extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log("===nextProps  Line:95, File:e:gitwork\bmssrccomponentsCalendarindex.js", nextProps);
     if (!isEqual(this.state.bookings, nextProps.bookings)) {
       const bookings = nextProps.bookings.map(booking => {
         booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
@@ -159,12 +156,6 @@ class Calendar extends React.Component {
 
     /////if slot booked then change values of bookings in state(Would have to be done similar to show loading)
     const cartId = (nextProps.addToCartResult || {}).cart_id || 0;
-    console.log("===cartId  Line:162, File:e:gitwork\bmssrccomponentsCalendarindex.js", cartId);
-
-    console.log(
-      "===nextProps.addToCartResult  Line:164, File:e:gitwork\bmssrccomponentsCalendarindex.js",
-      nextProps.addToCartResult,
-    );
 
     if (cartId != 0) {
       let newSlots = [];
@@ -175,51 +166,36 @@ class Calendar extends React.Component {
         bookingTime = "",
         bookingDay = "",
         convertedSlot = {};
-      console.log("===getAllBookings  Line:177, File:e:gitwork\bmssrccomponentsCalendarindex.js", getAllBookings);
       if (getAllBookings.length > 0) {
         getAllBookings.map(x => {
-          console.log("===x  Line:179, File:e:gitwork\bmssrccomponentsCalendarindex.js", x);
           const currentStudioId = 1; ////////////////////////////////////to be changed, dynamic
           if (x.studio_id === currentStudioId) {
-            console.log("===  Line:182, File:e:gitwork\bmssrccomponentsCalendarindex.js");
             x.bookingsDetails.map(y => {
-              console.log("===y  Line:184, File:e:gitwork\bmssrccomponentsCalendarindex.js", y);
               bookingDay = "";
               bookingTime = "";
               bookingDay = y.day;
               if (bookingDay) {
                 addToBookings = false;
                 y.items.map(z => {
-                  console.log("===z  Line:187, File:e:gitwork\bmssrccomponentsCalendarindex.js", z);
                   addToBookings = z.availed;
                   bookingTime = z.booking_time;
                 });
-                console.log("===bookingTime  Line:196, File:e:gitwork\bmssrccomponentsCalendarindex.js", bookingTime);
-                console.log("===bookingDay  Line:197, File:e:gitwork\bmssrccomponentsCalendarindex.js", bookingDay);
 
                 day = String(moment(bookingDay, "YYYYMMDD" + "000000").format("YYYYMMDD")) + String(bookingTime);
 
                 convertedSlot = bookedSlot(day);
                 convertedSlot.isBooked = true;
-                console.log(
-                  "===convertedSlot  Line:209, File:e:gitwork\bmssrccomponentsCalendarindex.js",
-                  convertedSlot,
-                );
 
                 newSlots.push(convertedSlot);
               }
             });
           }
         });
-        console.log("===newSlots  Line:214, File:e:gitwork\bmssrccomponentsCalendarindex.js", newSlots);
         newSlots.length > 0 &&
           this.setState((prevState, props) => {
             const prevBookings = prevState.bookings;
-            console.log("===prevState  Line:218, File:e:gitwork\bmssrccomponentsCalendarindex.js", prevState);
             // prevBookings.push(convertedSlot);
-            console.log("===prevBookings  Line:220, File:e:gitwork\bmssrccomponentsCalendarindex.js", prevBookings);
             const mergedSlots = prevBookings.concat(newSlots);
-            console.log("===mergedSlots  Line:221, File:e:gitwork\bmssrccomponentsCalendarindex.js", mergedSlots);
             return { bookings: mergedSlots };
           });
       }
@@ -292,10 +268,6 @@ class Calendar extends React.Component {
   render() {
     const isLoading = this.props.isLoading || false;
 
-    console.log(
-      "===this.state.bookings  Line:230, File:e:gitwork\bmssrccomponentsCalendarindex.js",
-      this.state.bookings,
-    );
     return (
       <div className="rbc-calendar" style={{ width: "1024px", height: "900px", overflowX: "scroll" }}>
         <CalendarHeader
