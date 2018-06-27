@@ -184,13 +184,14 @@ html, body {
         font-size: 10px; }
     .rbc-month--big .day__details .rbc-slot.rbc-slot--free .rbc-slot__message {
       font-size: 10px;
-      background: #dedede;
+      background: #eaeaea;
       display: inline-block;
       padding: 1px 10px;
       margin-bottom: 7px;
       overflow: hidden;
       border-radius: 5px;
-      color: #000000; }
+      color: #000000;
+      font-weight: 600; }
     .rbc-month--big .day__details .rbc-slot.rbc-slot--booked .rbc-slot__message {
       font-size: 10px;
       font-size: 10px;
