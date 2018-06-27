@@ -1,15 +1,17 @@
 .rbc-view {
     width: 100%;
-    background: $main-bg-color;
+    // background: $main-bg-color;
     color: $main-color;
 
     &__button {
-        background: $main-bg-color;
-        color: $main-color;
+        // background: $main-bg-color;
+        color: #495057;
+        font-weight: 500;
         border: none;
         outline: none;
-        font-size: 18px;
+        font-size: 14px;
         text-transform: uppercase;
+        background: rgba(0,123,255,.25);
         cursor: pointer;
 
         &:hover {
@@ -17,7 +19,7 @@
         }
 
         &--active {
-            background: $header-active-bg-color;
+            background: rgba(0,123,255,.5);
 
             &:hover {
                 color: $header-active-hover-bg-color;
@@ -37,7 +39,7 @@
 
     &--big {
         height: 50px;
-        margin-top: 20px;
+        margin-top: 35px;
         .rbc-view {
             &__button {
                 width: calc(100% / 3);

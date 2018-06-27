@@ -14,7 +14,7 @@
 
     &--inactive {
         background: $slot-inactive-bg-color;
-        color:$slot-inactive-color;
+        color:$slot-inactive-bg-color;
     }
 
     &:not(--inactive) {
@@ -41,5 +41,13 @@
 
     &:hover {
         color: $slot-hover-color;
+
+        .rbc-slot__title{
+        }
+        
+        .rbc-slot__message {
+            background: $slot-hover-color !important;
+            color: #ffffff !important;
+        }
     }
 }

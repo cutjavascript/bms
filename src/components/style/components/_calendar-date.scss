@@ -16,8 +16,8 @@
         font-style: normal;
         font-weight: normal;
         text-decoration: inherit;
-        color: $main-color;
-        font-size: 40px;
+        color: #6c757d;
+        font-size: 30px;
         padding-right: 0.5em;
         position: absolute;
         height: 100%;
@@ -67,14 +67,14 @@
     }
 
     &--big {
-        height: 130px;
+        height: auto;
         display: inline-block;
-        top:20px;
+        top:30px;
 
         .rbc-date {
             &__date {
-                line-height: 129px;
-                font-size: 30px;
+                line-height: 60px;
+                font-size: 25px;
                 margin: 0px 20px;
                 width: 500px;
             }
