@@ -159,12 +159,79 @@ class Calendar extends React.Component {
 
     /////if slot booked then change values of bookings in state(Would have to be done similar to show loading)
     const cartId = (nextProps.addToCartResult || {}).cart_id || 0;
+    console.log("===cartId  Line:162, File:e:gitwork\bmssrccomponentsCalendarindex.js", cartId);
+
+    console.log(
+      "===nextProps.addToCartResult  Line:164, File:e:gitwork\bmssrccomponentsCalendarindex.js",
+      nextProps.addToCartResult,
+    );
+
     if (cartId != 0) {
+      let newSlots = [];
+      const getAllBookings = (nextProps.addToCartResult || {}).postData || [];
+      let removeFromBookings = [],
+        addToBookings = false,
+        day = "",
+        bookingTime = "",
+        bookingDay = "",
+        convertedSlot = {};
+      console.log("===getAllBookings  Line:177, File:e:gitwork\bmssrccomponentsCalendarindex.js", getAllBookings);
+      if (getAllBookings.length > 0) {
+        getAllBookings.map(x => {
+          console.log("===x  Line:179, File:e:gitwork\bmssrccomponentsCalendarindex.js", x);
+          const currentStudioId = 1; ////////////////////////////////////to be changed, dynamic
+          if (x.studio_id === currentStudioId) {
+            console.log("===  Line:182, File:e:gitwork\bmssrccomponentsCalendarindex.js");
+            x.bookingsDetails.map(y => {
+              console.log("===y  Line:184, File:e:gitwork\bmssrccomponentsCalendarindex.js", y);
+              bookingDay = "";
+              bookingTime = "";
+              bookingDay = y.day;
+              if (bookingDay) {
+                addToBookings = false;
+                y.items.map(z => {
+                  console.log("===z  Line:187, File:e:gitwork\bmssrccomponentsCalendarindex.js", z);
+                  addToBookings = z.availed;
+                  bookingTime = z.booking_time;
+                });
+                console.log("===bookingTime  Line:196, File:e:gitwork\bmssrccomponentsCalendarindex.js", bookingTime);
+                console.log("===bookingDay  Line:197, File:e:gitwork\bmssrccomponentsCalendarindex.js", bookingDay);
+
+                day = String(moment(bookingDay, "YYYYMMDD" + "000000").format("YYYYMMDD")) + String(bookingTime);
+
+                convertedSlot = bookedSlot(day);
+                convertedSlot.isBooked = true;
+                console.log(
+                  "===convertedSlot  Line:209, File:e:gitwork\bmssrccomponentsCalendarindex.js",
+                  convertedSlot,
+                );
+
+                newSlots.push(convertedSlot);
+              }
+            });
+          }
+        });
+        console.log("===newSlots  Line:214, File:e:gitwork\bmssrccomponentsCalendarindex.js", newSlots);
+        newSlots.length > 0 &&
+          this.setState((prevState, props) => {
+            const prevBookings = prevState.bookings;
+            console.log("===prevState  Line:218, File:e:gitwork\bmssrccomponentsCalendarindex.js", prevState);
+            // prevBookings.push(convertedSlot);
+            console.log("===prevBookings  Line:220, File:e:gitwork\bmssrccomponentsCalendarindex.js", prevBookings);
+            const mergedSlots = prevBookings.concat(newSlots);
+            console.log("===mergedSlots  Line:221, File:e:gitwork\bmssrccomponentsCalendarindex.js", mergedSlots);
+            return { bookings: mergedSlots };
+          });
+      }
+
+      /*
       ////if cart id not equal to 0 then check if bookings were selected and if so add them to existing booking set
       const getBooking = ((nextProps.addToCartResult || {}).postData || {}).bookings || [];
-      const bookingDay = ((nextProps.addToCartResult || {}).postData || {}).bookingDay || 0;
 
+      console.log("===  Line:167, File:e:gitwork\bmssrccomponentsCalendarindex.js");
+      console.log("===getBooking  Line:168, File:e:gitwork\bmssrccomponentsCalendarindex.js", getBooking);
       if (getBooking.length > 0) {
+        console.log("===  Line:168, File:e:gitwork\bmssrccomponentsCalendarindex.js");
         let removeFromBookings = [],
           addToBookings = false,
           day = "",
@@ -175,6 +242,8 @@ class Calendar extends React.Component {
           addToBookings = x.availed;
           bookingTime = x.booking_time;
         });
+
+        console.log("===addToBookings  Line:182, File:e:gitwork\bmssrccomponentsCalendarindex.js", addToBookings);
 
         addToBookings &&
           this.setState((prevState, props) => {
@@ -200,7 +269,7 @@ class Calendar extends React.Component {
         // slot_id
         // :
         // 1
-      }
+      }*/
     }
   }
 
@@ -223,6 +292,10 @@ class Calendar extends React.Component {
   render() {
     const isLoading = this.props.isLoading || false;
 
+    console.log(
+      "===this.state.bookings  Line:230, File:e:gitwork\bmssrccomponentsCalendarindex.js",
+      this.state.bookings,
+    );
     return (
       <div className="rbc-calendar" style={{ width: "1024px", height: "900px", overflowX: "scroll" }}>
         <CalendarHeader
@@ -249,6 +322,7 @@ class Calendar extends React.Component {
           size={this.props.size}
           totalSlots={this.state.totalSlots}
           isLoading={isLoading}
+          addToCartResult={this.props.addToCartResult}
         />
       </div>
     );
