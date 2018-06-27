@@ -34,6 +34,8 @@ export default class Week extends React.Component {
                 displayPast={this.props.displayPast}
                 size={this.props.size}
                 view="portrait"
+                totalSlots={this.props.totalSlots}
+                addToCartResult={this.props.addToCartResult}
               />
             ) : (
               <Day
@@ -46,6 +48,8 @@ export default class Week extends React.Component {
                 bookings={bookings}
                 displayPast={this.props.displayPast}
                 size={this.props.size}
+                totalSlots={this.props.totalSlots}
+                addToCartResult={this.props.addToCartResult}
               />
             ),
           );
