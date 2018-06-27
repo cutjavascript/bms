@@ -34,6 +34,8 @@ html, body {
     color: #000; }
   .rbc-slot--booked {
     color: #d55e00; }
+  .rbc-slot--reserved {
+    color: rgba(0, 158, 115, 0.8); }
   .rbc-slot--small, .rbc-slot--medium {
     height: 100%; }
   .rbc-slot:hover {
@@ -151,6 +153,14 @@ html, body {
       overflow: hidden;
       border-radius: 5px;
       color: #ffffff; }
+    .rbc-week--big .day__details .rbc-slot.rbc-slot--reserved .rbc-slot__message {
+      background: rgba(0, 158, 115, 0.8);
+      display: inline-block;
+      padding: 1px 10px;
+      margin-bottom: 7px;
+      overflow: hidden;
+      border-radius: 5px;
+      color: #ffffff; }
 
 .rbc-month--small, .rbc-month--medium {
   display: flex;
@@ -220,6 +230,14 @@ html, body {
       color: #000000; }
     .rbc-month--big .day__details .rbc-slot.rbc-slot--booked .rbc-slot__message {
       background: #d55e00;
+      display: inline-block;
+      padding: 1px 10px;
+      margin-bottom: 7px;
+      overflow: hidden;
+      border-radius: 5px;
+      color: #ffffff; }
+    .rbc-month--big .day__details .rbc-slot.rbc-slot--reserved .rbc-slot__message {
+      background: rgba(0, 158, 115, 0.8);
       display: inline-block;
       padding: 1px 10px;
       margin-bottom: 7px;

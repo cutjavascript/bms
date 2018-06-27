@@ -118,6 +118,7 @@ class Calendar extends React.Component {
       booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
       booking.endDate = moment.isMoment(booking.endDate) ? booking.endDate : moment(booking.endDate);
       booking.isBooked = true;
+      booking.isReserved = false;
       return booking;
     });
     this.state = {
@@ -137,6 +138,7 @@ class Calendar extends React.Component {
         booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
         booking.endDate = moment.isMoment(booking.endDate) ? booking.endDate : moment(booking.endDate);
         booking.isBooked = true;
+        booking.isReserved = false;
         return booking;
       });
 
@@ -185,6 +187,7 @@ class Calendar extends React.Component {
 
                 convertedSlot = bookedSlot(day);
                 convertedSlot.isBooked = true;
+                convertedSlot.isReserved = true;
 
                 newSlots.push(convertedSlot);
               }
@@ -271,9 +274,9 @@ class Calendar extends React.Component {
     return (
       <div className="rbc-calendar" style={{ width: "1024px", height: "900px", overflowX: "scroll" }}>
         <div className="cart-header">
-          <span className="cart-header__prev"></span>
+          <span className="cart-header__prev" />
           <div className="cart-header__header">Slots Booking</div>
-          <span className="cart-header__next"></span>
+          <span className="cart-header__next" />
         </div>
         <CalendarHeader
           pastAvailable={this.props.displayPast}

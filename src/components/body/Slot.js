@@ -35,7 +35,7 @@ export default class Slot extends React.Component {
 
   renderBookingLink(slotData = {}) {
     return this.props.isBooked ? (
-      <span>Booked</span>
+      <span>{this.props.isReserved ? 'Reserved' : 'Booked'}</span>
     ) : (
       <span>&#8377;{slotData.amount ? Number(slotData.amount).toLocaleString() : 'Book'}</span>
     );
@@ -48,7 +48,9 @@ export default class Slot extends React.Component {
 
   renderSlot() {
     const sizeTypeModifier = bem(`rbc-slot--${getSizeType(this.props.size)}`);
-    const isBookedModifier = bem('rbc-slot', [this.props.isBooked ? 'booked' : 'free']);
+    const isBookedModifier = bem('rbc-slot', [
+      this.props.isBooked ? (this.props.isReserved ? 'reserved' : 'booked') : 'free',
+    ]);
     const isClickableModifier = bem('rbc-slot', [this.isClickable() ? 'clickable' : '']);
     return (
       <div

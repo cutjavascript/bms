@@ -111,17 +111,36 @@
                     }
                 }
 
-                .rbc-slot.rbc-slot--booked {
-                    .rbc-slot__message {
-                        background: $slot-booked-bg-color;
-                        // background: #d55e00c7;
-                        display: inline-block;
-                        padding: 1px 10px;
-                        margin-bottom: 7px;
-                        overflow: hidden;
-                        border-radius: 5px;
-                        color: #ffffff;
+                .rbc-slot.rbc-slot {
+
+
+                    &--booked{
+                        .rbc-slot__message {
+                            background: $slot-booked-bg-color;
+                            // background: #d55e00c7;
+                            display: inline-block;
+                            padding: 1px 10px;
+                            margin-bottom: 7px;
+                            overflow: hidden;
+                            border-radius: 5px;
+                            color: #ffffff;
+                        }
+
                     }
+                    &--reserved{
+                        .rbc-slot__message {
+                            background: $slot-reserved-bg-color;
+                            // background: #d55e00c7;
+                            display: inline-block;
+                            padding: 1px 10px;
+                            margin-bottom: 7px;
+                            overflow: hidden;
+                            border-radius: 5px;
+                            color: #ffffff;
+                        }
+                        
+                    }
+ 
                 }
             }
         }

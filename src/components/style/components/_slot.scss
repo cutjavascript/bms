@@ -33,6 +33,9 @@
     &--booked {
         color: $slot-booked-bg-color;
     }
+    &--reserved {
+        color: $slot-reserved-bg-color;
+    }
 
     &--small,
     &--medium {

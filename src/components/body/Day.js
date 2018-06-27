@@ -173,7 +173,8 @@ export default class Day extends React.Component {
             let numberOfSlot = 1;
             if (this.props.view === ViewType.Day) {
               slots.push(this.createSlot(slots.length, booking, numberOfColumn, 1, price));
-              currentSlot = this.nextSlot(booking.endDate);
+              /////zchngs chnaged to nextslot of currentbooking as showing duplicates of booked in day  currentSlot = this.nextSlot(booking.endDate);
+              currentSlot = this.nextSlot(currentSlot.endDate);
             } else {
               if (booking.startDate.isAfter(currentSlot.startDate)) {
                 numberOfSlot = booking.startDate.diff(currentSlot.startDate, "minutes") / this.props.timeSlot;
@@ -197,7 +198,10 @@ export default class Day extends React.Component {
             const numberOfSlot = workEnd.isBefore(currentSlot.endDate)
               ? workEnd.diff(currentSlot.startDate, "minutes") / this.props.timeSlot
               : 1;
-
+            console.log(
+              "===currentSlot.startDate  Line:200, File:e:gitwork\bmssrccomponents\bodyDay.js",
+              currentSlot.startDate,
+            );
             const endDate = numberOfSlot === 1 ? currentSlot.endDate : workEnd;
             const freeSlot = this.createBooking(currentSlot.startDate, endDate);
             const isClickable = currentSlot.startDate.isSameOrAfter(moment());
