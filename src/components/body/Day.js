@@ -40,7 +40,7 @@ export default class Day extends React.Component {
         price={price}
         {...booking}
         totalSlots={this.props.totalSlots}
-        addToCartResult={this.props.addToCartResult}
+        addSlotsResult={this.props.addSlotsResult}
       />
     );
     //   }

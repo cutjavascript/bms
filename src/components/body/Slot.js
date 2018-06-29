@@ -18,8 +18,8 @@ export default class Slot extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.addToCartResult && !_.isEqual(this.state.isLoading, nextProps.addToCartResult.isLoading)) {
-      if (!nextProps.addToCartResult.isLoading) {
+    if (nextProps.addSlotsResult && !_.isEqual(this.state.isLoading, nextProps.addSlotsResult.isLoading)) {
+      if (!nextProps.addSlotsResult.isLoading) {
         this.setState({ isLoading: false });
       }
     }

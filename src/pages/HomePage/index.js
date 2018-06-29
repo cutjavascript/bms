@@ -1,12 +1,12 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
-import PropTypes from '../../PropTypes';
-import Home from '../../components/Home';
-import loadCalendar from '../../api/loadCalendar';
-import addToCart from '../../api/addToCart';
-import { Context } from '../../context';
+import PropTypes from "../../PropTypes";
+import Home from "../../components/Home";
+import loadCalendar from "../../api/loadCalendar";
+import addSlots from "../../api/addSlots";
+import { Context } from "../../context";
 
 class HomePage extends React.PureComponent {
   constructor(props) {
@@ -22,15 +22,15 @@ class HomePage extends React.PureComponent {
   }
 
   onSlotChoosen(params) {
-    const bookingDay = String(params.startDate.format('YYYYMMDDhA')).toLowerCase();
+    const bookingDay = String(params.startDate.format("YYYYMMDDhA")).toLowerCase();
 
     const bookingId = this.props.simpleReducer.dayIds[bookingDay];
-    const bookingTime = String(params.startDate.format('hA')).toLowerCase();
+    const bookingTime = String(params.startDate.format("hA")).toLowerCase();
 
-    this.props.addToCart({
+    this.props.addSlots({
       bookingId,
       bookingTime,
-      cartId: (this.props.addToCartReducer || {}).cart_id || 0, // /// TODO: Need to add cartId
+      cartId: (this.props.addSlotsReducer || {}).cart_id || 0, // /// TODO: Need to add cartId
       bookingDay,
     });
   }
@@ -42,7 +42,7 @@ class HomePage extends React.PureComponent {
         <Home
           {...this.props.simpleReducer}
           onSlotChoosen={this.onSlotChoosen}
-          addToCartResult={this.props.addToCartReducer}
+          addSlotsResult={this.props.addSlotsReducer}
           loadCalendar={this.loadCalendarPage}
         />
       </Context.Provider>
@@ -52,7 +52,7 @@ class HomePage extends React.PureComponent {
 
 HomePage.propTypes = {
   loadCalendar: PropTypes.func.isRequired,
-  addToCart: PropTypes.func.isRequired,
+  addSlots: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -60,7 +60,7 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = {
   loadCalendar,
-  addToCart,
+  addSlots,
 };
 
 export default withRouter(

@@ -28,7 +28,7 @@ export default class CalendarBody extends React.Component {
         view={this.props.view}
         size={this.props.size}
         totalSlots={this.props.totalSlots}
-        addToCartResult={this.props.addToCartResult}
+        addSlotsResult={this.props.addSlotsResult}
       />
     );
   }
@@ -46,7 +46,7 @@ export default class CalendarBody extends React.Component {
         view={this.props.view}
         size={this.props.size}
         totalSlots={this.props.totalSlots}
-        addToCartResult={this.props.addToCartResult}
+        addSlotsResult={this.props.addSlotsResult}
       />
     );
   }
@@ -66,7 +66,7 @@ export default class CalendarBody extends React.Component {
         view={this.props.view}
         size={this.props.size}
         totalSlots={this.props.totalSlots}
-        addToCartResult={this.props.addToCartResult}
+        addSlotsResult={this.props.addSlotsResult}
       />
     );
   }

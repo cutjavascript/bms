@@ -157,11 +157,11 @@ class Calendar extends React.Component {
     }
 
     /////if slot booked then change values of bookings in state(Would have to be done similar to show loading)
-    const cartId = (nextProps.addToCartResult || {}).cart_id || 0;
+    const cartId = (nextProps.addSlotsResult || {}).cart_id || 0;
 
     if (cartId != 0) {
       let newSlots = [];
-      const getAllBookings = (nextProps.addToCartResult || {}).postData || [];
+      const getAllBookings = (nextProps.addSlotsResult || {}).postData || [];
       let removeFromBookings = [],
         addToBookings = false,
         day = "",
@@ -205,7 +205,7 @@ class Calendar extends React.Component {
 
       /*
       ////if cart id not equal to 0 then check if bookings were selected and if so add them to existing booking set
-      const getBooking = ((nextProps.addToCartResult || {}).postData || {}).bookings || [];
+      const getBooking = ((nextProps.addSlotsResult || {}).postData || {}).bookings || [];
 
       console.log("===  Line:167, File:e:gitwork\bmssrccomponentsCalendarindex.js");
       console.log("===getBooking  Line:168, File:e:gitwork\bmssrccomponentsCalendarindex.js", getBooking);
@@ -302,7 +302,7 @@ class Calendar extends React.Component {
           size={this.props.size}
           totalSlots={this.state.totalSlots}
           isLoading={isLoading}
-          addToCartResult={this.props.addToCartResult}
+          addSlotsResult={this.props.addSlotsResult}
         />
       </div>
     );

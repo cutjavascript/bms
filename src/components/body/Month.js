@@ -24,7 +24,7 @@ export default class Month extends React.Component {
         displayPast={this.props.displayPast}
         size={this.props.size}
         totalSlots={this.props.totalSlots}
-        addToCartResult={this.props.addToCartResult}
+        addSlotsResult={this.props.addSlotsResult}
       />
     );
   }
