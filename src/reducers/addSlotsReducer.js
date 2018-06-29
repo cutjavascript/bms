@@ -1,11 +1,11 @@
-import types from '../action_types';
+import types from "../action_types";
 
 const postData = [];
 const initialState = {
   cart_id: 0,
   status: false,
   isLoading: false,
-  msg: '',
+  msg: "",
   postData,
 };
 
@@ -78,14 +78,14 @@ function updateCartData(postData, state) {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_TO_CART_REQUEST: {
+    case types.ADD_SLOTS_REQUEST: {
       return {
         ...state,
         isLoading: true,
         // postData: (action.payload || {}).postData || postData
       };
     }
-    case types.ADD_TO_CART_SUCCESS: {
+    case types.ADD_SLOTS_SUCCESS: {
       return {
         ...state,
         isLoading: false,
@@ -93,11 +93,11 @@ export default (state = initialState, action) => {
         postData: updateCartData((action.payload || {}).postData || {}, state), // (action.payload || {}).postData || postData,
       };
     }
-    case types.ADD_TO_CART_FAIL: {
+    case types.ADD_SLOTS_FAIL: {
       return {
         ...state,
         isLoading: false,
-        msg: (action.payload || {}).msg || 'There is an Issue with this Request, Please try again later.',
+        msg: (action.payload || {}).msg || "There is an Issue with this Request, Please try again later.",
         // postData: (action.payload || {}).postData || postData,
       };
     }

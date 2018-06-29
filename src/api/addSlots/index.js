@@ -1,5 +1,5 @@
-import axios from 'axios';
-import types from '../../action_types';
+import axios from "axios";
+import types from "../../action_types";
 
 export default ({ bookingId, bookingTime, cartId = 0, bookingDay }) => (dispatch, getState) => {
   const bookings = [],
@@ -10,7 +10,7 @@ export default ({ bookingId, bookingTime, cartId = 0, bookingDay }) => (dispatch
         booking_time: bookingTime,
         availed: true,
       })
-    : '';
+    : "";
 
   // const bookings=[{ "slot_id": bookingId, "booking_time": bookingTime, "availed": true }, { "slot_id": 2, "booking_time": "9pm", }];
   // const services=[{ "service_id": 1, "service_count": 2, "availed": true  }, { "service_id": 2, "service_count": 1,   }];
@@ -23,23 +23,23 @@ export default ({ bookingId, bookingTime, cartId = 0, bookingDay }) => (dispatch
     bookingDay,
   };
 
-  dispatch({ type: types.ADD_TO_CART_REQUEST, payload: { postData } });
+  dispatch({ type: types.ADD_SLOTS_REQUEST, payload: { postData } });
   axios
-    .post('http://localhost:8080/bookings/setCarts', {
+    .post("http://localhost:8080/bookings/setCarts", {
       ...postData,
     })
     .then(response => {
-      const status = String(((response.data || {}).data || {}).status || '').toLowerCase();
+      const status = String(((response.data || {}).data || {}).status || "").toLowerCase();
       if (status) {
         dispatch({
-          type: types.ADD_TO_CART_SUCCESS,
+          type: types.ADD_SLOTS_SUCCESS,
           payload: { ...((response.data || {}).data || {}), postData },
         });
       } else {
-        dispatch({ type: types.ADD_TO_CART_FAIL, payload: { postData } });
+        dispatch({ type: types.ADD_SLOTS_FAIL, payload: { postData } });
       }
     })
     .catch(error => {
-      dispatch({ type: types.ADD_TO_CART_FAIL, payload: { ...error, postData } });
+      dispatch({ type: types.ADD_SLOTS_FAIL, payload: { ...error, postData } });
     });
 };
