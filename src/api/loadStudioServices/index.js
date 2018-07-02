@@ -11,7 +11,7 @@ export default loadStudioServices => dispatch => {
 
   async function getStudioServices() {
     try {
-      const response = await axios.post("http://localhost:8080/studioServices", {
+      const response = await axios.post("http://localhost:8080/studios/getStudioService", {
         ...params,
       });
       dispatch({
