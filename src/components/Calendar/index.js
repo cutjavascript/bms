@@ -4,7 +4,7 @@ import { omit, isEqual } from "lodash";
 import sizeMe from "react-sizeme";
 
 import CalendarHeader from "../header/CalendarHeader";
-import CalendarBody from "../body/CalendarBody";
+import CalendarBody from "./CalendarBody";
 import { ViewType } from "../constant";
 
 import "../style/main.css";

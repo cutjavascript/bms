@@ -5,20 +5,14 @@ export default loadStudioServices => dispatch => {
   dispatch({ type: types.LOAD_STUDIO_SERVICES_REQUEST, payload: {} });
 
   const params = {
-    user_id: 2,
-    studio_id: 2,
+    user_id: 1,
+    studio_id: 1,
   };
 
   async function getStudioServices() {
     try {
-      const response = await axios.get("http://localhost:8080/fetchServicesSlots", {
-        params: {
-          ...params,
-        },
-        headers: {
-          "content-type": "application/json",
-          "cache-control": "no-cache",
-        },
+      const response = await axios.post("http://localhost:8080/studioServices", {
+        ...params,
       });
       dispatch({
         type: types.LOAD_STUDIO_SERVICES_SUCCESS,
