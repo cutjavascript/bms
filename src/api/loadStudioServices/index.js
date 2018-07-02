@@ -11,7 +11,7 @@ export default loadStudioServices => dispatch => {
 
   async function getStudioServices() {
     try {
-      const response = await axios.post("http://localhost:8080/fetchServicesSlots", {
+      const response = await axios.get("http://localhost:8080/fetchServicesSlots", {
         params: {
           ...params,
         },
@@ -21,7 +21,7 @@ export default loadStudioServices => dispatch => {
         },
       });
       dispatch({
-        type: types.LOAD_STUDIO_SERVICES__SUCCESS,
+        type: types.LOAD_STUDIO_SERVICES_SUCCESS,
         payload: { data: { ...response.data, loadStudioServices } },
       });
     } catch (error) {

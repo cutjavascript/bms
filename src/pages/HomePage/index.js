@@ -5,6 +5,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "../../PropTypes";
 import Home from "../../components/Home";
 import loadCalendar from "../../api/loadCalendar";
+import loadStudioServices from "../../api/loadStudioServices";
 import addSlots from "../../api/addSlots";
 import { Context } from "../../context";
 
@@ -13,9 +14,14 @@ class HomePage extends React.PureComponent {
     super(props);
     this.loadCalendarPage = this.loadCalendarPage.bind(this);
     this.onSlotChoosen = this.onSlotChoosen.bind(this);
+    this.loadServices = this.loadServices.bind(this);
   }
 
   componentDidMount() {}
+
+  loadServices() {
+    this.props.loadStudioServices();
+  }
 
   loadCalendarPage() {
     this.props.loadCalendar();
@@ -44,6 +50,7 @@ class HomePage extends React.PureComponent {
           onSlotChoosen={this.onSlotChoosen}
           addSlotsResult={this.props.addSlotsReducer}
           loadCalendar={this.loadCalendarPage}
+          loadServices={this.loadServices}
         />
       </Context.Provider>
     );
@@ -61,6 +68,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   loadCalendar,
   addSlots,
+  loadStudioServices,
 };
 
 export default withRouter(
