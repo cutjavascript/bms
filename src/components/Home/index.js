@@ -177,10 +177,11 @@ class Home extends React.Component {
           onClickAway={() => this.closeModal()}
         >
           <Slider {...settings}>
-            <Services loadServices={this.props.loadServices}>
-              <h3>1</h3>
-            </Services>
-
+            {this.props.studioServices && (
+              <Services loadServices={this.props.loadServices} {...this.props.studioServices}>
+                <h3>1</h3>
+              </Services>
+            )}
             <div>
               <Calendar {...this.props} />
             </div>

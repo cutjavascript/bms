@@ -14,6 +14,7 @@ export default loadStudioServices => dispatch => {
       const response = await axios.post("http://localhost:8080/studios/getStudioService", {
         ...params,
       });
+      console.log("===response  Line:17, File:e:gitwork\bmssrcapiloadStudioServicesindex.js", response);
       dispatch({
         type: types.LOAD_STUDIO_SERVICES_SUCCESS,
         payload: { data: { ...response.data, loadStudioServices } },

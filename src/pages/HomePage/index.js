@@ -42,7 +42,7 @@ class HomePage extends React.PureComponent {
   }
   render() {
     const available = this.props.simpleReducer && this.props.simpleReducer.available;
-
+    console.log("===this.props  Line:45, File:e:gitwork\bmssrcpagesHomePageindex.js", this.props);
     return (
       <Context.Provider value={available}>
         <Home
@@ -51,6 +51,7 @@ class HomePage extends React.PureComponent {
           addSlotsResult={this.props.addSlotsReducer}
           loadCalendar={this.loadCalendarPage}
           loadServices={this.loadServices}
+          studioServices={this.props.studioServicesReducer}
         />
       </Context.Provider>
     );
