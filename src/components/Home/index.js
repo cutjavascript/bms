@@ -1,11 +1,11 @@
-import React from 'react';
-import Modal from 'react-awesome-modal';
-import Slider from 'react-slick';
-import Calendar from '../Calendar';
-import Services from '../Services';
-import banner from '../../assets/images/banner1.jpg';
-import '../../../node_modules/slick-carousel/slick/slick.css';
-import '../../../node_modules/slick-carousel/slick/slick-theme.css';
+import React from "react";
+import Modal from "react-awesome-modal";
+import Slider from "react-slick";
+import Calendar from "../Calendar";
+import Services from "../Services";
+import banner from "../../assets/images/banner1.jpg";
+import "../../../node_modules/slick-carousel/slick/slick.css";
+import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 
 class Home extends React.Component {
   constructor(props) {
@@ -42,15 +42,15 @@ class Home extends React.Component {
           style={{
             left: 0,
             top: 82,
-            width: '100%',
+            width: "100%",
             height: 409,
             padding: 0,
             opacity: 1,
             zIndex: 11,
-            borderBottom: '1px solid #ddd',
+            borderBottom: "1px solid #ddd",
           }}
         >
-          <img src={banner} style={{ left: 0, top: 0, width: '100%', height: 409 }} />
+          <img src={banner} style={{ left: 0, top: 0, width: "100%", height: 409 }} />
         </div>
         <div className="container">
           <div className="" style={{ height: 20 }} />
@@ -58,11 +58,11 @@ class Home extends React.Component {
             <div
               className="col-sm-12"
               style={{
-                backgroundColor: 'rgb(255,255,255)',
-                border: '1px solid rgb(102, 204, 255)',
+                backgroundColor: "rgb(255,255,255)",
+                border: "1px solid rgb(102, 204, 255)",
               }}
             >
-              <h3 className="studio-title" style={{ margin: '25px 0 25px 0', fontWeight: 700 }}>
+              <h3 className="studio-title" style={{ margin: "25px 0 25px 0", fontWeight: 700 }}>
                 Neelam Studios
               </h3>
               <div className="booknow-block">
@@ -87,10 +87,10 @@ class Home extends React.Component {
                 to HD cameras to Audio equipment to Lights to rigs.
               </p>
               <div className="service-block">
-                <h4 className="studio-title" style={{ margin: '25px 0 25px 0', fontWeight: 700 }}>
+                <h4 className="studio-title" style={{ margin: "25px 0 25px 0", fontWeight: 700 }}>
                   Services offered
                 </h4>
-                <div className="container service-container" style={{ width: '75%' }}>
+                <div className="container service-container" style={{ width: "75%" }}>
                   <div className="row">
                     <div className="col">
                       <div className="">
@@ -178,7 +178,11 @@ class Home extends React.Component {
         >
           <Slider {...settings}>
             {this.props.studioServices && (
-              <Services loadServices={this.props.loadServices} {...this.props.studioServices}>
+              <Services
+                loadServices={this.props.loadServices}
+                {...this.props.studioServices}
+                submit={this.props.submit}
+              >
                 <h3>1</h3>
               </Services>
             )}

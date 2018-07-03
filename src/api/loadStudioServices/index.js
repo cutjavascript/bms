@@ -1,5 +1,5 @@
-import axios from 'axios';
-import types from '../../action_types';
+import axios from "axios";
+import types from "../../action_types";
 
 export default loadStudioServices => dispatch => {
   dispatch({ type: types.LOAD_STUDIO_SERVICES_REQUEST, payload: {} });
@@ -11,18 +11,18 @@ export default loadStudioServices => dispatch => {
 
   async function getStudioServices() {
     try {
-      const response = await axios.post('http://localhost:8080/studios/getStudioService', {
+      const response = await axios.post("http://localhost:8080/studios/getStudioService", {
         ...params,
       });
-      console.log('===response  Line:17, File:e:gitwork\bmssrcapiloadStudioServicesindex.js', response);
+      console.log("===response  Line:17, File:e:gitwork\bmssrcapiloadStudioServicesindex.js", response);
       dispatch({
         type: types.LOAD_STUDIO_SERVICES_SUCCESS,
-        payload: { data: { ...response.data, loadStudioServices } },
+        payload: { data: { ...response.data, ...params } },
       });
     } catch (error) {
       dispatch({
         type: types.LOAD_STUDIO_SERVICES_FAIL,
-        payload: 'Error loading Services for Studio: ',
+        payload: "Error loading Services for Studio: ",
       });
     }
   }

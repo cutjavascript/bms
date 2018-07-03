@@ -11,13 +11,18 @@ class CheckboxData extends React.Component {
   }
 
   toggleCheckboxChange = () => {
-    const { handleCheckboxChange, label } = this.props;
+    const { handleCheckboxChange, label, studioServiceId } = this.props;
+    console.log("===  Line:15, File:e:gitwork\bmssrccomponentsServicesCheckboxData.js");
+    let originalStatus = false;
+    if (this.state.isChecked) {
+      originalStatus = true;
+    }
 
     this.setState(({ isChecked }) => ({
       isChecked: !isChecked,
     }));
 
-    handleCheckboxChange(label);
+    handleCheckboxChange(studioServiceId, originalStatus);
   };
 
   render() {
