@@ -1,4 +1,4 @@
-import types from "../action_types";
+import types from '../action_types';
 
 const initialState = { services: [], isLoading: false };
 
@@ -11,9 +11,9 @@ export default (state = initialState, action) => {
     case types.LOAD_STUDIO_SERVICES_SUCCESS: {
       const services = ((action.payload.data || {}).data || {}).services || {};
       if (services.length > 0) {
-        return { ...state, services: services, isLoading: false };
+        return { ...state, services, isLoading: false };
       }
-      console.log("===action  Line:11, File:e:gitwork\bmssrc\reducersloadStudioServices.js", action);
+      console.log('===action  Line:11, File:e:gitwork\bmssrc\reducersloadStudioServices.js', action);
 
       return { ...state, services: [], isLoading: false };
     }

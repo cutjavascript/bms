@@ -13,34 +13,36 @@ class Services extends React.Component {
   toggleCheckbox() {}
 
   checkbox = service => {
-    <CheckboxData
-      label={service.service_name}
-      handleCheckboxChange={this.toggleCheckbox}
-      key={service.studio_service_id}
-      amount={service.amount}
-      slotsRequired={service.slots_required}
-      studioServiceId={service.studio_service_id}
-    />;
+    const vv = (
+      <CheckboxData
+        label={service.service_name}
+        handleCheckboxChange={this.toggleCheckbox}
+        key={service.studio_service_id}
+        amount={service.amount}
+        slotsRequired={service.slots_required}
+        studioServiceId={service.studio_service_id}
+      />
+    );
+
+    return vv;
   };
 
   componentDidMount() {
     this.props.loadServices();
   }
   createCheckboxes = services => {
-    console.log("===services  Line:27, File:e:gitwork\bmssrccomponentsServicesindex.js", services);
-
-    services &&
+    const chks =
+      services &&
       services.length > 0 &&
       services.map(x => {
-        console.log("===  Line:29, File:e:gitwork\bmssrccomponentsServicesindex.js");
-        this.checkbox(x);
+        return this.checkbox(x);
       });
+    return chks;
+    console.log("===chks  Line:42, File:e:gitwork\bmssrccomponentsServicesindex.js", chks);
   };
   render() {
-    console.log("===this.props  Line:36, File:e:gitwork\bmssrccomponentsServicesindex.js", this.props);
     const services = this.props.services || {};
-    console.log("===services  Line:39, File:e:gitwork\bmssrccomponentsServicesindex.js", services);
-    console.log("===this.props  Line:29, File:e:gitwork\bmssrccomponentsServicesindex.js", this.props);
+
     return <div className="servicesBox">{this.createCheckboxes(services)}</div>;
   }
 }

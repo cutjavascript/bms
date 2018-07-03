@@ -1,5 +1,5 @@
-import axios from "axios";
-import types from "../../action_types";
+import axios from 'axios';
+import types from '../../action_types';
 
 export default loadCartServices => dispatch => {
   dispatch({ type: types.LOAD_CART_SERVICES_REQUEST, payload: {} });
@@ -11,13 +11,13 @@ export default loadCartServices => dispatch => {
 
   async function getCartServices() {
     try {
-      const response = await axios.post("http://localhost:8080/cartServices", {
+      const response = await axios.post('http://localhost:8080/cartServices', {
         params: {
           ...params,
         },
         headers: {
-          "content-type": "application/json",
-          "cache-control": "no-cache",
+          'content-type': 'application/json',
+          'cache-control': 'no-cache',
         },
       });
       dispatch({
@@ -27,7 +27,7 @@ export default loadCartServices => dispatch => {
     } catch (error) {
       dispatch({
         type: types.LOAD_CART_SERVICES_FAIL,
-        payload: "Error loading Cart Services: ",
+        payload: 'Error loading Cart Services: ',
       });
     }
   }

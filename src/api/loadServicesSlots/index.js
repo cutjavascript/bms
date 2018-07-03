@@ -1,5 +1,5 @@
-import axios from "axios";
-import types from "../../action_types";
+import axios from 'axios';
+import types from '../../action_types';
 
 export default loadServicesSlots => dispatch => {
   dispatch({ type: types.LOAD_SERVICES_SLOTS_REQUEST, payload: {} });
@@ -11,13 +11,13 @@ export default loadServicesSlots => dispatch => {
 
   async function getServicesSlots() {
     try {
-      const response = await axios.post("http://localhost:8080/fetchServicesSlots", {
+      const response = await axios.post('http://localhost:8080/fetchServicesSlots', {
         params: {
           ...params,
         },
         headers: {
-          "content-type": "application/json",
-          "cache-control": "no-cache",
+          'content-type': 'application/json',
+          'cache-control': 'no-cache',
         },
       });
       dispatch({
@@ -27,7 +27,7 @@ export default loadServicesSlots => dispatch => {
     } catch (error) {
       dispatch({
         type: types.LOAD_SERVICES_SLOTS_FAIL,
-        payload: "Error loading Slots for Services: ",
+        payload: 'Error loading Slots for Services: ',
       });
     }
   }
