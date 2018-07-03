@@ -100,7 +100,7 @@ class Calendar extends React.Component {
       //   },
     ],
     displayPast: false,
-    view: ViewType.Month,
+    view: ViewType.Week,
     date: moment(),
     resources: {
       view: {
@@ -130,7 +130,16 @@ class Calendar extends React.Component {
       booking: {},
       totalSlots: props.totalSlots,
     };
+    console.log("===this.props  Line:133, File:e:gitwork\bmssrccomponentsCalendarindex.js", this.props);
+    //
   }
+  componentDidMount() {
+    this.props.loadCartServices();
+  }
+
+  loadSlots = serviceId => {
+    this.props.loadCalendar();
+  };
 
   componentWillReceiveProps(nextProps) {
     if (!isEqual(this.state.bookings, nextProps.bookings)) {

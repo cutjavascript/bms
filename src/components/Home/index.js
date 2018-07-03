@@ -1,8 +1,8 @@
 import React from "react";
 import Modal from "react-awesome-modal";
-import Slider from "react-slick";
 import Calendar from "../Calendar";
 import Services from "../Services";
+import Cart from "../Cart";
 import banner from "../../assets/images/banner1.jpg";
 import "../../../node_modules/slick-carousel/slick/slick.css";
 import "../../../node_modules/slick-carousel/slick/slick-theme.css";
@@ -18,9 +18,6 @@ class Home extends React.Component {
   }
 
   openModal() {
-    this.props.loadCalendar();
-
-    // this.props.loadCalendar();
     this.setState({
       visible: true,
     });
@@ -45,14 +42,6 @@ class Home extends React.Component {
   render() {
     console.log("===this.state.showPanel  Line:47, File:e:gitwork\bmssrccomponentsHomeindex.js", this.state.showPanel);
 
-    // const settings = {
-    //   dots: false,
-    //   infinite: false,
-    //   speed: 800,
-    //   slidesToShow: 1,
-    //   slidesToScroll: 1,
-    //   lazyLoad: true,
-    // };
     return (
       <div className="">
         <div
@@ -182,7 +171,6 @@ class Home extends React.Component {
                 </div>
               </div>
             </div>
-            {/* <div className="col-sm-3"></div> */}
           </div>
         </div>
 
@@ -194,20 +182,28 @@ class Home extends React.Component {
           overflow-x="scroll"
           onClickAway={() => this.closeModal()}
         >
-          {/* <Slider {...settings}> */}
           {this.props.studioServices && this.state.showPanel === "services" ? (
-            <Services loadServices={this.props.loadServices} {...this.props.studioServices} submit={this.props.submit}>
-              <h3>1</h3>
-            </Services>
+            <Services
+              loadServices={this.props.loadServices}
+              {...this.props.studioServices}
+              submit={this.props.submitServices}
+            />
+          ) : this.state.showPanel === "slots" ? (
+            <div>
+              <Calendar
+                onSlotChoosen={this.props.onSlotChoosen}
+                addSlotsReducer={this.props.addSlotsReducer}
+                loadCalendar={this.props.loadCalendarPage}
+                loadCartServices={this.props.loadCartServices}
+              />
+            </div>
           ) : (
-            this.state.showPanel === "slots" && (
+            this.state.showPanel === "cart" && (
               <div>
-                <Calendar {...this.props} />
+                <Cart />
               </div>
             )
           )}
-
-          {/* </Slider> */}
         </Modal>
       </div>
     );
