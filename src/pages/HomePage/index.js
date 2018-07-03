@@ -7,6 +7,7 @@ import Home from "../../components/Home";
 import loadCalendar from "../../api/loadCalendar";
 import loadStudioServices from "../../api/loadStudioServices";
 import addSlots from "../../api/addSlots";
+import submitServices from "../../api/submitServices";
 import { Context } from "../../context";
 
 class HomePage extends React.PureComponent {
@@ -15,12 +16,19 @@ class HomePage extends React.PureComponent {
     this.loadCalendarPage = this.loadCalendarPage.bind(this);
     this.onSlotChoosen = this.onSlotChoosen.bind(this);
     this.loadServices = this.loadServices.bind(this);
+
+    console.log("===this.props  Line:20, File:e:gitwork\bmssrcpagesHomePageindex.js", this.props);
   }
+
+  params = {
+    user_id: 1,
+    studio_id: 1,
+  };
 
   componentDidMount() {}
 
   loadServices() {
-    this.props.loadStudioServices();
+    this.props.loadStudioServices(this.params);
   }
 
   loadCalendarPage() {
@@ -30,6 +38,8 @@ class HomePage extends React.PureComponent {
   submit = servicesSelected => {
     console.log("===servicesSelected  Line:30, File:e:gitwork\bmssrcpagesHomePageindex.js", servicesSelected);
     console.log("===  Line:30, File:e:gitwork\bmssrcpagesHomePageindex.js");
+
+    this.props.submitServices(servicesSelected, this.params);
   };
 
   onSlotChoosen(params) {
@@ -76,6 +86,7 @@ const mapDispatchToProps = {
   loadCalendar,
   addSlots,
   loadStudioServices,
+  submitServices,
 };
 
 export default withRouter(

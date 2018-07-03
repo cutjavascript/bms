@@ -10,7 +10,11 @@ import "../../../node_modules/slick-carousel/slick/slick-theme.css";
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { visible: false };
+    this.state = { visible: false, showPanel: "services" };
+    console.log(
+      "===this.props.studioServices  Line:14, File:e:gitwork\bmssrccomponentsHomeindex.js",
+      this.props.studioServices,
+    );
   }
 
   openModal() {
@@ -26,15 +30,29 @@ class Home extends React.Component {
     this.setState({ visible: false });
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    console.log("===nextProps  Line:34, File:e:gitwork\bmssrccomponentsHomeindex.js", nextProps);
+    const studioServices = (nextProps.studioServices || {}).submitted;
+    console.log("===studioServices  Line:36, File:e:gitwork\bmssrccomponentsHomeindex.js", studioServices);
+    if (studioServices && prevState.showPanel === "services") {
+      return { showPanel: "slots" };
+    }
+    // if (nextProps.someValue !== prevState.someValue) {
+    //   return { someState: nextProps.someValue };
+    // } else return null;
+  }
+
   render() {
-    const settings = {
-      dots: false,
-      infinite: false,
-      speed: 800,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      lazyLoad: true,
-    };
+    console.log("===this.state.showPanel  Line:47, File:e:gitwork\bmssrccomponentsHomeindex.js", this.state.showPanel);
+
+    // const settings = {
+    //   dots: false,
+    //   infinite: false,
+    //   speed: 800,
+    //   slidesToShow: 1,
+    //   slidesToScroll: 1,
+    //   lazyLoad: true,
+    // };
     return (
       <div className="">
         <div
@@ -176,29 +194,20 @@ class Home extends React.Component {
           overflow-x="scroll"
           onClickAway={() => this.closeModal()}
         >
-          <Slider {...settings}>
-            {this.props.studioServices && (
-              <Services
-                loadServices={this.props.loadServices}
-                {...this.props.studioServices}
-                submit={this.props.submit}
-              >
-                <h3>1</h3>
-              </Services>
-            )}
-            <div>
-              <Calendar {...this.props} />
-            </div>
-            <div>
-              <h3>4</h3>
-            </div>
-            <div>
-              <h3>5</h3>
-            </div>
-            <div>
-              <h3>6</h3>
-            </div>
-          </Slider>
+          {/* <Slider {...settings}> */}
+          {this.props.studioServices && this.state.showPanel === "services" ? (
+            <Services loadServices={this.props.loadServices} {...this.props.studioServices} submit={this.props.submit}>
+              <h3>1</h3>
+            </Services>
+          ) : (
+            this.state.showPanel === "slots" && (
+              <div>
+                <Calendar {...this.props} />
+              </div>
+            )
+          )}
+
+          {/* </Slider> */}
         </Modal>
       </div>
     );
