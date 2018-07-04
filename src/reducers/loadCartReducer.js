@@ -47,6 +47,21 @@ function bookingData(state) {
     },
   );
 }
+
+function servicesData(data) {
+  const services = data.services || [];
+  let output = [];
+  if (services.length > 0) {
+    services.map(x => {
+      x.bookings_required > 0 && output.push({ text: x.service_name, value: x.cart_service_id });
+    });
+  }
+
+  console.log("===output  Line:60, File:e:gitwork\bmssrc\reducersloadCartReducer.js", output);
+  console.log("===data  Line:51, File:e:gitwork\bmssrc\reducersloadCartReducer.js", data);
+
+  return services;
+}
 export default (state = initialState, action) => {
   switch (action.type) {
     case types.LOAD_HOME_REQUEST: {
@@ -70,7 +85,7 @@ export default (state = initialState, action) => {
     }
 
     case types.LOAD_CART_SERVICES_SUCCESS: {
-      const newObj = bookingData(
+      const newObj = servicesData(
         action.payload.data,
         // state,
       );
