@@ -60,7 +60,7 @@ function servicesData(data) {
   console.log("===output  Line:60, File:e:gitwork\bmssrc\reducersloadCartReducer.js", output);
   console.log("===data  Line:51, File:e:gitwork\bmssrc\reducersloadCartReducer.js", data);
 
-  return services;
+  return output;
 }
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -89,7 +89,7 @@ export default (state = initialState, action) => {
         action.payload.data,
         // state,
       );
-      return { ...state, ...newObj, isLoading: false };
+      return { ...state, services: newObj, isLoading: false };
     }
 
     case types.LOAD_CART_SERVICES_FAIL: {

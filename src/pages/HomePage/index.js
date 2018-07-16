@@ -72,6 +72,7 @@ class HomePage extends React.PureComponent {
           studioServices={this.props.studioServicesReducer}
           submitServices={this.submitServices}
           loadCartServices={this.loadCartServices}
+          loadCartReducer={this.props.loadCartReducer}
         />
       </Context.Provider>
     );

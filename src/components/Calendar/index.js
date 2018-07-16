@@ -142,6 +142,11 @@ class Calendar extends React.Component {
   };
 
   componentWillReceiveProps(nextProps) {
+    // loadCartReducer
+    console.log(
+      "===nextProps.loadCartReducer  Line:146, File:e:gitwork\bmssrccomponentsCalendarindex.js",
+      nextProps.loadCartReducer,
+    );
     if (!isEqual(this.state.bookings, nextProps.bookings)) {
       const bookings = nextProps.bookings.map(booking => {
         booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
@@ -295,6 +300,8 @@ class Calendar extends React.Component {
           dateChanged={this.onDateChangedBound}
           resources={this.props.resources}
           size={this.props.size}
+          services={this.props.loadCartReducer.services}
+          changeSlots={this.props.changeSlots}
         />
 
         <CalendarBody

@@ -1,10 +1,10 @@
-import React from 'react';
-import moment from 'moment';
+import React from "react";
+import moment from "moment";
 
-import { ViewType } from '../constant';
-import DateSelector from './DateSelector';
-import ViewSelector from './ViewSelector';
-import { getSizeModifier } from '../util';
+import { ViewType } from "../constant";
+import DateSelector from "./DateSelector";
+import ViewSelector from "./ViewSelector";
+import { getSizeModifier } from "../util";
 
 export default class CalendarHeader extends React.Component {
   constructor(props) {
@@ -43,6 +43,8 @@ export default class CalendarHeader extends React.Component {
           change={this.props.viewChanged}
           resources={this.props.resources.view}
           size={this.props.size}
+          services={this.props.services}
+          changeSlots={this.props.changeSlots}
         />
       </div>
     );
