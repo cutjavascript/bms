@@ -69,11 +69,17 @@ export default (state = initialState, action) => {
     }
 
     case types.LOAD_HOME_SUCCESS: {
+      console.log(
+        "===action.payload.data  Line:71, File:e:gitwork\bmssrc\reducersloadCartReducer.js",
+        action.payload.data,
+      );
+      console.log("===  Line:71, File:e:gitwork\bmssrc\reducersloadCartReducer.js");
       const newObj = bookingData(
         action.payload.data,
         // state,
       );
-      return { ...state, ...newObj, isLoading: false };
+      const serviceid = action.payload.data.serviceid || 0;
+      return { ...state, ...newObj, isLoading: false, serviceid };
     }
 
     case types.LOAD_HOME_FAIL: {
@@ -85,6 +91,7 @@ export default (state = initialState, action) => {
     }
 
     case types.LOAD_CART_SERVICES_SUCCESS: {
+      console.log("===  Line:87, File:e:gitwork\bmssrc\reducersloadCartReducer.js");
       const newObj = servicesData(
         action.payload.data,
         // state,

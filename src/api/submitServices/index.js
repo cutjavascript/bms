@@ -32,8 +32,9 @@ export default (servicesSelected, { user_id, studio_id }) => (dispatch, getState
     })
     .then(response => {
       console.log("===response  Line:33, File:e:gitwork\bmssrcapisubmitServicesindex.js", response);
-      const status = String(((response.data || {}).data || {}).status || "").toLowerCase();
+      const status = ((response.data || {}).data || {}).status || false;
       if (status) {
+        console.log("===  Line:36, File:e:gitwork\bmssrcapisubmitServicesindex.js");
         dispatch({
           type: types.SUBMIT_STUDIO_SERVICES_SUCCESS,
           payload: { ...((response.data || {}).data || {}), postData },

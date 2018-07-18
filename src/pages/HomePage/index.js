@@ -15,7 +15,7 @@ import { Context } from "../../context";
 class HomePage extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.loadCalendarPage = this.loadCalendarPage.bind(this);
+    this.loadCalendar = this.loadCalendar.bind(this);
     this.onSlotChoosen = this.onSlotChoosen.bind(this);
     this.loadServices = this.loadServices.bind(this);
 
@@ -23,7 +23,7 @@ class HomePage extends React.PureComponent {
   }
 
   defaultParams = {
-    user_id: 1,
+    user_id: 2,
     studio_id: 1,
   };
 
@@ -31,8 +31,8 @@ class HomePage extends React.PureComponent {
     this.props.loadStudioServices(this.defaultParams);
   }
 
-  loadCalendarPage() {
-    this.props.loadCalendar();
+  loadCalendar(serviceId) {
+    this.props.loadCalendar(this.defaultParams, serviceId);
   }
 
   loadCartServices = () => {
@@ -46,28 +46,34 @@ class HomePage extends React.PureComponent {
   };
 
   onSlotChoosen(params) {
+    console.log("===  Line:48, File:e:gitwork\bmssrcpagesHomePageindex.js");
     const bookingDay = String(params.startDate.format("YYYYMMDDhA")).toLowerCase();
 
-    const bookingId = this.props.simpleReducer.dayIds[bookingDay];
+    const bookingId = this.props.loadCartReducer.dayIds[bookingDay];
     const bookingTime = String(params.startDate.format("hA")).toLowerCase();
+    console.log(
+      "===this.props.loadCartReducer  Line:53, File:e:gitwork\bmssrcpagesHomePageindex.js",
+      this.props.loadCartReducer,
+    );
 
+    const serviceid = this.props.loadCartReducer.serviceid;
     this.props.addSlots({
       bookingId,
       bookingTime,
       cartId: (this.props.addSlotsReducer || {}).cart_id || 0, // /// TODO: Need to add cartId
       bookingDay,
+      serviceid,
     });
   }
   render() {
-    const available = this.props.simpleReducer && this.props.simpleReducer.available;
+    const available = this.props.loadCartReducer && this.props.loadCartReducer.available;
 
     return (
       <Context.Provider value={available}>
         <Home
-          {...this.props.simpleReducer}
           onSlotChoosen={this.onSlotChoosen}
           addSlotsResult={this.props.addSlotsReducer}
-          loadCalendar={this.loadCalendarPage}
+          loadCalendar={this.loadCalendar}
           loadServices={this.loadServices}
           studioServices={this.props.studioServicesReducer}
           submitServices={this.submitServices}
@@ -93,6 +99,7 @@ const mapDispatchToProps = {
   loadStudioServices,
   submitServices,
   loadCartServices,
+  loadCart,
 };
 
 export default withRouter(

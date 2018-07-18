@@ -1,11 +1,11 @@
-import types from '../action_types';
+import types from "../action_types";
 
 const postData = [];
 const initialState = {
   cart_id: 0,
   status: false,
   isLoading: false,
-  msg: '',
+  msg: "",
   postData,
 };
 
@@ -72,7 +72,7 @@ function updateCartData(postData, state) {
   //     selected_details: [selectedDetails],
   //   };
   // }
-
+  console.log("===newCartData  Line:75, File:e:gitwork\bmssrc\reducersaddSlotsReducer.js", newCartData);
   return newCartData;
 }
 
@@ -97,7 +97,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        msg: (action.payload || {}).msg || 'There is an Issue with this Request, Please try again later.',
+        msg: (action.payload || {}).msg || "There is an Issue with this Request, Please try again later.",
         // postData: (action.payload || {}).postData || postData,
       };
     }

@@ -23,6 +23,7 @@ export default class ViewSelector extends React.Component {
         event.target.value,
       );
     console.log("===  Line:20, File:e:gitwork\bmssrccomponentsheaderViewSelector.js");
+    this.props.changeSlots(event.target.value);
   };
   render() {
     console.log(

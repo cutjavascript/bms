@@ -137,16 +137,13 @@ class Calendar extends React.Component {
     this.props.loadCartServices();
   }
 
-  loadSlots = serviceId => {
-    this.props.loadCalendar();
+  changeSlots = serviceId => {
+    this.props.loadCalendar(serviceId);
   };
 
   componentWillReceiveProps(nextProps) {
     // loadCartReducer
-    console.log(
-      "===nextProps.loadCartReducer  Line:146, File:e:gitwork\bmssrccomponentsCalendarindex.js",
-      nextProps.loadCartReducer,
-    );
+    console.log("===nextProps  Line:146, File:e:gitwork\bmssrccomponentsCalendarindex.js", nextProps);
     if (!isEqual(this.state.bookings, nextProps.bookings)) {
       const bookings = nextProps.bookings.map(booking => {
         booking.startDate = moment.isMoment(booking.startDate) ? booking.startDate : moment(booking.startDate);
@@ -172,8 +169,8 @@ class Calendar extends React.Component {
 
     /////if slot booked then change values of bookings in state(Would have to be done similar to show loading)
     const cartId = (nextProps.addSlotsResult || {}).cart_id || 0;
-
-    if (cartId != 0) {
+    console.log("===cartId  Line:172, File:e:gitwork\bmssrccomponentsCalendarindex.js", cartId);
+    if (nextProps.addSlotsResult) {
       let newSlots = [];
       const getAllBookings = (nextProps.addSlotsResult || {}).postData || [];
       let removeFromBookings = [],
@@ -300,8 +297,8 @@ class Calendar extends React.Component {
           dateChanged={this.onDateChangedBound}
           resources={this.props.resources}
           size={this.props.size}
-          services={this.props.loadCartReducer.services}
-          changeSlots={this.props.changeSlots}
+          services={this.props.services}
+          changeSlots={this.changeSlots}
         />
 
         <CalendarBody

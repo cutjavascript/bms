@@ -5,7 +5,7 @@ import studioServicesReducer from "./studioServicesReducer";
 import loadCartReducer from "./loadCartReducer";
 
 export default combineReducers({
-  simpleReducer,
+  // simpleReducer,
   addSlotsReducer,
   studioServicesReducer,
   loadCartReducer,
