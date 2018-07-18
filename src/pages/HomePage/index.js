@@ -47,6 +47,7 @@ class HomePage extends React.PureComponent {
 
   onSlotChoosen(params) {
     console.log("===  Line:48, File:e:gitwork\bmssrcpagesHomePageindex.js");
+
     const bookingDay = String(params.startDate.format("YYYYMMDDhA")).toLowerCase();
 
     const bookingId = this.props.loadCartReducer.dayIds[bookingDay];
@@ -57,13 +58,17 @@ class HomePage extends React.PureComponent {
     );
 
     const serviceid = this.props.loadCartReducer.serviceid;
-    this.props.addSlots({
-      bookingId,
-      bookingTime,
-      cartId: (this.props.addSlotsReducer || {}).cart_id || 0, // /// TODO: Need to add cartId
-      bookingDay,
-      serviceid,
-    });
+
+    if (params.isReserved) {
+    } else {
+      this.props.addSlots({
+        bookingId,
+        bookingTime,
+        cartId: (this.props.addSlotsReducer || {}).cart_id || 0, // /// TODO: Need to add cartId
+        bookingDay,
+        serviceid,
+      });
+    }
   }
   render() {
     const available = this.props.loadCartReducer && this.props.loadCartReducer.available;

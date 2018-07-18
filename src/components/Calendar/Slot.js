@@ -14,7 +14,7 @@ export default class Slot extends React.Component {
   }
 
   isClickable() {
-    return this.props.onClick && (!this.props.isBooked || this.props.canViewBooking);
+    return true; //this.props.onClick && (!this.props.isBooked || this.props.canViewBooking);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -25,9 +25,11 @@ export default class Slot extends React.Component {
     }
   }
   onClick(e) {
+    console.log("===  Line:27, File:e:gitwork\bmssrccomponentsCalendarSlot.js");
     e.preventDefault();
     if (this.props.onClick) {
       const values = _.omit(this.props, ["className", "style", "onClick", "canViewBooking", "numberOfSlot"]);
+      console.log("===values  Line:32, File:e:gitwork\bmssrccomponentsCalendarSlot.js", values);
       this.setState({ isLoading: true });
       this.props.onClick(values);
     }

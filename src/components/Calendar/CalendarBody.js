@@ -1,15 +1,16 @@
-import React from 'react';
-import moment from 'moment';
-import { find, isEqual } from 'lodash';
-import { PacmanLoader } from 'react-spinners_new';
-import Month from './Month';
-import Day from './Day';
-import Week from './Week';
-import { getBookingsForDay } from '../util';
-import { ViewType } from '../constant';
+import React from "react";
+import moment from "moment";
+import { find, isEqual } from "lodash";
+import { PacmanLoader } from "react-spinners_new";
+import Month from "./Month";
+import Day from "./Day";
+import Week from "./Week";
+import { getBookingsForDay } from "../util";
+import { ViewType } from "../constant";
 
 export default class CalendarBody extends React.Component {
   onSlotClicked(datas) {
+    console.log("===  Line:12, File:e:gitwork\bmssrccomponentsCalendarCalendarBody.js");
     if (this.props.slotCliked) {
       this.props.slotCliked(datas.startDate);
     }
@@ -74,7 +75,7 @@ export default class CalendarBody extends React.Component {
   render() {
     return this.props.isLoading ? (
       <div className="rbc-body-loading">
-        {' '}
+        {" "}
         <PacmanLoader color="#d55e00" loading>
           <span>&#9836;</span>
         </PacmanLoader>
