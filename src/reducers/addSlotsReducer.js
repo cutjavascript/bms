@@ -9,6 +9,56 @@ const initialState = {
   postData,
 };
 
+function removeCartData(postData, state) {
+  const bookingsDetails = { day: postData.bookingDay, items: postData.bookings };
+  const servicesDetails = {};
+  console.log("===state.postData  Line:15, File:e:gitwork\bmssrc\reducersaddSlotsReducer.js", state.postData);
+  //
+
+  console.log("===postData  Line:16, File:e:gitwork\bmssrc\reducersaddSlotsReducer.js", postData);
+
+  /////loop thorugh state where studio id already exists, then
+  /////loop check if that studio has bookings with that day
+  /////if it has bookings with that day then remove them
+  /////get the index, then splice from array with that index, return index
+
+  let newCartData = [];
+  let newPostData = { studio_id: 0, bookingsDetails: [] };
+  if (state.postData.length > 0) {
+    state.postData.map(x => {
+      if (x.studio_id === postData.studio_id) {
+        newPostData.studio_id = x.studio_id;
+        if (x.bookingsDetails.length > 0) {
+          newPostData.bookingsDetails = x.bookingsDetails.slice();
+          let toDeleteIndex = null;
+          newPostData.bookingsDetails.map((y, index) => {
+            console.log("===index  Line:33, File:e:gitwork\bmssrc\reducersaddSlotsReducer.js", index);
+            if (y.day === postData.bookingDay) {
+              console.log("===index  Line:37, File:e:gitwork\bmssrc\reducersaddSlotsReducer.js", index);
+              console.log("===y.day  Line:34, File:e:gitwork\bmssrc\reducersaddSlotsReducer.js", y.day);
+              console.log("===  Line:36, File:e:gitwork\bmssrc\reducersaddSlotsReducer.js");
+              toDeleteIndex = index;
+            }
+          });
+          if (toDeleteIndex => 0) {
+            newPostData.bookingsDetails.splice(toDeleteIndex, 1);
+          }
+          // !updateBooking && newPostData.bookingsDetails.push(bookingsDetails);
+        } else {
+        }
+
+        newCartData.push(newPostData);
+      }
+    });
+    console.log("===newPostData  Line:53, File:e:gitwork\bmssrc\reducersaddSlotsReducer.js", newPostData);
+
+    // newCartData = [{ studio_id: postData.studio_id, bookingsDetails: [bookingsDetails] }];
+  }
+
+  console.log("===newCartData  Line:57, File:e:gitwork\bmssrc\reducersaddSlotsReducer.js", newCartData);
+  return newCartData;
+}
+
 function updateCartData(postData, state) {
   const bookingsDetails = { day: postData.bookingDay, items: postData.bookings };
   const servicesDetails = {};
@@ -20,7 +70,7 @@ function updateCartData(postData, state) {
   // ///if studio id not present in state currently then add studio details only if studio id is the same
   let newCartData = [];
   let newPostData = { studio_id: 0, bookingsDetails: [] };
-  if (state.postData.length > 0) {
+  if (state.postData && state.postData.length > 0) {
     state.postData.map(x => {
       if (x.studio_id === postData.studio_id) {
         newPostData.studio_id = x.studio_id;
@@ -99,6 +149,15 @@ export default (state = initialState, action) => {
         isLoading: false,
         msg: (action.payload || {}).msg || "There is an Issue with this Request, Please try again later.",
         // postData: (action.payload || {}).postData || postData,
+      };
+    }
+    case types.REMOVE_SLOTS_SUCCESS: {
+      console.log("===  Line:153, File:e:gitwork\bmssrc\reducersaddSlotsReducer.js");
+      return {
+        ...state,
+        isLoading: false,
+        cart_id: (action.payload || {}).cart_id || 0,
+        postData: removeCartData((action.payload || {}).postData || {}, state), // (action.payload || {}).postData || postData,
       };
     }
     default: {

@@ -78,22 +78,22 @@ function updateCartData(postData, state) {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.ADD_SLOTS_REQUEST: {
+    case types.REMOVE_SLOTS_REQUEST: {
       return {
         ...state,
         isLoading: true,
         // postData: (action.payload || {}).postData || postData
       };
     }
-    case types.ADD_SLOTS_SUCCESS: {
-      return {
-        ...state,
-        isLoading: false,
-        cart_id: (action.payload || {}).cart_id || 0,
-        postData: updateCartData((action.payload || {}).postData || {}, state), // (action.payload || {}).postData || postData,
-      };
-    }
-    case types.ADD_SLOTS_FAIL: {
+    // case types.REMOVE_SLOTS_SUCCESS: {
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     cart_id: (action.payload || {}).cart_id || 0,
+    //     postData: updateCartData((action.payload || {}).postData || {}, state), // (action.payload || {}).postData || postData,
+    //   };
+    // }
+    case types.REMOVE_SLOTS_FAIL: {
       return {
         ...state,
         isLoading: false,

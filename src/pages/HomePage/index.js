@@ -9,6 +9,7 @@ import loadStudioServices from "../../api/loadStudioServices";
 import loadCartServices from "../../api/loadCartServices";
 import loadCart from "../../api/loadCart";
 import addSlots from "../../api/addSlots";
+import removeSlots from "../../api/removeSlots";
 import submitServices from "../../api/submitServices";
 import { Context } from "../../context";
 
@@ -60,6 +61,13 @@ class HomePage extends React.PureComponent {
     const serviceid = this.props.loadCartReducer.serviceid;
 
     if (params.isReserved) {
+      this.props.removeSlots({
+        bookingId,
+        bookingTime,
+        cartId: (this.props.addSlotsReducer || {}).cart_id || 0, // /// TODO: Need to add cartId
+        bookingDay,
+        serviceid,
+      });
     } else {
       this.props.addSlots({
         bookingId,
@@ -71,7 +79,9 @@ class HomePage extends React.PureComponent {
     }
   }
   render() {
+    console.log("===this.props  Line:82, File:e:gitwork\bmssrcpagesHomePageindex.js", this.props);
     const available = this.props.loadCartReducer && this.props.loadCartReducer.available;
+    const removeSlotsResult = this.props.removeSlotsReducer;
 
     return (
       <Context.Provider value={available}>
@@ -84,6 +94,7 @@ class HomePage extends React.PureComponent {
           submitServices={this.submitServices}
           loadCartServices={this.loadCartServices}
           loadCartReducer={this.props.loadCartReducer}
+          removeSlotsResult={removeSlotsResult}
         />
       </Context.Provider>
     );
@@ -105,6 +116,7 @@ const mapDispatchToProps = {
   submitServices,
   loadCartServices,
   loadCart,
+  removeSlots,
 };
 
 export default withRouter(

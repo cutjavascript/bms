@@ -287,7 +287,7 @@ class Calendar extends React.Component {
         <div className="cart-header">
           <span className="cart-header__prev" />
           <div className="cart-header__header">Slots Booking</div>
-          <span className="cart-header__next" />
+          <span className="cart-header__next" onClick={this.props.showCart} />
         </div>
         <CalendarHeader
           pastAvailable={this.props.displayPast}

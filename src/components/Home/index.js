@@ -67,6 +67,7 @@ class Home extends React.Component {
                 loadCartServices={this.props.loadCartServices}
                 changeSlots={this.props.changeSlots}
                 {...this.props.loadCartReducer}
+                removeSlotsResult={this.props.removeSlotsResult}
               />
             </div>
           ) : (

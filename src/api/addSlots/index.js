@@ -57,6 +57,7 @@ export default ({ bookingId, bookingTime, cartId = 0, bookingDay, serviceid }) =
       }
     })
     .catch(error => {
+      console.log("===error  Line:59, File:e:gitwork\bmssrcapiaddSlotsindex.js", error);
       dispatch({ type: types.ADD_SLOTS_FAIL, payload: { ...error, postData } });
     });
 };

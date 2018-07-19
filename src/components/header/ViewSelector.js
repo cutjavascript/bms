@@ -10,9 +10,14 @@ export default class ViewSelector extends React.Component {
     return view === this.props.view ? " rbc-view__button--active" : "";
   }
   getServicesDropdown = services => {
-    return services.map(x => {
+    let dropdown = services.map(x => {
       return <option value={x.value}>{x.text}</option>;
     });
+
+    dropdown.unshift(<option value="0">Select Service</option>);
+
+    console.log("===dropdown  Line:19, File:e:gitwork\bmssrccomponentsheaderViewSelector.js", dropdown);
+    return dropdown;
   };
 
   dropDownChange = event => {

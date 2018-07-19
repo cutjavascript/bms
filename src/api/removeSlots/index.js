@@ -37,9 +37,9 @@ export default ({ bookingId, bookingTime, cartId = 0, bookingDay, serviceid }) =
     cart_service_id: Number(serviceid),
   };
 
-  dispatch({ type: types.ADD_SLOTS_REQUEST, payload: { postData } });
+  dispatch({ type: types.REMOVE_SLOTS_REQUEST, payload: { postData } });
   axios
-    .post("http://localhost:8080/bookings/addSlots", {
+    .post("http://localhost:8080/bookings/uncheckSlots", {
       ...postData,
     })
     .then(response => {
@@ -49,14 +49,14 @@ export default ({ bookingId, bookingTime, cartId = 0, bookingDay, serviceid }) =
       console.log("===status  Line:49, File:e:gitwork\bmssrcapiaddSlotsindex.js", status);
       if (status) {
         dispatch({
-          type: types.ADD_SLOTS_SUCCESS,
+          type: types.REMOVE_SLOTS_SUCCESS,
           payload: { ...((response.data || {}).data || {}), postData },
         });
       } else {
-        dispatch({ type: types.ADD_SLOTS_FAIL, payload: { postData } });
+        dispatch({ type: types.REMOVE_SLOTS_FAIL, payload: { postData } });
       }
     })
     .catch(error => {
-      dispatch({ type: types.ADD_SLOTS_FAIL, payload: { ...error, postData } });
+      dispatch({ type: types.REMOVE_SLOTS_FAIL, payload: { ...error, postData } });
     });
 };
