@@ -12,6 +12,7 @@
     "react-awesome-modal": "^2.0.3",
     "react-dom": "^16.4.0",
     "react-hot-loader": "^4.3.0",
+    "react-paypal-express-checkout": "^1.0.4",
     "react-pro-booking-calendar": "^1.0.23",
     "react-redux": "^5.0.7",
     "react-responsive-ux-container": "^1.0.7",
