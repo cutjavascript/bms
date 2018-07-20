@@ -213,53 +213,6 @@ class Calendar extends React.Component {
             return { bookings: mergedSlots };
           });
       }
-
-      /*
-      ////if cart id not equal to 0 then check if bookings were selected and if so add them to existing booking set
-      const getBooking = ((nextProps.addSlotsResult || {}).postData || {}).bookings || [];
-
-      console.log("===  Line:167, File:e:gitwork\bmssrccomponentsCalendarindex.js");
-      console.log("===getBooking  Line:168, File:e:gitwork\bmssrccomponentsCalendarindex.js", getBooking);
-      if (getBooking.length > 0) {
-        console.log("===  Line:168, File:e:gitwork\bmssrccomponentsCalendarindex.js");
-        let removeFromBookings = [],
-          addToBookings = false,
-          day = "",
-          bookingTime = "",
-          convertedSlot = {};
-        getBooking.map(x => {
-          removeFromBookings = x.availed && x.slot_id;
-          addToBookings = x.availed;
-          bookingTime = x.booking_time;
-        });
-
-        console.log("===addToBookings  Line:182, File:e:gitwork\bmssrccomponentsCalendarindex.js", addToBookings);
-
-        addToBookings &&
-          this.setState((prevState, props) => {
-            console.log("===prevState  Line:141, File:e:gitwork\bmssrccomponentsCalendarindex.js", prevState);
-            const prevBookings = prevState.bookings;
-            day = String(moment(bookingDay, "YYYYMMDD" + "000000").format("YYYYMMDD")) + String(bookingTime);
-            console.log("===prevBookings  Line:144, File:e:gitwork\bmssrccomponentsCalendarindex.js", prevBookings);
-            convertedSlot = bookedSlot(day);
-            convertedSlot.isBooked = true;
-            prevBookings.push(convertedSlot);
-
-            console.log("===prevBookings  Line:148, File:e:gitwork\bmssrccomponentsCalendarindex.js", prevBookings);
-            return prevBookings;
-          });
-
-        //     {slot_id: 1, booking_time: "11am", availed: true}
-        // availed
-        // :
-        // true
-        // booking_time
-        // :
-        // "11am"
-        // slot_id
-        // :
-        // 1
-      }*/
     }
   }
 
