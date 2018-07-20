@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { find, isEqual } from "lodash";
+import PaypalExpressBtn from "react-paypal-express-checkout";
 
 class Cart extends React.Component {
   constructor(props) {
@@ -54,12 +55,21 @@ class Cart extends React.Component {
     if (!this.props.cartDetails || !this.props.cartDetails.status) {
       return <div>Loading</div>;
     }
+    const client = {
+      sandbox: "YOUR-SANDBOX-APP-ID",
+      production: "YOUR-PRODUCTION-APP-ID",
+    };
+
     const cartTotal = (this.props.cartDetails.data || {}).cart_total || 0;
     const services = (this.props.cartDetails.data || {}).services || {};
     const formarServices = this.formatServices(services);
     console.log("===formarServices  Line:55, File:e:gitwork\bmssrccomponentsCartindex.js", formarServices);
     // const data = this.props.cartDetails.map(x => {});
-    return <div>{formarServices}</div>;
+    return (
+      <div>
+        {formarServices} <PaypalExpressBtn client={client} currency={"USD"} total={1.0} />
+      </div>
+    );
   }
 }
 
