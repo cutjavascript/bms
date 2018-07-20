@@ -31,12 +31,16 @@ class Home extends React.Component {
     console.log("===nextProps  Line:34, File:e:gitwork\bmssrccomponentsHomeindex.js", nextProps);
     const studioServices = (nextProps.studioServices || {}).submitted;
     console.log("===studioServices  Line:36, File:e:gitwork\bmssrccomponentsHomeindex.js", studioServices);
+    if (nextProps.showPanel === "cart") {
+      return { showPanel: "cart" };
+    }
     if (studioServices && prevState.showPanel === "services") {
       return { showPanel: "slots" };
     }
     // if (nextProps.someValue !== prevState.someValue) {
     //   return { someState: nextProps.someValue };
-    // } else return null;
+    // } else
+    return null;
   }
 
   render() {
@@ -68,12 +72,13 @@ class Home extends React.Component {
                 changeSlots={this.props.changeSlots}
                 {...this.props.loadCartReducer}
                 removeSlotsResult={this.props.removeSlotsResult}
+                showCart={this.props.showCart}
               />
             </div>
           ) : (
             this.state.showPanel === "cart" && (
               <div>
-                <Cart />
+                <Cart cartDetails={this.props.loadCartReducer.cartDetails} />
               </div>
             )
           )}

@@ -99,6 +99,11 @@ export default (state = initialState, action) => {
       return { ...state, services: newObj, isLoading: false };
     }
 
+    case types.LOAD_CART_SUCCESS: {
+      console.log("===  Line:102, File:e:gitwork\bmssrc\reducersloadCartReducer.js");
+      return { ...state, cartDetails: { ...action.payload.data, status: true } };
+    }
+
     case types.LOAD_CART_SERVICES_FAIL: {
       return state;
     }
