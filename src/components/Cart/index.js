@@ -10,7 +10,7 @@ class Cart extends React.Component {
     this.state = {
       hasError: false,
       cartDetails: {},
-      cancel: false,
+      status: false,
     };
   }
 
@@ -55,11 +55,12 @@ class Cart extends React.Component {
   onSuccess = payment => {
     // Congratulation, it came here means everything's fine!
     console.log("The payment was succeeded!", payment);
+    this.setState({ status: true });
     // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
   };
 
   onCancel = data => {
-    this.setState({ cancel: true });
+    this.setState({ status: false });
     // User pressed "cancel" or close Paypal's popup!
     console.log("The payment was cancelled!", data);
     // You can bind the "data" object's value to your state or props or whatever here, please see below for sample returned data
@@ -93,17 +94,22 @@ class Cart extends React.Component {
     // const data = this.props.cartDetails.map(x => {});
     return (
       <div>
-        {formarServices}{" "}
-        <PaypalExpressBtn
-          env={env}
-          client={client}
-          currency={currency}
-          total={total}
-          onError={this.onError}
-          onSuccess={this.onSuccess}
-          onCancel={this.onCancel}
-        />
-        {this.state.cancel && <Tickmark />}
+        {this.state.status ? (
+          <Tickmark />
+        ) : (
+          <div>
+            {formarServices}
+            <PaypalExpressBtn
+              env={env}
+              client={client}
+              currency={currency}
+              total={total}
+              onError={this.onError}
+              onSuccess={this.onSuccess}
+              onCancel={this.onCancel}
+            />
+          </div>
+        )}
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React from "react";
+import "./tickmark.css";
 export default function() {
   return (
     <div>
@@ -23,7 +24,9 @@ export default function() {
           points="100.2,40.2 51.5,88.8 29.8,67.5 "
         />
       </svg>
-      <p class="success">Oh Yeah!</p>
+      <p class="success">
+        Payment has been successful.<br />You will be emailed the necessary details.
+      </p>
     </div>
   );
 }
