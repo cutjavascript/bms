@@ -16,7 +16,7 @@ class Cart extends React.Component {
     console.log("===nextProps  Line:14, File:e:gitwork\bmssrccomponentsCartindex.js", nextProps);
     console.log("===prevState  Line:16, File:e:gitwork\bmssrccomponentsCartindex.js", prevState);
     if (!isEqual(nextProps.cartDetails, prevState.cartDetails)) {
-      console.log("===  Line:15, File:e:gitwork\bmssrccomponentsCartindex.js");
+      console.log("===  Line:15, File:e:gitwork\0.js");
       return { cartDetails: nextProps.cartDetails };
     } else return null;
   }
@@ -31,21 +31,19 @@ class Cart extends React.Component {
         <div>Service Name:{x.service_name}</div>
         <div>Required Slots:{x.required_slots}</div>
 
-        {x.bookings &&
-          x.bookings.length > 0 &&
-          x.bookings.map(y => (
-            <div>
-              <div>Day:{y.day}</div>
-              <ul>
-                {y.timings &&
-                  y.timings.map(z => (
-                    <li>
-                      Amount:<span>{z.amount}</span>,Time:<span>{z.booking_time}</span>{" "}
-                    </li>
-                  ))}
-              </ul>
-            </div>
-          ))}
+        {x.bookings && (
+          <div>
+            <div>Day:{x.bookings.day}</div>
+
+            <ul>
+              {x.bookings.timings.map(z => (
+                <li>
+                  Amount:<span>{z.amount}</span>,Time:<span>{z.booking_time}</span>{" "}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     ));
     console.log("===formatted  Line:50, File:e:gitwork\bmssrccomponentsCartindex.js", formatted);
