@@ -37,9 +37,13 @@ class Home extends React.Component {
     if (studioServices && prevState.showPanel === "services") {
       return { showPanel: "slots" };
     }
-    // if (nextProps.someValue !== prevState.someValue) {
-    //   return { someState: nextProps.someValue };
-    // } else
+    if (nextProps.loadCartReducer.services) {
+      console.log(
+        "===nextProps.loadCartReducer.services  Line:41, File:e:gitwork\bmssrccomponentsHomeindex.js",
+        nextProps.loadCartReducer.services,
+      );
+    }
+
     return null;
   }
 
@@ -61,6 +65,7 @@ class Home extends React.Component {
               loadServices={this.props.loadServices}
               {...this.props.studioServices}
               submit={this.props.submitServices}
+              servicesSelected={this.props.loadCartReducer.servicesSelected}
             />
           ) : this.state.showPanel === "slots" ? (
             <div>

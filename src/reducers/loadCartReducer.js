@@ -51,8 +51,10 @@ function bookingData(state) {
 function servicesData(data) {
   const services = data.services || [];
   let output = [];
+  let servicesSelected = [];
   if (services.length > 0) {
     services.map(x => {
+      servicesSelected.push(x.service_id);
       x.bookings_required > 0 && output.push({ text: x.service_name, value: x.cart_service_id });
     });
   }
@@ -60,7 +62,7 @@ function servicesData(data) {
   console.log("===output  Line:60, File:e:gitwork\bmssrc\reducersloadCartReducer.js", output);
   console.log("===data  Line:51, File:e:gitwork\bmssrc\reducersloadCartReducer.js", data);
 
-  return output;
+  return { output, servicesSelected };
 }
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -96,7 +98,7 @@ export default (state = initialState, action) => {
         action.payload.data,
         // state,
       );
-      return { ...state, services: newObj, isLoading: false };
+      return { ...state, services: newObj.output, servicesSelected: newObj.servicesSelected, isLoading: false };
     }
 
     case types.LOAD_CART_SUCCESS: {

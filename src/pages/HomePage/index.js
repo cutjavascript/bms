@@ -19,7 +19,7 @@ class HomePage extends React.PureComponent {
     this.loadCalendar = this.loadCalendar.bind(this);
     this.onSlotChoosen = this.onSlotChoosen.bind(this);
     this.loadServices = this.loadServices.bind(this);
-    this.state = { showPanel: "cart" };
+    this.state = { showPanel: "services" };
     console.log("===this.props  Line:20, File:e:gitwork\bmssrcpagesHomePageindex.js", this.props);
   }
 
@@ -33,6 +33,7 @@ class HomePage extends React.PureComponent {
   }
 
   componentDidMount() {
+    this.state.showPanel === "services" && this.loadCartServices();
     this.state.showPanel === "cart" && this.showCart();
   }
 

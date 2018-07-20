@@ -12,17 +12,7 @@ export default (servicesSelected, { user_id, studio_id }) => (dispatch, getState
     studio_id: studio_id,
     user_id: user_id,
 
-    services: [
-      {
-        ///#if no services are selected then it will be blank
-        service_id: 1,
-        count: 0, //#it is 0 as this service requires slots, and CAN'T be increased by itself
-      },
-      {
-        service_id: 2,
-        count: 1, //#it is 4 as this service does not require slots, and CAN be increased by itself
-      },
-    ],
+    services: services,
   };
 
   dispatch({ type: types.SUBMIT_STUDIO_SERVICES_REQUEST, payload: { postData } });
